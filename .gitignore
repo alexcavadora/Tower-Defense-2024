@@ -3,8 +3,6 @@ Build/
 
 # Godot 4+ specific ignores
 .godot/
-
-# Godot-specific ignores
 .import/
 export.cfg
 export_presets.cfg
@@ -22,4 +20,3 @@ mono_crash.*.json
 *.import
 *.import
 *.import
-
