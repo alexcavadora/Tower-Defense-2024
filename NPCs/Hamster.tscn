@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://10wkwnw1ie5d"]
+
+[ext_resource type="ArrayMesh" uid="uid://b6bs6nbv7d12w" path="res://NPCs/Hamster.tres" id="1_nd21d"]
+[ext_resource type="Texture2D" uid="uid://d3mw20pnhvait" path="res://2DProps/Dialog.png" id="4_6alxn"]
+
+[sub_resource type="GDScript" id="GDScript_drvn2"]
+script/source = "extends RigidBody3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func run():
+	$Dialogue_box2/Sprite3D.hide()
+	set_collision_layer_value(1,false)
+	set_collision_mask_value(1,false)
+	linear_velocity.x = 50
+	angular_velocity.z = -10
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cr0pb"]
+radius = 1.08141
+height = 2.97377
+
+[sub_resource type="Animation" id="Animation_r1bs4"]
+resource_name = "Talk"
+length = 1.04167
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cachetes, pies y manos")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.0333333, 1, 0, 0, 0, 0.0666667, 1, 0, 0.0703125, 0, 0.1, 1, 0, 0.220312, 0, 0.166667, 1, 0, 0.632813, 0, 0.2, 1, 0, 0.726563, 0, 0.233333, 1, 0, 0.7032, 0, 0.266667, 1, 0, 0.5976, 0, 0.3, 1, 0, 0.4416, 0, 0.333333, 1, 0, 0.264, 0, 0.366667, 1, 0, 0.1152, 0, 0.4, 1, 0, 0.0312, 0, 0.433333, 1, 0, 0.0312, 0, 0.466667, 1, 0, 0.1152, 0, 0.5, 1, 0, 0.264, 0, 0.533333, 1, 0, 0.4416, 0, 0.566667, 1, 0, 0.5976, 0, 0.6, 1, 0, 0.7032, 0, 0.633333, 1, 0, 0.7344, 0, 0.666667, 1, 0, 0.672, 0, 0.7, 1, 0, 0.5232, 0, 0.733333, 1, 0, 0.3528, 0, 0.766667, 1, 0, 0.1896, 0, 0.8, 1, 0, 0.0624001, 0, 0.866667, 1, 0, 0.0624, 0, 0.9, 1, 0, 0.1896, 0, 0.933333, 1, 0, 0.3528, 0, 0.966667, 1, 0, 0.5232, 0, 1, 1, 0, 0.672, 0, 1.04167, 1, 0, 0.75, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l16p6"]
+_data = {
+"Talk": SubResource("Animation_r1bs4")
+}
+
+[sub_resource type="GDScript" id="GDScript_hqvrq"]
+script/source = "extends Area3D
+var Handready = false
+var state = false
+@export var lines: Array[String] =[
+	\"Hey, you seem pretty strong!\",
+	\"Wanna spar?\",
+	\"Wait...\",
+	\"I shouldn't waste my energy before an important battle...\",
+	\"Well, I'll see you at the buffet!\",]
+	
+	
+
+func _unhandled_input(event):
+	if state and event.is_action_pressed(\"Talk\"):
+		Handready = true
+		$Sprite3D.hide()
+		DialogManager.start_dialog(global_position, lines)
+		state = false
+
+
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		$Sprite3D.show()
+		state = true
+
+
+func _on_body_exited(body):
+	if body.name == \"Player\":
+		state = false
+		$Sprite3D.hide()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgy1i"]
+size = Vector3(5, 5, 5)
+
+[node name="Hamster" type="RigidBody3D"]
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+script = SubResource("GDScript_drvn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438599, 0)
+shape = SubResource("CapsuleShape3D_cr0pb")
+
+[node name="Cachetes, pies y manos" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_nd21d")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l16p6")
+}
+
+[node name="Dialogue_box2" type="Area3D" parent="."]
+process_mode = 3
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+script = SubResource("GDScript_hqvrq")
+lines = Array[String](["Stop chasing me you freak!", "Now you got us trapped in here...", "You are just like all the other monsters.", "...", "Speak of the devil", "RUN!!!"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dialogue_box2"]
+shape = SubResource("BoxShape3D_bgy1i")
+
+[node name="Sprite3D" type="Sprite3D" parent="Dialogue_box2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("4_6alxn")
+
+[connection signal="body_entered" from="Dialogue_box2" to="Dialogue_box2" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="Dialogue_box2" to="Dialogue_box2" method="_on_body_exited" flags=18]

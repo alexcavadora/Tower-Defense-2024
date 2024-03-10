@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://fnpej0g0wxwx"]
+
+[ext_resource type="Script" path="res://ScriptsAux/CameraTest.gd" id="1_qokmp"]
+
+[node name="F-Camera" type="Camera3D"]
+transform = Transform3D(0.996195, 0.0106216, -0.0865061, 0, 0.992546, 0.121869, 0.0871557, -0.121406, 0.988769, 0, 0, 0)
+projection = 1
+current = true
+fov = 157.0
+size = 30.0
+near = 0.001
+script = ExtResource("1_qokmp")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.999805, 0.0190145, 0.00523277, -0.0191857, 0.999207, 0.0348995, -0.00456503, -0.0349931, 0.999377, 0, 0, 0)
+light_color = Color(0.490196, 0.960784, 0.388235, 1)
+light_energy = 16.0
+light_indirect_energy = 2.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+spot_range = 30.0
