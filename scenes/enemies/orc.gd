@@ -1,4 +1,3 @@
-
 extends CharacterBody2D
 
 var current_path: Array[Vector2i]

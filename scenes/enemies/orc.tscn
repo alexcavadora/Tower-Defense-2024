@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://cecx3muygripv"]
+
+[ext_resource type="Script" path="res://scenes/enemies/orc.gd" id="1_4rmsh"]
+[ext_resource type="Texture2D" uid="uid://3ge5acpfpevi" path="res://assets/sprites/enemies/Orc-Grunt.png" id="2_3ugpa"]
+[ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_55j8g"]
+[ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_4ek5o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdcnx"]
+atlas = ExtResource("2_3ugpa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utdbp"]
+atlas = ExtResource("2_3ugpa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fldkw"]
+atlas = ExtResource("2_3ugpa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2xwd"]
+atlas = ExtResource("2_3ugpa")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p85n"]
+atlas = ExtResource("2_3ugpa")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12qp1"]
+atlas = ExtResource("2_3ugpa")
+region = Rect2(672, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5v6y8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdcnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utdbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fldkw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2xwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p85n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12qp1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6y84r"]
+radius = 7.0
+height = 20.0
+
+[node name="orc" type="CharacterBody2D"]
+z_index = 5
+script = ExtResource("1_4rmsh")
+
+[node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5v6y8")
+frame_progress = 0.669742
+script = ExtResource("3_55j8g")
+
+[node name="MovementComponent" type="Node2D" parent="."]
+script = ExtResource("4_4ek5o")
+creature_speed = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6y84r")

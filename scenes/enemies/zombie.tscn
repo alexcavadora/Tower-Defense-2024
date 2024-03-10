@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="1_p46ne"]
 [ext_resource type="Script" path="res://scenes/enemies/zombie.gd" id="1_rix12"]
-[ext_resource type="Texture2D" uid="uid://c1mkmji34qv4f" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
+[ext_resource type="Texture2D" uid="uid://bbu32bowyqnpp" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_g2rev"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbqx7"]
@@ -72,7 +72,6 @@ script = ExtResource("1_rix12")
 
 [node name="MovementComponent" type="Node2D" parent="."]
 script = ExtResource("1_p46ne")
-creature_speed = 0.5
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r3yal")

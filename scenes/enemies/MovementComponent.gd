@@ -13,6 +13,8 @@ func init(st, ft, tile):
 	self.finishing_tile = ft
 	self.tm = tile
 	self.current_path = tile.astar.get_id_path(st, ft).slice(1)
+	if tm:
+		tm.connect("updated",update_path)
 
 func _physics_process(_delta):
 	if current_path.is_empty():
@@ -24,3 +26,6 @@ func _physics_process(_delta):
 
 	if global_position == target_position:
 		current_path.pop_front()
+
+func update_path():
+	current_path = tm.astar.get_id_path(tm.local_to_map(global_position), finishing_tile).slice(1)

@@ -1,5 +1,6 @@
 extends TileMap
 
+signal updated
 var astar = AStarGrid2D.new()
 var map_rect = Rect2i()
 @export var finishing_tile = Vector2i(0,0)
@@ -31,6 +32,7 @@ func update():
 	clear_layer(2)
 	for i in starting_tile:
 		create_optimal_path(i, finishing_tile)
+	emit_signal("updated")
 
 func is_point_walkable(local_position):
 	var map_position = local_to_map(local_position)
@@ -73,7 +75,10 @@ func _unhandled_input(_event):
 	if Input.is_action_pressed("click"):
 		var pos = local_to_map(get_global_mouse_position())
 		set_cell(1, pos, 0, Vector2i(0,13))
+		
+		# for some reason does not allow to change the original path in any way
 		#for i in starting_tile:
-			#if !create_optimal_path(i,finishing_tile):
-					#set_cell(1, pos, -1, Vector2i(-1,-1))
+		#	if create_optimal_path(i,finishing_tile) == false:
+		#			set_cell(1, pos, -1, Vector2i(-1,-1))
+		#			astar.set_point_solid(pos)
 		update()
