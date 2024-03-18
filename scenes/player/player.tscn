@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0ynyy2q783d7"]
+[gd_scene load_steps=22 format=3 uid="uid://c0ynyy2q783d7"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_akys2"]
 [ext_resource type="Texture2D" uid="uid://ca4ansn1kq0p5" path="res://assets/sprites/characters/CharacterTest.png" id="1_xo4rv"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="2_qlki8"]
-[ext_resource type="Script" path="res://scenes/player/PlayMovementComponent.gd" id="3_0iqsx"]
+[ext_resource type="PackedScene" uid="uid://cyrq0t23xknjk" path="res://scenes/Components/play_movement_component.tscn" id="4_a15o5"]
+[ext_resource type="PackedScene" uid="uid://c6iimwkb07glb" path="res://scenes/Components/health_component.tscn" id="5_ac1en"]
+[ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
 
@@ -124,6 +126,10 @@ animation = &"Run"
 frame_progress = 0.0670038
 script = ExtResource("2_qlki8")
 
-[node name="PlayMovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target")]
-script = ExtResource("3_0iqsx")
+[node name="PlayMovementComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("4_a15o5")]
 Target = NodePath("..")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_ac1en")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4lu8")]
+health_component = NodePath("../HealthComponent")

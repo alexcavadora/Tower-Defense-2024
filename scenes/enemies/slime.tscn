@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://cl3o1p7hm2vvf"]
 
-[ext_resource type="Texture2D" uid="uid://8w5ehnxnvcva" path="res://assets/sprites/enemies/Slime.png" id="1_f0rk6"]
+[ext_resource type="Texture2D" uid="uid://dh6eh5j8m48cr" path="res://assets/sprites/enemies/Slime.png" id="1_f0rk6"]
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_utlk2"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_dsr07"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_1k3ls"]
