@@ -1,0 +1,115 @@
+[gd_scene load_steps=22 format=3 uid="uid://bx5mcb3g673ey"]
+
+[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="1_mefag"]
+[ext_resource type="Script" path="res://scenes/turret/Cannon.gd" id="1_pw6i2"]
+[ext_resource type="Texture2D" uid="uid://cqypsehh7vvxh" path="res://assets/sprites/towers/TD_basic_towers/Cannon2.png" id="2_ktlrm"]
+[ext_resource type="Texture2D" uid="uid://cjgxfpclffwra" path="res://assets/sprites/towers/TD_basic_towers/Cannon3.png" id="3_5grun"]
+[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="4_jliw5"]
+[ext_resource type="Texture2D" uid="uid://cknl7th5axndv" path="res://assets/sprites/towers/TD_basic_towers/MG2.png" id="5_nuwfn"]
+[ext_resource type="Texture2D" uid="uid://drxtcgu252aae" path="res://assets/sprites/towers/TD_basic_towers/MG3.png" id="6_q2nfb"]
+[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="7_wq070"]
+[ext_resource type="Texture2D" uid="uid://dyhx83l5usbtn" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="8_7o0l5"]
+[ext_resource type="Texture2D" uid="uid://dlvr34asvgxlp" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="9_ti4jl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnu5m"]
+atlas = ExtResource("1_mefag")
+region = Rect2(0, 0, 139, 253)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbcep"]
+atlas = ExtResource("2_ktlrm")
+region = Rect2(0, 0, 202, 286)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74nu4"]
+atlas = ExtResource("3_5grun")
+region = Rect2(0, 0, 202, 276)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b45l4"]
+atlas = ExtResource("4_jliw5")
+region = Rect2(0, 0, 110, 229)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5gdp"]
+atlas = ExtResource("5_nuwfn")
+region = Rect2(0, 0, 218, 239)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yeq7"]
+atlas = ExtResource("6_q2nfb")
+region = Rect2(0, 0, 166, 259)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erdy2"]
+atlas = ExtResource("7_wq070")
+region = Rect2(0, 0, 136, 225)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvo0e"]
+atlas = ExtResource("8_7o0l5")
+region = Rect2(0, 0, 188, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux586"]
+atlas = ExtResource("9_ti4jl")
+region = Rect2(0, 0, 208, 198)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1c0mx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnu5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbcep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74nu4")
+}],
+"loop": false,
+"name": &"cannon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b45l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5gdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yeq7")
+}],
+"loop": true,
+"name": &"machine",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erdy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvo0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux586")
+}],
+"loop": true,
+"name": &"missile",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_slmai"]
+radius = 57.0088
+
+[node name="Cannon" type="StaticBody2D"]
+script = ExtResource("1_pw6i2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
+position = Vector2(0, -3.00001)
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_1c0mx")
+animation = &"cannon"
+frame = 2
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 2
+shape = SubResource("CircleShape2D_slmai")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

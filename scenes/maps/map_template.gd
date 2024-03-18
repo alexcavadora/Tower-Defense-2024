@@ -7,6 +7,9 @@ var map_rect = Rect2i()
 @export var starting_tile : Array[Vector2i] = [Vector2i()]
 var tile_size
 var tilemap_size
+var arrow_layer : int = 2
+var road_layer: int = 1
+var terrain_layer : int = 3
 
 func _ready():
 	tile_size = get_tileset().tile_size
@@ -26,10 +29,11 @@ func update():
 	for i in tilemap_size.x:
 		for j in tilemap_size.y:
 			var coordinates = Vector2i(i, j)
-			var tile_data = get_cell_tile_data(1, coordinates)
+			var tile_data = get_cell_tile_data(terrain_layer, coordinates)
 			if tile_data and tile_data.get_custom_data('solid'):
 				astar.set_point_solid(coordinates)
 	clear_layer(2)
+	clear_layer(1)
 	for i in starting_tile:
 		create_optimal_path(i, finishing_tile)
 	emit_signal("updated")
@@ -44,8 +48,8 @@ func create_optimal_path(start: Vector2i , finish: Vector2i):
 	var path = astar.get_id_path(start, finish)
 	if path.size() == 0 or astar.is_point_solid(start) or astar.is_point_solid(finish):
 		return false
-	set_cells_terrain_path(2, path, 2, 0) # drawing the arrows
-	set_cells_terrain_path(1, path, 1, 0) # drawing the road on the ground
+	set_cells_terrain_path(arrow_layer, path, 2, 0) # drawing the arrows
+	set_cells_terrain_path(road_layer, path, 1, 0) # drawing the road on the ground
 	
 	# checking adjacent for the first position to override a weird bug in autotiling
 	var cell = path.front()
@@ -56,29 +60,41 @@ func create_optimal_path(start: Vector2i , finish: Vector2i):
 		set_cell(2, cell, 1, Vector2i(3,1))
 	elif origin_direction == 'up':
 		set_cell(2, cell, 1, Vector2i(4,1))
-	elif origin_direction == 'down':
+	else:
 		set_cell(2, cell, 1, Vector2i(4,0))
 
 func find_origin_direction(cell):
 	if cell:
-		if(get_cell_source_id(2,Vector2(cell.x+1,cell.y)) == 1):
+		if(get_cell_source_id(arrow_layer, Vector2i(cell.x+1,cell.y)) == 1):
 			return 'right'
-		if(get_cell_source_id(2,Vector2(cell.x-1,cell.y)) == 1):
+		if(get_cell_source_id(arrow_layer, Vector2i(cell.x-1,cell.y)) == 1):
 			return 'left'
-		if (get_cell_source_id(2,Vector2(cell.x,cell.y-1)) == 1):
+		if (get_cell_source_id(arrow_layer, Vector2i(cell.x,cell.y-1)) == 1):
 			return 'up'
-		if (get_cell_source_id(2,Vector2(cell.x,cell.y+1)) == 1):
-			return 'down'
-	return 'right'
+	return 'down'
 
 func _unhandled_input(_event):
 	if Input.is_action_pressed("click"):
 		var pos = local_to_map(get_global_mouse_position())
-		set_cell(1, pos, 0, Vector2i(0,13))
-		
-		# for some reason does not allow to change the original path in any way
-		#for i in starting_tile:
-		#	if create_optimal_path(i,finishing_tile) == false:
-		#			set_cell(1, pos, -1, Vector2i(-1,-1))
-		#			astar.set_point_solid(pos)
+		set_cell(terrain_layer, pos, 0, Vector2i(0,13))
 		update()
+		for i in starting_tile:
+			if astar.get_id_path(i, finishing_tile).is_empty() or pos == i:
+				set_cell(terrain_layer, pos, -1,Vector2i(-1,-1))
+				astar.set_point_solid(pos, false)
+				update()
+				break
+		# for some reason does not allow to change the original path in any way
+		# for i in starting_tile:
+		#	if create_optimal_path(i,finishing_tile) == false:
+		#			set_cell(terrain_layer, pos, -1, Vector2i(-1,-1))
+		#			astar.set_point_solid(pos, false)
+	if Input.is_action_pressed("right_click"):
+		var pos = local_to_map(get_global_mouse_position())
+		for i in starting_tile:
+			if i == pos or i == finishing_tile:
+				return
+		set_cell(terrain_layer, pos, -1,Vector2i(-1,-1))
+		astar.set_point_solid(pos, false)
+		update()
+
