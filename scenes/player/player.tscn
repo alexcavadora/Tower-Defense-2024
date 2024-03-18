@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0ynyy2q783d7"]
+[gd_scene load_steps=20 format=3 uid="uid://c0ynyy2q783d7"]
 
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_akys2"]
 [ext_resource type="Texture2D" uid="uid://ca4ansn1kq0p5" path="res://assets/sprites/characters/CharacterTest.png" id="1_xo4rv"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="2_qlki8"]
+[ext_resource type="Script" path="res://scenes/player/PlayMovementComponent.gd" id="3_0iqsx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
 
@@ -110,6 +112,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_akys2")
 
 [node name="Col_Player" type="CollisionShape2D" parent="."]
 scale = Vector2(4, 4)
@@ -120,3 +123,7 @@ sprite_frames = SubResource("SpriteFrames_4uvat")
 animation = &"Run"
 frame_progress = 0.0670038
 script = ExtResource("2_qlki8")
+
+[node name="PlayMovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target")]
+script = ExtResource("3_0iqsx")
+Target = NodePath("..")
