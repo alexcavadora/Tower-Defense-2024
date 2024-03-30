@@ -1,50 +1,50 @@
-[gd_scene load_steps=23 format=3 uid="uid://bx5mcb3g673ey"]
+[gd_scene load_steps=23 format=3 uid="uid://bcigpu3rd27ku"]
 
-[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="1_mefag"]
-[ext_resource type="Script" path="res://scenes/turret/Cannon.gd" id="1_pw6i2"]
-[ext_resource type="Texture2D" uid="uid://cqypsehh7vvxh" path="res://assets/sprites/towers/TD_basic_towers/Cannon2.png" id="2_ktlrm"]
-[ext_resource type="Texture2D" uid="uid://cjgxfpclffwra" path="res://assets/sprites/towers/TD_basic_towers/Cannon3.png" id="3_5grun"]
-[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="4_jliw5"]
-[ext_resource type="Texture2D" uid="uid://cknl7th5axndv" path="res://assets/sprites/towers/TD_basic_towers/MG2.png" id="5_nuwfn"]
-[ext_resource type="Texture2D" uid="uid://drxtcgu252aae" path="res://assets/sprites/towers/TD_basic_towers/MG3.png" id="6_q2nfb"]
-[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="7_wq070"]
-[ext_resource type="Texture2D" uid="uid://dyhx83l5usbtn" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="8_7o0l5"]
-[ext_resource type="Texture2D" uid="uid://dlvr34asvgxlp" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="9_ti4jl"]
+[ext_resource type="Script" path="res://scenes/turret/Cannon.gd" id="1_h6lo4"]
+[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="2_m8w4x"]
+[ext_resource type="Texture2D" uid="uid://cqypsehh7vvxh" path="res://assets/sprites/towers/TD_basic_towers/Cannon2.png" id="3_iqfnd"]
+[ext_resource type="Texture2D" uid="uid://cjgxfpclffwra" path="res://assets/sprites/towers/TD_basic_towers/Cannon3.png" id="4_1ed4o"]
+[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="5_go47p"]
+[ext_resource type="Texture2D" uid="uid://cknl7th5axndv" path="res://assets/sprites/towers/TD_basic_towers/MG2.png" id="6_m6a13"]
+[ext_resource type="Texture2D" uid="uid://drxtcgu252aae" path="res://assets/sprites/towers/TD_basic_towers/MG3.png" id="7_d1q51"]
+[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="8_13ui4"]
+[ext_resource type="Texture2D" uid="uid://dyhx83l5usbtn" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="9_6y8uu"]
+[ext_resource type="Texture2D" uid="uid://dlvr34asvgxlp" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="10_bcqdn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnu5m"]
-atlas = ExtResource("1_mefag")
+atlas = ExtResource("2_m8w4x")
 region = Rect2(0, 0, 139, 253)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbcep"]
-atlas = ExtResource("2_ktlrm")
+atlas = ExtResource("3_iqfnd")
 region = Rect2(0, 0, 202, 286)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74nu4"]
-atlas = ExtResource("3_5grun")
+atlas = ExtResource("4_1ed4o")
 region = Rect2(0, 0, 202, 276)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b45l4"]
-atlas = ExtResource("4_jliw5")
+atlas = ExtResource("5_go47p")
 region = Rect2(0, 0, 110, 229)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5gdp"]
-atlas = ExtResource("5_nuwfn")
+atlas = ExtResource("6_m6a13")
 region = Rect2(0, 0, 218, 239)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2yeq7"]
-atlas = ExtResource("6_q2nfb")
+atlas = ExtResource("7_d1q51")
 region = Rect2(0, 0, 166, 259)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_erdy2"]
-atlas = ExtResource("7_wq070")
+atlas = ExtResource("8_13ui4")
 region = Rect2(0, 0, 136, 225)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pvo0e"]
-atlas = ExtResource("8_7o0l5")
+atlas = ExtResource("9_6y8uu")
 region = Rect2(0, 0, 188, 188)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ux586"]
-atlas = ExtResource("9_ti4jl")
+atlas = ExtResource("10_bcqdn")
 region = Rect2(0, 0, 208, 198)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1c0mx"]
@@ -100,14 +100,14 @@ size = Vector2(20, 22)
 
 [node name="Cannon" type="StaticBody2D"]
 y_sort_enabled = true
-script = ExtResource("1_pw6i2")
+script = ExtResource("1_h6lo4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 3
 position = Vector2(0, -3.00001)
 scale = Vector2(0.075, 0.075)
 sprite_frames = SubResource("SpriteFrames_1c0mx")
-animation = &"cannon"
+animation = &"missile"
 
 [node name="Area2D" type="Area2D" parent="."]
 

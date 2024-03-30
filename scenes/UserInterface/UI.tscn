@@ -1,0 +1,141 @@
+[gd_scene load_steps=7 format=3 uid="uid://doosiuu4p0wsg"]
+
+[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
+[ext_resource type="Script" path="res://scenes/UserInterface/UI.gd" id="1_qq2ha"]
+[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
+[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h68sl"]
+bg_color = Color(1, 0.329412, 0.329412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5242k"]
+bg_color = Color(0.815686, 0.6, 0.0509804, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qq2ha")
+
+[node name="20" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 41.0
+offset_bottom = 63.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="20"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="20/HBoxContainer"]
+custom_minimum_size = Vector2(95, 2.08165e-12)
+layout_mode = 2
+
+[node name="HP" type="Label" parent="20/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "HP: 500 HP"
+
+[node name="Bullets" type="Label" parent="20/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Bullets: 2/7"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="20/HBoxContainer"]
+layout_mode = 2
+
+[node name="HPBar" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 22)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_h68sl")
+max_value = 500.0
+step = 1.0
+value = 500.0
+show_percentage = false
+
+[node name="BulletsBar" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 22)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_5242k")
+max_value = 7.0
+step = 1.0
+value = 7.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -490.0
+offset_top = -100.0
+offset_right = 490.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Turret1" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "
+
+1
+"
+icon = ExtResource("1_edy5a")
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "
+
+2"
+icon = ExtResource("2_ipril")
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret3" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "
+
+3"
+icon = ExtResource("3_8dnw1")
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret4" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "
+
+4"
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="HBoxContainer/Turret1" to="." method="_on_turret_1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret2" to="." method="_on_turret_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret3" to="." method="_on_turret_3_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret4" to="." method="_on_turret_4_pressed"]

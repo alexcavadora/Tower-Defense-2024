@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="1_8aak2"]
 [ext_resource type="Script" path="res://EnemySpawner.gd" id="2_435xr"]
-[ext_resource type="PackedScene" uid="uid://bx5mcb3g673ey" path="res://scenes/turret/Cannon.tscn" id="3_vb1lb"]
+[ext_resource type="PackedScene" uid="uid://doosiuu4p0wsg" path="res://scenes/UserInterface/UI.tscn" id="4_u8w60"]
 
 [node name="TestingMap" type="Node2D"]
 y_sort_enabled = true
@@ -14,16 +14,18 @@ layer_2/name = "arrow"
 layer_3/name = "terrain"
 layer_3/y_sort_enabled = true
 layer_3/tile_data = PackedInt32Array()
-starting_tile = Array[Vector2i]([Vector2i(7, 0), Vector2i(0, 2)])
+starting_tile = Array[Vector2i]([Vector2i(8, 0), Vector2i(0, 2)])
+
+[node name="spawnerNode" type="Node" parent="."]
+script = ExtResource("2_435xr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 88)
 zoom = Vector2(4, 4)
 
-[node name="spawnerNode" type="Node" parent="."]
-script = ExtResource("2_435xr")
+[node name="Control" parent="Camera2D" instance=ExtResource("4_u8w60")]
+top_level = true
+z_as_relative = false
+scale = Vector2(0.25, 0.25)
 
-[node name="Turret" parent="." instance=ExtResource("3_vb1lb")]
-visible = false
-y_sort_enabled = true
-position = Vector2(107, 76)
+[connection signal="turret_selected" from="Camera2D/Control" to="Ground" method="_on_control_turret_selected"]
