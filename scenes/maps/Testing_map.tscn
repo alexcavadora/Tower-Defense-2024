@@ -25,6 +25,8 @@ zoom = Vector2(4, 4)
 
 [node name="Control" parent="Camera2D" instance=ExtResource("4_u8w60")]
 top_level = true
+visibility_layer = 2
+z_index = 15
 z_as_relative = false
 scale = Vector2(0.25, 0.25)
 

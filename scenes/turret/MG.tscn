@@ -108,6 +108,7 @@ position = Vector2(0, -3.00001)
 scale = Vector2(0.075, 0.075)
 sprite_frames = SubResource("SpriteFrames_1c0mx")
 animation = &"machine"
+frame = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
