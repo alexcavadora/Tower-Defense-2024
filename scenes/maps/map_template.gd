@@ -3,6 +3,10 @@ extends TileMap
 signal updated
 var astar = AStarGrid2D.new()
 var map_rect = Rect2i()
+var cannon_turret = preload("res://scenes/turret/Cannon.tscn")
+var missile_turret = preload("res://scenes/turret/Missile_launcher.tscn")
+var mg_turret = preload("res://scenes/turret/MG.tscn")
+var x = cannon_turret
 @export var finishing_tile = Vector2i(0,0)
 @export var starting_tile : Array[Vector2i] = [Vector2i()]
 var tile_size
@@ -10,6 +14,8 @@ var tilemap_size
 var arrow_layer : int = 2
 var road_layer: int = 1
 var terrain_layer : int = 3
+var sel_turret: String = "cannon"
+
 
 func _ready():
 	tile_size = get_tileset().tile_size
@@ -74,9 +80,24 @@ func find_origin_direction(cell):
 	return 'down'
 
 func _unhandled_input(_event):
-	if Input.is_action_pressed("click"):
-		var pos = local_to_map(get_global_mouse_position())
-		set_cell(terrain_layer, pos, 0, Vector2i(0,13))
+	var pos = local_to_map(get_global_mouse_position())
+	if Input.is_action_pressed("click") and astar.is_point_solid(pos) == false:
+
+		if sel_turret == "cannon":
+			x = cannon_turret.instantiate()
+		elif sel_turret == "missile_launcher":
+			x = missile_turret.instantiate()
+		elif sel_turret == "MG":
+			x = mg_turret.instantiate()
+		elif sel_turret == "empty":
+			return
+			
+		x.global_position = map_to_local(pos)
+		x.coords = pos
+		print(map_to_local(pos))
+		#x.position = map_to_local(pos)
+		get_parent().add_child.call_deferred(x)
+		astar.set_point_solid(pos, true)
 		update()
 		for i in starting_tile:
 			if astar.get_id_path(i, finishing_tile).is_empty() or pos == i:
@@ -89,8 +110,8 @@ func _unhandled_input(_event):
 		#	if create_optimal_path(i,finishing_tile) == false:
 		#			set_cell(terrain_layer, pos, -1, Vector2i(-1,-1))
 		#			astar.set_point_solid(pos, false)
-	if Input.is_action_pressed("right_click"):
-		var pos = local_to_map(get_global_mouse_position())
+		
+	if Input.is_action_pressed("right_click") and astar.is_point_solid(pos) == true:
 		for i in starting_tile:
 			if i == pos or i == finishing_tile:
 				return
@@ -98,3 +119,7 @@ func _unhandled_input(_event):
 		astar.set_point_solid(pos, false)
 		update()
 
+
+
+func _on_control_turret_selected(x):
+	sel_turret = x

@@ -23,7 +23,6 @@ func _physics_process(_delta):
 
 	var target_position = tm.map_to_local(current_path.front())
 	get_parent().global_position = global_position.move_toward(target_position, creature_speed)
-
 	if global_position == target_position:
 		current_path.pop_front()
 
