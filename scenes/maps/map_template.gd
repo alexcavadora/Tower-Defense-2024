@@ -99,6 +99,8 @@ func paint_optimal_paths (start_finish, type: int = 0):
 		if type == 1:
 			astar.set_point_solid(pos, false)
 		var path = astar.get_id_path(i[0], i[1])
+		if type == 1 and path.back() == pos:
+			path.pop_back()
 		set_cells_terrain_path(arrow_layer, path, 2, 0) # drawing the arrows
 		if type == 0:
 			set_cells_terrain_path(road_layer, path, 1, 0) # drawing the road on the ground
@@ -160,7 +162,6 @@ func _unhandled_input(_event):
 		for i in starting_tile:
 			if i == pos or i == finishing_tile:
 				return
-		set_cell(terrain_layer, pos, -1,Vector2i(-1,-1))
 		astar.set_point_solid(pos, false)
 		prev = pos
 		update()
