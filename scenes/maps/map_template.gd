@@ -166,6 +166,14 @@ func _unhandled_input(_event):
 		prev = pos
 		update()
 
+
 func _on_control_turret_selected(turr):
 	sel_turret = turr
 	prev = Vector2i(-1, -1)
+
+func _on_spawner_node_wave_changed(_x):
+	set_layer_enabled(arrow_layer, false)
+
+
+func _on_spawner_node_wave_ended():
+	set_layer_enabled(arrow_layer, true)

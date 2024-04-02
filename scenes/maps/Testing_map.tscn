@@ -19,6 +19,7 @@ starting_tile = Array[Vector2i]([Vector2i(8, 0), Vector2i(0, 2)])
 
 [node name="spawnerNode" type="Node" parent="."]
 script = ExtResource("2_435xr")
+spawner_tile_index = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 88)
@@ -31,5 +32,7 @@ z_index = 15
 z_as_relative = false
 scale = Vector2(0.25, 0.25)
 
+[connection signal="wave_changed" from="spawnerNode" to="Ground" method="_on_spawner_node_wave_changed"]
 [connection signal="wave_changed" from="spawnerNode" to="Camera2D/Control" method="_on_wave_changed"]
+[connection signal="wave_ended" from="spawnerNode" to="Ground" method="_on_spawner_node_wave_ended"]
 [connection signal="turret_selected" from="Camera2D/Control" to="Ground" method="_on_control_turret_selected"]

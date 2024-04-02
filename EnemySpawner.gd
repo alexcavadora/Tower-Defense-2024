@@ -4,44 +4,48 @@ extends Node
 var slime_scene = preload("res://scenes/enemies/slime.tscn")
 var zombie_scene = preload("res://scenes/enemies/zombie.tscn")
 var orc_scene = preload("res://scenes/enemies/orc.tscn")
-var x = null
-var enemies = [slime_scene, zombie_scene, orc_scene]
+var x
 var wave = 1
 var status = 'idle'
 signal wave_changed(int)
+signal wave_ended()
 @export var spawner_tile_index = 0
 @export var waves = {
-	1 : 
+	'wave1' : 
 	{ 
-		'orc':
+		'enemy_sequence1' :
 		{
-			'amount' : 2, 'time' : 3
-		}
+			'name': 'orc', 'amount' : 2, 'time' : 3
+		},
 	},
-	2 : 
+	'wave2' : 
 	{
-		'orc':
+		'enemy_sequence1' :
 		{
-			'amount' : 4, 'time' : 3
+			'name': 'orc', 'amount' : 1, 'time' : 2
 		},
-		'zombies':
+		'enemy_sequence2' :
 		{
-			'amount' : 2, 'time' : 4
-		}
+			'name': 'zombies', 'amount' : 4, 'time' : 2
+		},
 	},
-	3 : 
+	'wave3' : 
 	{
-		'zombies' :
-		{ 
-			'amount' : 3, 'time' : 2
-		},
-		'orc':
+		'enemy_sequence1' :
 		{
-			'amount' : 3, 'time' : 2
+			'name': 'orc', 'amount' : 4, 'time' : 1
 		},
-		'slime' :
-		{ 
-			'amount' : 3, 'time' : 2
+		'enemy_sequence2' :
+		{
+			'name': 'zombies', 'amount' : 2, 'time' : 1
+		},
+		'enemy_sequence3':
+		{
+			'name': 'slime', 'amount' : 3, 'time' : 1
+		},
+		'enemy_sequence4':
+		{
+			'name': 'orc', 'amount' : 4, 'time' : 1
 		},
 	},
 }
@@ -52,9 +56,10 @@ func spawn_next_wave():
 		return
 	status = 'spawning'
 	emit_signal('wave_changed', wave)
-	for enemy in waves[wave]:
-		await spawn_unit(enemy, waves[wave][enemy]['time'], waves[wave][enemy]['amount'])
+	for enemy in waves['wave%d' % wave]:
+		await spawn_unit(waves['wave%d' % wave][enemy]['name'], waves['wave%d' % wave][enemy]['time'], waves['wave%d' % wave][enemy]['amount'])
 	status = 'idle'
+	emit_signal('wave_ended')
 	wave += 1
 	
 	
@@ -70,7 +75,7 @@ func spawn_unit(enemy_name, time, amount):
 		get_parent().add_child.call_deferred(x)
 		await get_tree().create_timer(time).timeout
 	
-	
+
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("space"):
 		spawn_next_wave()
