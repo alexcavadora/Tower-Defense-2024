@@ -18,6 +18,7 @@ var terrain_layer : int = 3
 var sel_turret: String = "cannon"
 var pos
 var prev = Vector2i(0,0)
+var previous_path
 
 func _process(_delta):
 	pos = local_to_map(get_global_mouse_position())
@@ -46,7 +47,6 @@ func _process(_delta):
 	for i in starting_tile:
 		if astar.get_id_path(i, finishing_tile).is_empty() or pos == i:
 			y.get_child(0).modulate = Color(0.5, 0.5, 0.5, 1)
-			#astar.set_point_solid(pos, false)
 			update(1)
 	astar.set_point_solid(pos, false)
 	prev = pos 
@@ -72,8 +72,8 @@ func update(type : int = 0):
 			var tile_data = get_cell_tile_data(terrain_layer, coordinates)
 			if tile_data and tile_data.get_custom_data('solid'):
 				astar.set_point_solid(coordinates)
-	
-	emit_signal("updated")
+	if type == 0:
+		emit_signal("updated")
 	var args = []
 	for i in starting_tile:
 		args.push_front(create_optimal_path(i, finishing_tile))
@@ -90,7 +90,7 @@ func create_optimal_path(start, finish: Vector2i):
 	if path.size() == 0 or astar.is_point_solid(start) or astar.is_point_solid(finish):
 		return [start, pos]
 	return [start, finish]
-	
+
 func paint_optimal_paths (start_finish, type: int = 0):
 	clear_layer(arrow_layer)
 	if type == 0:
