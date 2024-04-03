@@ -2,8 +2,8 @@ class_name PlayMovementComponent
 extends Node2D
 
 @export var Target : CharacterBody2D
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var SPEED = 300.0
+#const JUMP_VELOCITY = -400.0
 
 func _physics_process(delta):
 
