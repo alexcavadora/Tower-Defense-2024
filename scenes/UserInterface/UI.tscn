@@ -51,7 +51,7 @@ layout_mode = 2
 text = "HP:"
 horizontal_alignment = 2
 
-[node name="Bullets" type="Label" parent="20/HBoxContainer/VBoxContainer"]
+[node name="Progressbar" type="Label" parent="20/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Wave progress: "
 horizontal_alignment = 2
@@ -63,18 +63,21 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 22)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_h68sl")
-max_value = 500.0
+max_value = 40.0
 step = 1.0
-value = 500.0
+value = 40.0
+rounded = true
 show_percentage = false
 
-[node name="BulletsBar" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
+[node name="WaveProgess" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(200, 22)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_5242k")
-max_value = 7.0
+max_value = 2.08165e-12
 step = 1.0
-value = 7.0
+rounded = true
+allow_greater = true
+allow_lesser = true
 show_percentage = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

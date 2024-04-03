@@ -19,6 +19,7 @@ func init(st, ft, tile):
 func _physics_process(_delta):
 	if current_path.is_empty():
 		emit_signal("path_completed")
+		queue_free()
 		return
 
 	var target_position = tm.map_to_local(current_path.front())
