@@ -18,16 +18,21 @@ var terrain_layer : int = 3
 var sel_turret: String = "cannon"
 var pos
 var prev = Vector2i(0,0)
-var previous_path
+var locked_path = [Vector2i(0,0),Vector2i(0,0)]
 
 func _process(_delta):
 	pos = local_to_map(get_global_mouse_position())
-	if prev == pos:
+	if prev == pos || astar.is_in_bounds(pos.x,pos.y) == false:
 		return
 	if y != null:
 		y.queue_free()
 		update(2)
-	if (astar.is_point_solid(pos) == true or sel_turret == "empty"):
+	if sel_turret == "empty":
+		prev = pos
+		update()
+		return
+	if astar.is_point_solid(pos):
+		update(1)
 		prev = pos
 		return
 	
@@ -76,45 +81,46 @@ func update(type : int = 0):
 		emit_signal("updated")
 	var args = []
 	for i in starting_tile:
-		args.push_front(create_optimal_path(i, finishing_tile))
+		args.push_front(create_optimal_path(i, finishing_tile, type))
 	paint_optimal_paths(args, type)
+	locked_path = args
 
-func is_point_walkable(local_position):
-	var map_position = local_to_map(local_position)
+func is_point_walkable(map_position):
 	if map_rect.has_point(map_position):
 		return not astar.is_point_solid(map_position)
 	return false
 
-func create_optimal_path(start, finish: Vector2i):
+func create_optimal_path(start, finish: Vector2i, type):
 	var path = astar.get_id_path(start, finish)
-	if path.size() == 0 or astar.is_point_solid(start) or astar.is_point_solid(finish):
-		return [start, pos]
-	return [start, finish]
+	if path.is_empty() or astar.is_point_solid(start) or astar.is_point_solid(finish):
+		if type == 1: 
+			astar.set_point_solid(pos, false)
+		return astar.get_id_path(start, pos)
+		
+	else:
+		return path
 
-func paint_optimal_paths (start_finish, type: int = 0):
+func paint_optimal_paths (paths, type: int = 0):
 	clear_layer(arrow_layer)
 	if type == 0:
 		clear_layer(road_layer)
-	for i in start_finish:
-		if type == 1:
-			astar.set_point_solid(pos, false)
-		var path = astar.get_id_path(i[0], i[1])
+	for path in paths:
 		if type == 1 and path.back() == pos:
 			path.pop_back()
-		set_cells_terrain_path(arrow_layer, path, 2, 0) # drawing the arrows
+		if !locked_path.has(path) and path:
+			set_cells_terrain_path(arrow_layer, path, 2, 0) 
+			var origin_direction = find_origin_direction(path.front())
+			if origin_direction == 'left':
+				set_cell(2, path.front(), 1, Vector2i(3,2))
+			elif origin_direction == 'right':
+				set_cell(2, path.front(), 1, Vector2i(3,1))
+			elif origin_direction == 'up':
+				set_cell(2, path.front(), 1, Vector2i(4,1))
+			else:
+				set_cell(2, path.front(), 1, Vector2i(4,0))
 		if type == 0:
 			set_cells_terrain_path(road_layer, path, 1, 0) # drawing the road on the ground
-		
 		# checking adjacent for the first position to override a weird bug in autotiling
-		var origin_direction = find_origin_direction(i[0])
-		if origin_direction == 'left':
-			set_cell(2, i[0], 1, Vector2i(3,2))
-		elif origin_direction == 'right':
-			set_cell(2, i[0], 1, Vector2i(3,1))
-		elif origin_direction == 'up':
-			set_cell(2, i[0], 1, Vector2i(4,1))
-		else:
-			set_cell(2, i[0], 1, Vector2i(4,0))
 		if type == 1:
 			astar.set_point_solid(pos, true)
 
@@ -130,6 +136,8 @@ func find_origin_direction(cell):
 
 func _unhandled_input(_event):
 	if Input.is_action_pressed("click") and astar.is_point_solid(pos) == false:
+		if y!= null:
+			y.queue_free()
 		if sel_turret == "cannon":
 			x = cannon_turret.instantiate()
 		elif sel_turret == "missile_launcher":
@@ -169,3 +177,14 @@ func _unhandled_input(_event):
 func _on_control_turret_selected(turr):
 	sel_turret = turr
 	prev = Vector2i(-1, -1)
+<<<<<<< Updated upstream
+=======
+
+func _on_spawner_node_wave_changed(_x):
+	#set_layer_enabled(arrow_layer, false)
+	pass
+
+func _on_spawner_node_wave_ended():
+	#set_layer_enabled(arrow_layer, true)
+	pass
+>>>>>>> Stashed changes
