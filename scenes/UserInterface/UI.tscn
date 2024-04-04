@@ -99,6 +99,7 @@ alignment = 1
 [node name="Turret1" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 text = "
 
 
@@ -111,6 +112,7 @@ expand_icon = true
 [node name="Turret2" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 text = "
 
 
@@ -123,6 +125,7 @@ expand_icon = true
 [node name="Turret3" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 text = "
 
 
@@ -135,6 +138,7 @@ expand_icon = true
 [node name="Turret4" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 text = "
 
 

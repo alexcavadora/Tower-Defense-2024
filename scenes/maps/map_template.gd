@@ -20,22 +20,52 @@ var pos
 var prev = Vector2i(0,0)
 var locked_path = [Vector2i(0,0),Vector2i(0,0)]
 
+func _ready():
+	tile_size = get_tileset().tile_size
+	tilemap_size = get_used_rect().end - get_used_rect().position
+	map_rect = Rect2i(Vector2i(0,0), tilemap_size)
+	
+	#setting up the astar logic
+	astar.region = map_rect
+	astar.cell_size = tile_size
+	astar.offset = tile_size * 0.5
+	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astar.update()
+	update()
+
 func _process(_delta):
-	pos = local_to_map(get_global_mouse_position())
+	
+	#getting the coordenates of the mouse in local coords
+	pos = local_to_map(get_global_mouse_position()) 
+	
+	#if the mouse is still slecting the same tile, or is outside of the game area
+	#for example, windowed mode, it will avoid any unnecesary calculations
 	if prev == pos || astar.is_in_bounds(pos.x,pos.y) == false:
 		return
-	if y != null:
+	
+	#now that the position has changed,
+	#if not deleted yet, delete the previous ghost turret
+	if y != null: 
 		y.queue_free()
-		update(2)
-	if sel_turret == "empty":
-		prev = pos
-		update()
+		update(2) #updating just the arrow road, not changing the current road enemies know about
+	
+	# when not selecting a tower, you have no need to be shown future changes in the road
+	# this was added here to update when changing to nothing while not moving the mouse
+	if sel_turret == "empty": 
+		update(2) 
+		prev = pos #do nothing until something changes
 		return
+	
+	#if the mouse is now on top of a tower or obstacle
 	if astar.is_point_solid(pos):
-		update(1)
+		update(2) 
 		prev = pos
 		return
 	
+	# selecting and instancing the ghost of tower objectwith required characteristics 
+	# at mouse position based on UI element selected by click or keyboard
 	if sel_turret == "cannon":
 		y = cannon_turret.instantiate()
 	elif sel_turret == "missile_launcher":
@@ -47,28 +77,24 @@ func _process(_delta):
 	y.get_child(0).modulate.a8 = 125
 	y.ghost = true
 	get_parent().add_child.call_deferred(y)
+	
+	# letting the map know this coord is now solid, but just to show the player what would happen
+	# before notifying enemies
 	astar.set_point_solid(pos, true)
 	update(2)
+	
+	# check for every starting tile if the road has not been found
 	for i in starting_tile:
-		if astar.get_id_path(i, finishing_tile).is_empty() or pos == i:
+		if pos == i or pos == finishing_tile:
 			y.get_child(0).modulate = Color(0.5, 0.5, 0.5, 1)
-			update(1)
+			update(2)
+		if astar.get_id_path(i, finishing_tile).is_empty():
+			y.get_child(0).modulate = Color(0.5, 0.5, 0.5, 1)
+			update(1) #updating just the arrow road, not changing the current road enemies know about, and also letting the pahtfinder know it failed
+	
 	astar.set_point_solid(pos, false)
+	
 	prev = pos 
-	
-func _ready():
-	tile_size = get_tileset().tile_size
-	tilemap_size = get_used_rect().end - get_used_rect().position
-	map_rect = Rect2i(Vector2i(0,0), tilemap_size)
-	
-	astar.region = map_rect
-	astar.cell_size = tile_size
-	astar.offset = tile_size * 0.5
-	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar.update()
-	update()
 
 func update(type : int = 0):
 	for i in tilemap_size.x:
@@ -92,13 +118,11 @@ func is_point_walkable(map_position):
 
 func create_optimal_path(start, finish: Vector2i, type):
 	var path = astar.get_id_path(start, finish)
-	if path.is_empty() or astar.is_point_solid(start) or astar.is_point_solid(finish):
-		if type == 1: 
-			astar.set_point_solid(pos, false)
-		return astar.get_id_path(start, pos)
-		
-	else:
-		return path
+	if type == 1: 
+		astar.set_point_solid(pos, false)
+		path = astar.get_id_path(start, pos)
+		astar.set_point_solid(pos, true)
+	return path
 
 func paint_optimal_paths (paths, type: int = 0):
 	clear_layer(arrow_layer)
@@ -107,8 +131,10 @@ func paint_optimal_paths (paths, type: int = 0):
 	for path in paths:
 		if type == 1 and path.back() == pos:
 			path.pop_back()
-		if !locked_path.has(path) and path:
+		if !locked_path.has(path) and path or type == 1 and path:
 			set_cells_terrain_path(arrow_layer, path, 2, 0) 
+			
+			# checking adjacent tiles of the starting position to override a weird bug in autotiling
 			var origin_direction = find_origin_direction(path.front())
 			if origin_direction == 'left':
 				set_cell(2, path.front(), 1, Vector2i(3,2))
@@ -120,9 +146,7 @@ func paint_optimal_paths (paths, type: int = 0):
 				set_cell(2, path.front(), 1, Vector2i(4,0))
 		if type == 0:
 			set_cells_terrain_path(road_layer, path, 1, 0) # drawing the road on the ground
-		# checking adjacent for the first position to override a weird bug in autotiling
-		if type == 1:
-			astar.set_point_solid(pos, true)
+		
 
 func find_origin_direction(cell):
 	if cell:

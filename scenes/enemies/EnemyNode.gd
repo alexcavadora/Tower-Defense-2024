@@ -5,7 +5,7 @@ var current_path: Array[Vector2i]
 @onready var tilemap = $"../Ground"
 @onready var movement_component = $MovementComponent
 @onready var sprite_component = $SpriteComponent
-@onready var UI = $"../Camera2D/Control/"
+@onready var UI = $"../Camera2D/UI/"
 
 var startIndex = 0
 signal died(hp: int)
