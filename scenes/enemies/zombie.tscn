@@ -136,10 +136,10 @@ script = ExtResource("1_n7u3f")
 script = ExtResource("1_p46ne")
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_r3yal")
-animation = &"death"
-frame = 7
-frame_progress = 1.0
 script = ExtResource("3_g2rev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

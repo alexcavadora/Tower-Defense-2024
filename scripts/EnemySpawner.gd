@@ -3,6 +3,7 @@ extends Node
 var slime_scene = preload("res://scenes/enemies/slime.tscn")
 var zombie_scene = preload("res://scenes/enemies/zombie.tscn")
 var orc_scene = preload("res://scenes/enemies/orc.tscn")
+var ixpuxtequi = preload("res://scenes/enemies/ixpuxtequi.tscn")
 
 var x = null
 var enemies = [slime_scene, zombie_scene, orc_scene]
@@ -33,6 +34,8 @@ func spawn_unit(enemy_name, time, amount):
 			x = slime_scene.instantiate()
 		elif enemy_name == 'orc':
 			x = orc_scene.instantiate()
+		elif enemy_name == 'ixpuxtequi':
+			x = ixpuxtequi.instantiate()
 		x.startIndex = spawner_tile_index
 		get_parent().get_parent().add_child.call_deferred(x)
 		emit_signal('enemy_spawned', 2)
