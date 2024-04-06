@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy06fpapockt1"]
+
+[ext_resource type="Script" path="res://scenes/UserInterface/start_screen.gd" id="1_v6k1a"]
+[ext_resource type="Texture2D" uid="uid://cthpwsxp606y3" path="res://assets/boot_image/maxresdefault.png" id="3_r1vcg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r03hu"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 16
+shadow_color = Color(0, 0, 0, 0.360784)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ng4jn"]
+bg_color = Color(0.592157, 0.27451, 0.584314, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.592157, 0.27451, 0.584314, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 16
+shadow_color = Color(0, 0, 0, 0.360784)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v6k1a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_r1vcg")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 72
+theme_override_constants/margin_bottom = 14
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_r03hu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ng4jn")
+text = "ENTER"
+
+[node name="VersionNum" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 3.0
+offset_right = 63.0
+offset_bottom = 11.0
+theme_override_font_sizes/font_size = 50
+text = "version"
+
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/MarginContainer/Button" to="." method="_on_button_button_up"]

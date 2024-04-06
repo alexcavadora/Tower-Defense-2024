@@ -86,7 +86,8 @@ radius = 7.0
 height = 20.0
 
 [node name="orc" type="CharacterBody2D"]
-z_index = 5
+z_index = 4
+y_sort_enabled = true
 script = ExtResource("1_0u4hh")
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]

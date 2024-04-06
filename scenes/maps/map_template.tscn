@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://brydcfmq8ffvv"]
 
-[ext_resource type="Texture2D" uid="uid://dtmnocv643015" path="res://assets/sprites/Tiles/punyworld-overworld-tileset.png" id="1_oe801"]
-[ext_resource type="Texture2D" uid="uid://c2qeci64tcs5f" path="res://assets/sprites/arrow/arrow.png" id="2_rnmit"]
+[ext_resource type="Texture2D" uid="uid://bk6pgiabwsxne" path="res://assets/sprites/Tiles/punyworld-overworld-tileset.png" id="1_oe801"]
+[ext_resource type="Texture2D" uid="uid://bqaq3cchfmolf" path="res://assets/sprites/arrow/arrow.png" id="2_rnmit"]
 [ext_resource type="Script" path="res://scenes/maps/map_template.gd" id="3_ldqyk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23sd7"]
@@ -514,9 +514,26 @@ texture = ExtResource("1_oe801")
 25:13/0 = 0
 26:13/0 = 0
 0:14/0 = 0
+0:14/0/custom_data_0 = true
 1:14/0 = 0
+1:14/0/terrain_set = 1
+1:14/0/terrain = 1
+1:14/0/terrains_peering_bit/right_side = 1
+1:14/0/terrains_peering_bit/bottom_side = 1
+1:14/0/custom_data_0 = true
 2:14/0 = 0
+2:14/0/terrain_set = 1
+2:14/0/terrain = 1
+2:14/0/terrains_peering_bit/right_side = 1
+2:14/0/terrains_peering_bit/bottom_side = 1
+2:14/0/terrains_peering_bit/left_side = 1
+2:14/0/custom_data_0 = true
 3:14/0 = 0
+3:14/0/terrain_set = 1
+3:14/0/terrain = 1
+3:14/0/terrains_peering_bit/bottom_side = 1
+3:14/0/terrains_peering_bit/left_side = 1
+3:14/0/custom_data_0 = true
 4:14/0 = 0
 5:14/0 = 0
 6:14/0 = 0
@@ -544,9 +561,29 @@ texture = ExtResource("1_oe801")
 25:14/0 = 0
 26:14/0 = 0
 0:15/0 = 0
+0:15/0/custom_data_0 = true
 1:15/0 = 0
+1:15/0/terrain_set = 1
+1:15/0/terrain = 1
+1:15/0/terrains_peering_bit/right_side = 1
+1:15/0/terrains_peering_bit/bottom_side = 1
+1:15/0/terrains_peering_bit/top_side = 1
+1:15/0/custom_data_0 = true
 2:15/0 = 0
+2:15/0/terrain_set = 1
+2:15/0/terrain = 1
+2:15/0/terrains_peering_bit/right_side = 1
+2:15/0/terrains_peering_bit/bottom_side = 1
+2:15/0/terrains_peering_bit/left_side = 1
+2:15/0/terrains_peering_bit/top_side = 1
+2:15/0/custom_data_0 = true
 3:15/0 = 0
+3:15/0/terrain_set = 1
+3:15/0/terrain = 1
+3:15/0/terrains_peering_bit/bottom_side = 1
+3:15/0/terrains_peering_bit/left_side = 1
+3:15/0/terrains_peering_bit/top_side = 1
+3:15/0/custom_data_0 = true
 5:15/0 = 0
 7:15/0 = 0
 7:15/0/custom_data_0 = true
@@ -568,9 +605,26 @@ texture = ExtResource("1_oe801")
 23:15/0 = 0
 24:15/0 = 0
 0:16/0 = 0
+0:16/0/custom_data_0 = true
 1:16/0 = 0
+1:16/0/terrain_set = 1
+1:16/0/terrain = 1
+1:16/0/terrains_peering_bit/right_side = 1
+1:16/0/terrains_peering_bit/top_side = 1
+1:16/0/custom_data_0 = true
 2:16/0 = 0
+2:16/0/terrain_set = 1
+2:16/0/terrain = 1
+2:16/0/terrains_peering_bit/right_side = 1
+2:16/0/terrains_peering_bit/left_side = 1
+2:16/0/terrains_peering_bit/top_side = 1
+2:16/0/custom_data_0 = true
 3:16/0 = 0
+3:16/0/terrain_set = 1
+3:16/0/terrain = 1
+3:16/0/terrains_peering_bit/left_side = 1
+3:16/0/terrains_peering_bit/top_side = 1
+3:16/0/custom_data_0 = true
 5:16/0 = 0
 7:16/0 = 0
 7:16/0/custom_data_0 = true

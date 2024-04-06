@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dcexf1ek0r1y2"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_unao0"]
-[ext_resource type="Texture2D" uid="uid://cdk4rnca7ipk1" path="res://assets/sprites/enemies/IXPUXTEKI_TEST.png" id="2_wi144"]
+[ext_resource type="Texture2D" uid="uid://s6pdpkepj26k" path="res://assets/sprites/enemies/IXPUXTEKI_TEST.png" id="2_wi144"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_1t1bh"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_eirpt"]
 
@@ -33,13 +33,12 @@ radius = 14.0
 height = 48.0
 
 [node name="IXPUCTEKI" type="CharacterBody2D"]
-z_index = 1
+z_index = 7
 y_sort_enabled = true
 script = ExtResource("1_unao0")
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
 z_as_relative = false
-y_sort_enabled = true
 position = Vector2(0, -29)
 sprite_frames = SubResource("SpriteFrames_jixrr")
 script = ExtResource("3_1t1bh")
