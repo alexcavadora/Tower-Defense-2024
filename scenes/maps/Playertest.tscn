@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkfqvrqlnp8vj"]
 
 [ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="1_coule"]
-[ext_resource type="Script" path="res://EnemySpawner.gd" id="2_0mq0p"]
+[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="2_0mq0p"]
 [ext_resource type="PackedScene" uid="uid://doosiuu4p0wsg" path="res://scenes/UserInterface/UI.tscn" id="3_2mpop"]
 [ext_resource type="PackedScene" uid="uid://c0ynyy2q783d7" path="res://scenes/player/player.tscn" id="4_v2kao"]
 

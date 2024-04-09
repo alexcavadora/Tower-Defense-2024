@@ -68,6 +68,7 @@ func _process(_delta):
 	# at mouse position based on UI element selected by click or keyboard
 	if sel_turret == "cannon":
 		y = cannon_turret.instantiate()
+		y.find_child("CollisionShape2D").disabled = true
 	elif sel_turret == "missile_launcher":
 		y = missile_turret.instantiate()
 	elif sel_turret == "MG":
@@ -163,6 +164,7 @@ func _unhandled_input(_event):
 		if y!= null:
 			y.queue_free()
 		if sel_turret == "cannon":
+			print("canon")
 			x = cannon_turret.instantiate()
 		elif sel_turret == "missile_launcher":
 			x = missile_turret.instantiate()
