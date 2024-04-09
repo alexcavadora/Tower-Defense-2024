@@ -17,8 +17,6 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_evqus")
 
 [node name="SpriteAnimation" parent="." instance=ExtResource("2_v0nay")]
-animation = &"Idle"
-frame_progress = 0.0
 script = null
 
 [node name="PlayMovementComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("4_a15o5")]
@@ -30,8 +28,5 @@ SPEED = 150.0
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4lu8")]
 health_component = NodePath("../HealthComponent")
 
-[node name="PlayerAnimComponent" type="Node2D" parent="." node_paths=PackedStringArray("Anim")]
+[node name="PlayerAnimComponent" type="Node2D" parent="."]
 script = ExtResource("6_oarev")
-Anim = NodePath("../SpriteAnimation")
-
-[connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
