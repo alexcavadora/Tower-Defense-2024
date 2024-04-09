@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cthpwsxp606y3" path="res://assets/boot_image/maxresdefault.png" id="4_43u3n"]
 
 [node name="DialogueBox" type="PanelContainer"]
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -50,6 +50,7 @@ layout_direction = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.705882, 0.0666667, 1)
 text = "Edmundo"
+text_direction = 1
 
 [node name="RowMiddle" type="HBoxContainer" parent="Margin/Rows"]
 layout_mode = 2
@@ -62,6 +63,8 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
 fit_content = true
+scroll_following = true
+text_direction = 1
 
 [node name="PortraitBackground" type="PanelContainer" parent="Margin/Rows/RowMiddle"]
 layout_mode = 2
