@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcexf1ek0r1y2"]
+
+[ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_unao0"]
+[ext_resource type="Texture2D" uid="uid://cdk4rnca7ipk1" path="res://assets/sprites/enemies/IXPUXTEKI_TEST.png" id="2_wi144"]
+[ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_1t1bh"]
+[ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_eirpt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdtfs"]
+atlas = ExtResource("2_wi144")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jixrr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdtfs")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdtfs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pk02w"]
+radius = 14.0
+height = 48.0
+
+[node name="IXPUCTEKI" type="CharacterBody2D"]
+z_index = 7
+y_sort_enabled = true
+script = ExtResource("1_unao0")
+
+[node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+position = Vector2(0, -29)
+sprite_frames = SubResource("SpriteFrames_jixrr")
+script = ExtResource("3_1t1bh")
+
+[node name="MovementComponent" type="Node2D" parent="."]
+script = ExtResource("4_eirpt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_pk02w")

@@ -1,15 +1,15 @@
 [gd_scene load_steps=23 format=3 uid="uid://bx5mcb3g673ey"]
 
-[ext_resource type="Texture2D" uid="uid://ccpbsg5wml01a" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="1_mefag"]
+[ext_resource type="Texture2D" uid="uid://btmf0iffotdo8" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="1_mefag"]
 [ext_resource type="Script" path="res://scenes/turret/Cannon.gd" id="1_pw6i2"]
-[ext_resource type="Texture2D" uid="uid://2d7hg0r5rsyl" path="res://assets/sprites/towers/TD_basic_towers/Cannon2.png" id="2_ktlrm"]
-[ext_resource type="Texture2D" uid="uid://3pjbwhqyu5ng" path="res://assets/sprites/towers/TD_basic_towers/Cannon3.png" id="3_5grun"]
-[ext_resource type="Texture2D" uid="uid://b7domxw66bero" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="4_jliw5"]
-[ext_resource type="Texture2D" uid="uid://yht1i0pr7ydk" path="res://assets/sprites/towers/TD_basic_towers/MG2.png" id="5_nuwfn"]
-[ext_resource type="Texture2D" uid="uid://d25m57vhdtb12" path="res://assets/sprites/towers/TD_basic_towers/MG3.png" id="6_q2nfb"]
-[ext_resource type="Texture2D" uid="uid://30x5evmvxexi" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="7_wq070"]
-[ext_resource type="Texture2D" uid="uid://7f5iu4juhq2s" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="8_7o0l5"]
-[ext_resource type="Texture2D" uid="uid://dqeina8yj7va1" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="9_ti4jl"]
+[ext_resource type="Texture2D" uid="uid://bynds24x0vxfn" path="res://assets/sprites/towers/TD_basic_towers/Cannon2.png" id="2_ktlrm"]
+[ext_resource type="Texture2D" uid="uid://bv7dv6yxgj8at" path="res://assets/sprites/towers/TD_basic_towers/Cannon3.png" id="3_5grun"]
+[ext_resource type="Texture2D" uid="uid://buqwtvigemx7c" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="4_jliw5"]
+[ext_resource type="Texture2D" uid="uid://bm8fqfo7lofxn" path="res://assets/sprites/towers/TD_basic_towers/MG2.png" id="5_nuwfn"]
+[ext_resource type="Texture2D" uid="uid://edkvi32chn23" path="res://assets/sprites/towers/TD_basic_towers/MG3.png" id="6_q2nfb"]
+[ext_resource type="Texture2D" uid="uid://bl2nobv283i6y" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="7_wq070"]
+[ext_resource type="Texture2D" uid="uid://bc65yhfgixb8r" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="8_7o0l5"]
+[ext_resource type="Texture2D" uid="uid://dpupyyksqf3qa" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="9_ti4jl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnu5m"]
 atlas = ExtResource("1_mefag")
@@ -99,6 +99,7 @@ radius = 57.0088
 size = Vector2(20, 22)
 
 [node name="Cannon" type="StaticBody2D"]
+z_index = -6
 y_sort_enabled = true
 script = ExtResource("1_pw6i2")
 

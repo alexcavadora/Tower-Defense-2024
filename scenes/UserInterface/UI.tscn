@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://doosiuu4p0wsg"]
+[gd_scene load_steps=8 format=3 uid="uid://doosiuu4p0wsg"]
 
-[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
+[ext_resource type="Texture2D" uid="uid://buqwtvigemx7c" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
 [ext_resource type="Script" path="res://scenes/UserInterface/UI.gd" id="1_qq2ha"]
-[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
-[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
+[ext_resource type="Texture2D" uid="uid://bl2nobv283i6y" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
+[ext_resource type="Texture2D" uid="uid://btmf0iffotdo8" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
+[ext_resource type="Texture2D" uid="uid://b7ichqemwax0v" path="res://icon.svg" id="5_rjqkr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h68sl"]
 bg_color = Color(1, 0.329412, 0.329412, 1)
@@ -29,11 +30,10 @@ grow_vertical = 2
 script = ExtResource("1_qq2ha")
 
 [node name="20" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 0
-offset_right = 41.0
-offset_bottom = 63.0
-scale = Vector2(1.5, 1.5)
+offset_right = 367.0
+offset_bottom = 90.0
+scale = Vector2(1.2, 1.2)
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -48,11 +48,13 @@ layout_mode = 2
 
 [node name="HP" type="Label" parent="20/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "HP: 500 HP"
+text = "HP:"
+horizontal_alignment = 2
 
-[node name="Bullets" type="Label" parent="20/HBoxContainer/VBoxContainer"]
+[node name="Progressbar" type="Label" parent="20/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Bullets: 2/7"
+text = "Wave progress: "
+horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="20/HBoxContainer"]
 layout_mode = 2
@@ -61,18 +63,21 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 22)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_h68sl")
-max_value = 500.0
+max_value = 40.0
 step = 1.0
-value = 500.0
+value = 40.0
+rounded = true
 show_percentage = false
 
-[node name="BulletsBar" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
+[node name="WaveProgess" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(200, 22)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_5242k")
-max_value = 7.0
+max_value = 2.08165e-12
 step = 1.0
-value = 7.0
+rounded = true
+allow_greater = true
+allow_lesser = true
 show_percentage = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -83,7 +88,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -490.0
-offset_top = -100.0
+offset_top = -120.0
 offset_right = 490.0
 offset_bottom = -20.0
 grow_horizontal = 2
@@ -92,21 +97,24 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Turret1" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
+focus_mode = 0
 text = "
 
-1
-"
+
+1"
 icon = ExtResource("1_edy5a")
 alignment = 0
 icon_alignment = 1
 expand_icon = true
 
 [node name="Turret2" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
+focus_mode = 0
 text = "
+
 
 2"
 icon = ExtResource("2_ipril")
@@ -115,9 +123,11 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret3" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
+focus_mode = 0
 text = "
+
 
 3"
 icon = ExtResource("3_8dnw1")
@@ -126,14 +136,42 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret4" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
+focus_mode = 0
 text = "
+
 
 4"
 alignment = 0
 icon_alignment = 1
 expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 128.0
+grow_horizontal = 0
+texture = ExtResource("5_rjqkr")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "wave 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="HBoxContainer/Turret1" to="." method="_on_turret_1_pressed"]
 [connection signal="pressed" from="HBoxContainer/Turret2" to="." method="_on_turret_2_pressed"]
