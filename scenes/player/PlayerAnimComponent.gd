@@ -1,4 +1,5 @@
 extends Node2D
+class_name PlayerAnimComponent
 @export var Anim : AnimatedSprite2D
 @onready var prev
 

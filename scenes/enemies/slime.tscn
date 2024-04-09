@@ -154,3 +154,5 @@ script = ExtResource("3_dsr07")
 [node name="MovementComponent" type="Node2D" parent="."]
 script = ExtResource("4_1k3ls")
 creature_speed = 1.0
+
+[node name="DamageComponent" type="Node2D" parent="."]
