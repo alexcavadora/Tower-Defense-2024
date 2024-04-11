@@ -1,7 +1,9 @@
 extends StaticBody2D
 var coords: Vector2i  = Vector2i(0,0)
-var ghost = false
+@onready var ghost = false
 func _ready():
+	if ghost == true:
+		$CollisionShape2D.disabled == true
 	pass # Replace with function body.
 
 
