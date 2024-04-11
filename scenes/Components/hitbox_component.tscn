@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scenes/player/HitboxComponent.gd" id="1_n1vjt"]
 
 [node name="HitboxComponent" type="Area2D"]
+visible = false
 script = ExtResource("1_n1vjt")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://cl3o1p7hm2vvf"]
 
-[ext_resource type="Texture2D" uid="uid://doqdlsk16i7bs" path="res://assets/sprites/enemies/Slime.png" id="1_f0rk6"]
+[ext_resource type="Texture2D" uid="uid://dh6eh5j8m48cr" path="res://assets/sprites/enemies/Slime.png" id="1_f0rk6"]
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_utlk2"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_dsr07"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_1k3ls"]
@@ -144,9 +144,6 @@ shape = SubResource("CapsuleShape2D_sdpf8")
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_x42pe")
-animation = &"death"
-frame = 5
-frame_progress = 1.0
 script = ExtResource("3_dsr07")
 
 [node name="Node" type="Node" parent="."]

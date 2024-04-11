@@ -68,7 +68,7 @@ func _process(_delta):
 	# at mouse position based on UI element selected by click or keyboard
 	if sel_turret == "cannon":
 		y = cannon_turret.instantiate()
-		y.find_child("CollisionShape2D").disabled = true
+
 	elif sel_turret == "missile_launcher":
 		y = missile_turret.instantiate()
 	elif sel_turret == "MG":
@@ -77,6 +77,8 @@ func _process(_delta):
 	y.coords = pos
 	y.get_child(0).modulate.a8 = 125
 	y.ghost = true
+	y.get_child(2).disabled = true
+	
 	get_parent().add_child.call_deferred(y)
 	
 	# letting the map know this coord is now solid, but just to show the player what would happen
