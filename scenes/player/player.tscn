@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0ynyy2q783d7"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_akys2"]
+[ext_resource type="PackedScene" uid="uid://7dnwcrq4icn3" path="res://scenes/Components/player_animation.tscn" id="2_v0nay"]
+[ext_resource type="PackedScene" uid="uid://cyrq0t23xknjk" path="res://scenes/Components/play_movement_component.tscn" id="4_a15o5"]
+[ext_resource type="PackedScene" uid="uid://c6iimwkb07glb" path="res://scenes/Components/health_component.tscn" id="5_ac1en"]
+[ext_resource type="PackedScene" uid="uid://c3fk3rqs0sbmi" path="res://scenes/Components/player_anim_component.tscn" id="6_n4rq0"]
+[ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
+[ext_resource type="Script" path="res://scenes/player/AttackComponent.gd" id="7_hnf7e"]
+[ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="7_mvqsx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ldbq"]
+radius = 13.0384
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_akys2")
+
+[node name="Col_Player" type="CollisionShape2D" parent="."]
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_evqus")
+
+[node name="SpriteAnimation" parent="." instance=ExtResource("2_v0nay")]
+scale = Vector2(0.2, 0.2)
+animation = &"Idle"
+frame_progress = 0.0
+script = null
+
+[node name="PlayMovementComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("4_a15o5")]
+Target = NodePath("..")
+SPEED = 150.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_ac1en")]
+MAX_HEALTH = 100
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4lu8")]
+health_component = NodePath("../HealthComponent")
+
+[node name="PlayerAnimComponent" parent="." node_paths=PackedStringArray("Anim") instance=ExtResource("6_n4rq0")]
+Anim = NodePath("../SpriteAnimation")
+
+[node name="PlayerAttackComponent" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+script = ExtResource("7_hnf7e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackComponent"]
+shape = SubResource("CircleShape2D_2ldbq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Healthbar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+offset_top = -29.0
+offset_right = 18.995
+offset_bottom = -2.0
+scale = Vector2(0.315, 0.315)
+script = ExtResource("7_mvqsx")
+health_component = NodePath("../HealthComponent")
+
+[connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
+[connection signal="body_entered" from="PlayerAttackComponent" to="PlayerAttackComponent" method="_on_body_entered"]
