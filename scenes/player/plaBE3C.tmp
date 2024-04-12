@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0ynyy2q783d7"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_akys2"]
+[ext_resource type="PackedScene" uid="uid://7dnwcrq4icn3" path="res://scenes/Components/player_animation.tscn" id="2_v0nay"]
+[ext_resource type="PackedScene" uid="uid://cyrq0t23xknjk" path="res://scenes/Components/play_movement_component.tscn" id="4_a15o5"]
+[ext_resource type="PackedScene" uid="uid://c6iimwkb07glb" path="res://scenes/Components/health_component.tscn" id="5_ac1en"]
+[ext_resource type="Script" path="res://scenes/player/PlayerAnimComponent.gd" id="6_oarev"]
+[ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_akys2")
+
+[node name="Col_Player" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_evqus")
+
+[node name="SpriteAnimation" parent="." instance=ExtResource("2_v0nay")]
+script = null
+
+[node name="PlayMovementComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("4_a15o5")]
+Target = NodePath("..")
+SPEED = 150.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_ac1en")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4lu8")]
+health_component = NodePath("../HealthComponent")
+
+[node name="PlayerAnimComponent" type="Node2D" parent="."]
+script = ExtResource("6_oarev")

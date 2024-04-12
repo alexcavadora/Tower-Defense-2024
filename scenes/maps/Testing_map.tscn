@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://drodcd4ptjfd6"]
+[gd_scene load_steps=26 format=3 uid="uid://drodcd4ptjfd6"]
 
 [ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="1_8aak2"]
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="2_435xr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/enemy_sequence.gd" id="3_rweys"]
 [ext_resource type="Script" path="res://scripts/waves.gd" id="4_rexvl"]
 [ext_resource type="PackedScene" uid="uid://doosiuu4p0wsg" path="res://scenes/UserInterface/UI.tscn" id="4_u8w60"]
+[ext_resource type="PackedScene" uid="uid://c0ynyy2q783d7" path="res://scenes/player/player.tscn" id="7_d3q07"]
 
 [sub_resource type="Resource" id="Resource_2neat"]
 script = ExtResource("3_rweys")
@@ -139,6 +140,8 @@ enemy_data = Array[ExtResource("4_rexvl")]([SubResource("Resource_jssud"), SubRe
 [node name="spawnerNode2" type="Node" parent="Wave_Manager"]
 script = ExtResource("2_435xr")
 enemy_data = Array[ExtResource("4_rexvl")]([SubResource("Resource_rlub2"), SubResource("Resource_ash2p"), SubResource("Resource_oas7o"), SubResource("Resource_5alae")])
+
+[node name="Player" parent="." instance=ExtResource("7_d3q07")]
 
 [connection signal="turret_selected" from="Camera2D/UI" to="Ground" method="_on_control_turret_selected"]
 [connection signal="enemy_spawned" from="Wave_Manager/spawnerNode" to="Camera2D/UI" method="_on_spawner_node_enemy_spawned"]
