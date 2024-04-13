@@ -58,9 +58,12 @@ func accept() -> void:
 func finish() -> void:
 	_text.visible_characters = -1
 	_letters_time_debt = 0
+	$Margin/Rows/RowMiddle/TextureRect/AnimatedSprite2D.show()
+	$Margin/Rows/RowMiddle/TextureRect/AnimatedSprite2D.play()
 	all_text_shown.emit()
 
 func start_progressing(from_character: int = 0) -> void:
+	$Margin/Rows/RowMiddle/TextureRect/AnimatedSprite2D.hide()
 	set_visible_characters(from_character)
 
 func set_text(value: String) -> void:
@@ -130,3 +133,7 @@ func _on_settings_changed(new_settings: DQDialogueBoxSettings) -> void:
 	_name.text_direction = new_settings.text_direction_name
 	_text.layout_direction = new_settings.layout_direction_text
 	_text.text_direction = new_settings.text_direction_text
+	
+func _unhandled_input(event):
+	if Input.is_action_just_pressed('ui_accept'):
+		accept()
