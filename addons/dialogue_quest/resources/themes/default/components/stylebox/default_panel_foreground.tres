@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://dvtav16gx0cbc"]
+
+[resource]
+bg_color = Color(0.372549, 0.45098, 0.521569, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 3)
+anti_aliasing = false
+anti_aliasing_size = 0.01
