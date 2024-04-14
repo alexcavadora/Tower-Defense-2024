@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ttdif58g3l3i"]
+[gd_scene load_steps=13 format=3 uid="uid://ttdif58g3l3i"]
 
 [ext_resource type="Script" path="res://addons/dialogue_quest/scripts/ui/dialogue/components/dialogue_box.gd" id="1_6hcde"]
 [ext_resource type="Theme" uid="uid://b43o8w87vgskk" path="res://addons/dialogue_quest/resources/themes/default/default_theme.tres" id="1_j5uw8"]
@@ -6,36 +6,50 @@
 [ext_resource type="Texture2D" uid="uid://cthpwsxp606y3" path="res://assets/boot_image/maxresdefault.png" id="4_43u3n"]
 [ext_resource type="Texture2D" uid="uid://cwdglghck06qw" path="res://assets/sprites/UI/text_ended.png" id="5_yqlu8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x58c6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o7om"]
 atlas = ExtResource("5_yqlu8")
 region = Rect2(0, 0, 30, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5sinb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwjqy"]
 atlas = ExtResource("5_yqlu8")
 region = Rect2(30, 0, 30, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1e1s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gllxe"]
 atlas = ExtResource("5_yqlu8")
 region = Rect2(60, 0, 30, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrh7w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bseqd"]
 atlas = ExtResource("5_yqlu8")
 region = Rect2(90, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkx1r"]
+atlas = ExtResource("5_yqlu8")
+region = Rect2(120, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbm06"]
+atlas = ExtResource("5_yqlu8")
+region = Rect2(150, 0, 30, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vpx0s"]
 animations = [{
 "frames": [{
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_x58c6")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o7om")
 }, {
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_5sinb")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwjqy")
 }, {
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_o1e1s")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gllxe")
 }, {
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_lrh7w")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bseqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkx1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbm06")
 }],
 "loop": true,
 "name": &"default",
@@ -110,9 +124,8 @@ layout_mode = 2
 position = Vector2(30, 177)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vpx0s")
-frame = 3
-frame_progress = 1.0
-speed_scale = 0.8
+frame_progress = 0.298907
+speed_scale = 2.4
 
 [node name="PortraitBackground" type="PanelContainer" parent="Margin/Rows/RowMiddle"]
 layout_mode = 2

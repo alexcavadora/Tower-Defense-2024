@@ -23,7 +23,7 @@ var text = {
 	4:
 	{
 		'name': 'Chema',
-		'text': 'Me acabo de kgar.'
+		'text': 'Hola chicos.'
 	},
 	5:
 	{
