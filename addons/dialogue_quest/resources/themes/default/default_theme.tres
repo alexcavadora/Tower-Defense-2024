@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b43o8w87vgskk"]
+
+[ext_resource type="StyleBox" uid="uid://bt40pkyuf1dnx" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/default_panel.tres" id="1_e03ju"]
+[ext_resource type="StyleBox" uid="uid://dvtav16gx0cbc" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/default_panel_foreground.tres" id="2_pb7ya"]
+[ext_resource type="FontFile" uid="uid://c3xlt787spwnm" path="res://assets/fonts/PixelFJVerdana12pt.ttf" id="3_f8kgc"]
+
+[resource]
+default_font = ExtResource("3_f8kgc")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 10
+Label/font_sizes/font_size = 32
+Panel/styles/panel = ExtResource("1_e03ju")
+PanelContainer/styles/panel = ExtResource("1_e03ju")
+PanelContainer/styles/panel_foreground = ExtResource("1_e03ju")
+PanelContainerForeground/base_type = &"PanelContainer"
+PanelContainerForeground/styles/panel = ExtResource("2_pb7ya")
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 11
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/bold_italics_font_size = 24
+RichTextLabel/font_sizes/italics_font_size = 24
+RichTextLabel/font_sizes/mono_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24

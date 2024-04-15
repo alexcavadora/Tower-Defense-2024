@@ -166,7 +166,6 @@ func _unhandled_input(_event):
 		if y!= null:
 			y.queue_free()
 		if sel_turret == "cannon":
-			print("canon")
 			x = cannon_turret.instantiate()
 		elif sel_turret == "missile_launcher":
 			x = missile_turret.instantiate()

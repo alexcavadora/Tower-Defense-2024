@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://drodcd4ptjfd6"]
+[gd_scene load_steps=26 format=3 uid="uid://drodcd4ptjfd6"]
 
 [ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="1_8aak2"]
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="2_435xr"]
@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_2neat"]
 script = ExtResource("3_rweys")
 name = "ixpuxtequi"
-amount = 1
+amount = 10
 time = 2.0
 
 [sub_resource type="Resource" id="Resource_jssud"]
@@ -76,15 +76,9 @@ name = "orc"
 amount = 4
 time = 0.5
 
-[sub_resource type="Resource" id="Resource_ce8ht"]
-script = ExtResource("3_rweys")
-name = "orc"
-amount = 3
-time = 0.2
-
 [sub_resource type="Resource" id="Resource_ash2p"]
 script = ExtResource("4_rexvl")
-enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_exdko"), SubResource("Resource_hkvte"), SubResource("Resource_ce8ht")])
+enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_exdko"), SubResource("Resource_hkvte")])
 
 [sub_resource type="Resource" id="Resource_jibbh"]
 script = ExtResource("3_rweys")
