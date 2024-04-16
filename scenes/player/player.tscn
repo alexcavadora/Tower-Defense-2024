@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
 [ext_resource type="Script" path="res://scenes/player/AttackComponent.gd" id="7_hnf7e"]
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="7_mvqsx"]
-[ext_resource type="Texture2D" uid="uid://f4qtxferh2mi" path="res://assets/sprites/Sword/Zenith.png" id="9_mkhmc"]
+[ext_resource type="Texture2D" uid="uid://b1d1ms4nmsfr2" path="res://assets/sprites/Sword/Zenith.png" id="9_mkhmc"]
 [ext_resource type="Script" path="res://scenes/player/SwordComponent.gd" id="10_pico6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
