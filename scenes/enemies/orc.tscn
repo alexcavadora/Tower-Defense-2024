@@ -85,7 +85,7 @@ animations = [{
 radius = 7.0
 height = 20.0
 
-[node name="orc" type="CharacterBody2D"]
+[node name="orc" type="CharacterBody2D" groups=["enemy"]]
 z_index = 4
 y_sort_enabled = true
 script = ExtResource("1_0u4hh")

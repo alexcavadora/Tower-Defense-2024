@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_n7u3f"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="1_p46ne"]
-[ext_resource type="Texture2D" uid="uid://bbu32bowyqnpp" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
+[ext_resource type="Texture2D" uid="uid://bbkqqw0nm553t" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_g2rev"]
-[ext_resource type="Texture2D" uid="uid://kwwvtkow3cjl" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
+[ext_resource type="Texture2D" uid="uid://b8j4crivwe7s2" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lbwc"]
 atlas = ExtResource("4_fbqp8")
@@ -128,7 +128,7 @@ animations = [{
 radius = 11.0
 height = 24.0
 
-[node name="zombie" type="CharacterBody2D"]
+[node name="zombie" type="CharacterBody2D" groups=["enemy"]]
 z_index = 4
 y_sort_enabled = true
 script = ExtResource("1_n7u3f")
