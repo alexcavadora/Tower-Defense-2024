@@ -8,7 +8,7 @@ func _physics_process(delta):
 			collision.get_collider().find_child("HealthComponent").damage_int(damage)
 			$Sprite2D.play('hit')
 			linear_velocity = Vector2.ZERO
-			disable_mode =CollisionObject2D.DISABLE_MODE_MAKE_STATIC
+			disable_mode = CollisionObject2D.DISABLE_MODE_MAKE_STATIC
 		else:
 			$Sprite2D.play('hit')
 

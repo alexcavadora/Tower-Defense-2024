@@ -24,11 +24,13 @@ func _delta():
 		move_and_slide()
 
 func _on_path_completed():
+	print('reached_goal: %f', $HealthComponent.MAX_HEALTH)
 	sprite_component.play("death")
 	emit_signal("died", $HealthComponent.MAX_HEALTH)
 	emit_signal("reached_goal", $HealthComponent.MAX_HEALTH)
 
 func _killed():
+	print('killed %f', $HealthComponent.MAX_HEALTH)
 	sprite_component.play("death")
 	emit_signal("died", $HealthComponent.MAX_HEALTH)
 

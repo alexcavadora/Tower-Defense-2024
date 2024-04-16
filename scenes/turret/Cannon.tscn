@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bx5mcb3g673ey"]
+[gd_scene load_steps=34 format=3 uid="uid://bx5mcb3g673ey"]
 
 [ext_resource type="Texture2D" uid="uid://byykrclma3en6" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="1_mefag"]
 [ext_resource type="Script" path="res://scenes/turret/Cannon.gd" id="1_pw6i2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bk4krl3o21oxs" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="7_wq070"]
 [ext_resource type="Texture2D" uid="uid://ddcki3i2tjd3" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="8_7o0l5"]
 [ext_resource type="Texture2D" uid="uid://dsy3t54jmgm8d" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="9_ti4jl"]
+[ext_resource type="Texture2D" uid="uid://b2wl3bjw5pj0c" path="res://assets/sprites/Effects/Explode_effect.png" id="12_80ejx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnu5m"]
 atlas = ExtResource("1_mefag")
@@ -99,13 +100,76 @@ radius = 57.0088
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp2n0"]
 size = Vector2(20, 22)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae0k1"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_763rw"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv1ge"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sia4s"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g38m"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bilgj"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uoeo"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2j25"]
+atlas = ExtResource("12_80ejx")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cnq7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae0k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_763rw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv1ge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sia4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g38m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bilgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uoeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2j25")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Cannon" type="StaticBody2D"]
 z_index = -6
 y_sort_enabled = true
 script = ExtResource("1_pw6i2")
 rotation_speed = 0.1
 bullet_scn = ExtResource("2_jmr5p")
-bullet_speed = 200.0
 bullet_dmg = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -114,7 +178,6 @@ position = Vector2(0, -3.00001)
 scale = Vector2(0.075, 0.075)
 sprite_frames = SubResource("SpriteFrames_1c0mx")
 animation = &"cannon"
-frame = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -130,5 +193,11 @@ shape = SubResource("RectangleShape2D_vp2n0")
 [node name="Muzzle" type="Node2D" parent="."]
 position = Vector2(0, -13)
 
+[node name="Upgraded" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_0cnq7")
+speed_scale = 3.035
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="animation_finished" from="Upgraded" to="." method="_on_upgraded_animation_finished"]

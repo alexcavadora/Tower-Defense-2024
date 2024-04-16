@@ -15,8 +15,9 @@ func _on_wave_ended():
 	if waves_ready == n_children:
 		for i in get_children():
 			i.status = 'idle'
-		wave += 1
-	emit_signal('waves_ended', wave)
 
 func _on_wave_started(x):
+	if waves_ready == n_children:
+		emit_signal('waves_ended', wave)
+		wave += 1
 	waves_ready -= 1

@@ -3,6 +3,7 @@ var coords: Vector2i  = Vector2i(0,0)
 var ghost = false
 var enemies = []
 var target
+var lvl = 0
 @export var rotation_speed = 0.05
 
 @export var bullet_scn : PackedScene
@@ -22,11 +23,8 @@ func _process(delta):
 		shoot(delta)
 		rotation = lerp_angle(rotation, position.angle_to_point(target.global_position) + PI/2, rotation_speed)
 	else:
-		rotation = lerp_angle(rotation, PI, rotation_speed)
+		rotation = lerp_angle(rotation,  0, rotation_speed)
 
-func _unhandled_input(_event):
-	if Input.is_action_pressed("right_click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords:
-		queue_free()
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group('enemy'):
@@ -53,3 +51,17 @@ func shoot(delta):
 	else:
 		cooldown += delta
 	
+func _unhandled_input(_event):
+	if Input.is_action_pressed("right_click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords:
+		queue_free()
+	if Input.is_action_just_pressed("click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords and lvl <2:
+		lvl += 1
+		$AnimatedSprite2D.frame = lvl
+		$Upgraded.show()
+		$Upgraded.frame = 0
+		$Upgraded.play()
+
+
+func _on_upgraded_animation_finished():
+	$Upgraded.hide()
+	$Upgraded.pause()
