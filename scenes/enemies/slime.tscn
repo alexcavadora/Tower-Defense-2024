@@ -134,7 +134,7 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" groups=["enemy"]]
 z_index = 5
 script = ExtResource("1_utlk2")
 
