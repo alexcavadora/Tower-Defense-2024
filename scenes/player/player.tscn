@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0ynyy2q783d7"]
+[gd_scene load_steps=16 format=3 uid="uid://c0ynyy2q783d7"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_akys2"]
 [ext_resource type="PackedScene" uid="uid://7dnwcrq4icn3" path="res://scenes/Components/player_animation.tscn" id="2_v0nay"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
 [ext_resource type="Script" path="res://scenes/player/AttackComponent.gd" id="7_hnf7e"]
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="7_mvqsx"]
+[ext_resource type="Texture2D" uid="uid://f4qtxferh2mi" path="res://assets/sprites/Sword/Zenith.png" id="9_mkhmc"]
+[ext_resource type="Script" path="res://scenes/player/SwordComponent.gd" id="10_pico6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
 size = Vector2(17.7778, 17.7778)
@@ -17,6 +19,19 @@ radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ldbq"]
 radius = 13.0384
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25unu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_mkhmc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ue05"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_akys2")
@@ -65,6 +80,17 @@ offset_bottom = 5.0
 scale = Vector2(0.315, 0.315)
 script = ExtResource("7_mvqsx")
 health_component = NodePath("../HealthComponent")
+
+[node name="SwordComponent" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_25unu")
+animation = &"idle"
+frame_progress = 0.672647
+script = ExtResource("10_pico6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordComponent"]
+position = Vector2(13.975, 2.585)
+scale = Vector2(0.66, 0.26)
+shape = SubResource("RectangleShape2D_4ue05")
 
 [connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
 [connection signal="body_entered" from="PlayerAttackComponent" to="PlayerAttackComponent" method="_on_body_entered"]
