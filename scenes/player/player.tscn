@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://scenes/player/SwordComponent.gd" id="10_pico6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
-size = Vector2(17.7778, 17.7778)
+size = Vector2(12, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y4dhr"]
 radius = 8.0
@@ -62,7 +62,7 @@ size = Vector2(20, 40)
 script = ExtResource("1_akys2")
 
 [node name="Col_Player" type="CollisionShape2D" parent="."]
-scale = Vector2(0.9, 0.9)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_evqus")
 
 [node name="SpriteAnimation" parent="." instance=ExtResource("2_v0nay")]
