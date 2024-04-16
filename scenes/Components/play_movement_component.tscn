@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/player/PlayMovementComponent.gd" id="1_a4ocm"]
 
-[node name="PlayMovementComponent" type="Node2D" node_paths=PackedStringArray("Target")]
+[node name="PlayMovementComponent" type="Node2D"]
 script = ExtResource("1_a4ocm")
-Target = NodePath("")

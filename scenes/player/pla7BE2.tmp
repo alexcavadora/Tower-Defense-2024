@@ -119,8 +119,6 @@ collision_mask = 2
 position = Vector2(0, 4.76837e-07)
 shape = SubResource("RectangleShape2D_sqsmg")
 
-[node name="Node2D2" type="Node2D" parent="."]
-
 [connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
 [connection signal="attack" from="PlayerAttackComponent" to="PlayerAnimComponent" method="_on_player_attack_component_attack"]
 [connection signal="body_entered" from="SwordComponent/Area2D" to="PlayerAttackComponent" method="_on_area_2d_body_entered"]

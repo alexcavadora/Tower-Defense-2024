@@ -6,9 +6,15 @@ extends Node2D
 signal change(animation)
 
 func _physics_process(delta):
-
 	var directionX = Input.get_axis("ui_left", "ui_right")
 	var directionY = Input.get_axis("ui_up", "ui_down")
+	
+	#print("Direction Y", directionY)
+	#print("Direction X", directionX)
+
+		
+	
+	
 	if directionX:
 		change.emit("Run")
 		Target.velocity.x = directionX * SPEED
@@ -25,5 +31,8 @@ func _physics_process(delta):
 	
 	if directionX == 0 and directionY == 0:
 		change.emit("Idle")
+		
+		
+		
 	
 	Target.move_and_slide()
