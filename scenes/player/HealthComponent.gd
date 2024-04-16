@@ -6,8 +6,13 @@ var health : float
 func _ready():
 	health = MAX_HEALTH
 
+func damage_int(attack: int):
+	health -= attack
+	if health <= 0:
+		get_parent()._killed()
+
 func damage(attack: Attack):
 	health -= attack.attack_damage
 	if health <= 0:
-		get_parent().queue_free()
+		get_parent()._killed()
 

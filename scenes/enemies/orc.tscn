@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cecx3muygripv"]
+[gd_scene load_steps=17 format=3 uid="uid://cecx3muygripv"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_0u4hh"]
-[ext_resource type="Texture2D" uid="uid://c2ddddgysjut6" path="res://assets/sprites/enemies/Orc-Grunt.png" id="2_3ugpa"]
+[ext_resource type="Texture2D" uid="uid://bwgvfu8bsp7vd" path="res://assets/sprites/enemies/Orc-Grunt.png" id="2_3ugpa"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_55j8g"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_4ek5o"]
+[ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="5_8cn0t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2eh7"]
 atlas = ExtResource("2_3ugpa")
@@ -88,6 +89,8 @@ height = 20.0
 [node name="orc" type="CharacterBody2D" groups=["enemy"]]
 z_index = 4
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_0u4hh")
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
@@ -101,3 +104,6 @@ creature_speed = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_6y84r")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("5_8cn0t")

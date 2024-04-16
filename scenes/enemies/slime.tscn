@@ -1,13 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://cl3o1p7hm2vvf"]
+[gd_scene load_steps=24 format=3 uid="uid://cl3o1p7hm2vvf"]
 
-[ext_resource type="Texture2D" uid="uid://dh6eh5j8m48cr" path="res://assets/sprites/enemies/Slime.png" id="1_f0rk6"]
+[ext_resource type="Texture2D" uid="uid://dy1os3em5tjy1" path="res://assets/sprites/enemies/Slime.png" id="1_f0rk6"]
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_utlk2"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_dsr07"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_1k3ls"]
+[ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="5_icwxc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sdpf8"]
-radius = 6.0
-height = 12.0
+radius = 3.0
+height = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2h6fq"]
 atlas = ExtResource("1_f0rk6")
@@ -136,6 +137,8 @@ animations = [{
 
 [node name="Slime" type="CharacterBody2D" groups=["enemy"]]
 z_index = 5
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_utlk2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -154,3 +157,6 @@ script = ExtResource("4_1k3ls")
 creature_speed = 1.0
 
 [node name="DamageComponent" type="Node2D" parent="."]
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("5_icwxc")

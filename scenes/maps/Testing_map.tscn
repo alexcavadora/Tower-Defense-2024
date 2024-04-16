@@ -148,13 +148,13 @@ script = ExtResource("2_435xr")
 enemy_data = Array[ExtResource("4_rexvl")]([SubResource("Resource_rlub2"), SubResource("Resource_ash2p"), SubResource("Resource_oas7o"), SubResource("Resource_5alae")])
 
 [node name="Player" parent="." instance=ExtResource("7_d3q07")]
+position = Vector2(168, 100)
 
 [connection signal="turret_selected" from="Camera2D/UI" to="Ground" method="_on_control_turret_selected"]
+[connection signal="waves_ended" from="Wave_Manager" to="Camera2D/UI" method="_on_wave_changed"]
 [connection signal="enemy_spawned" from="Wave_Manager/spawnerNode" to="Camera2D/UI" method="_on_spawner_node_enemy_spawned"]
 [connection signal="wave_changed" from="Wave_Manager/spawnerNode" to="Ground" method="_on_spawner_node_wave_changed"]
-[connection signal="wave_changed" from="Wave_Manager/spawnerNode" to="Camera2D/UI" method="_on_wave_changed"]
 [connection signal="wave_ended" from="Wave_Manager/spawnerNode" to="Ground" method="_on_spawner_node_wave_ended"]
 [connection signal="enemy_spawned" from="Wave_Manager/spawnerNode2" to="Camera2D/UI" method="_on_spawner_node_enemy_spawned"]
 [connection signal="wave_changed" from="Wave_Manager/spawnerNode2" to="Ground" method="_on_spawner_node_wave_changed"]
-[connection signal="wave_changed" from="Wave_Manager/spawnerNode2" to="Camera2D/UI" method="_on_wave_changed"]
 [connection signal="wave_ended" from="Wave_Manager/spawnerNode2" to="Ground" method="_on_spawner_node_wave_ended"]

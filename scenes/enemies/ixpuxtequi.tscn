@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcexf1ek0r1y2"]
+[gd_scene load_steps=23 format=3 uid="uid://dcexf1ek0r1y2"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_unao0"]
-[ext_resource type="Texture2D" uid="uid://c7qap55ga4id8" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
+[ext_resource type="Texture2D" uid="uid://beh5eb4jjdghg" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_1t1bh"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_eirpt"]
+[ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="5_m2keb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kouh6"]
 atlas = ExtResource("2_fwpgn")
@@ -129,12 +130,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pk02w"]
-radius = 14.0
-height = 48.0
+radius = 6.0
+height = 38.0
 
 [node name="IXPUCTEKI" type="CharacterBody2D" groups=["enemy"]]
 z_index = 7
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_unao0")
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
@@ -151,5 +154,8 @@ script = ExtResource("4_eirpt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_pk02w")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("5_m2keb")
 
 [connection signal="direction_changed" from="MovementComponent" to="SpriteComponent" method="_on_movement_component_direction_changed"]

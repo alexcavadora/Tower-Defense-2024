@@ -4,9 +4,9 @@ signal turret_selected(String)
 @onready var health_bar = $"20/HBoxContainer/VBoxContainer2/HPBar"
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	wave_progress_bar.min_value = 0
-	wave_progress_bar.max_value = 0
-	wave_progress_bar.value = 0
+	wave_progress_bar.min_value = 0.0
+	wave_progress_bar.max_value = 0.0
+	wave_progress_bar.value = 0.0
 	
 
 func _on_turret_1_pressed():
@@ -29,9 +29,9 @@ func _on_wave_changed(wave: int):
 	if wave == 1:
 		$TextureRect.show()
 	$TextureRect/Label.text = "wave %d" % wave
-	wave_progress_bar.value = wave_progress_bar.value-wave_progress_bar.max_value
-	wave_progress_bar.min_value = 0
-	wave_progress_bar.max_value = 0
+	wave_progress_bar.value = wave_progress_bar.value - wave_progress_bar.max_value
+	wave_progress_bar.min_value = 0.0
+	wave_progress_bar.max_value = 0.0
 
 	
 func _unhandled_key_input(_event):
@@ -45,12 +45,12 @@ func _unhandled_key_input(_event):
 		_on_turret_4_pressed()
 
 
-func _on_spawner_node_enemy_spawned(hp: int):
+func _on_spawner_node_enemy_spawned(hp: float):
 	$"20/HBoxContainer/VBoxContainer2".show()
 	wave_progress_bar.max_value += hp
 
-func _on_enemy_reached_goal(dmg: int):
+func _on_enemy_reached_goal(dmg: float):
 	health_bar.value -= dmg
 
-func _on_enemy_died(hp: int):
+func _on_enemy_died(hp: float):
 	wave_progress_bar.value += hp

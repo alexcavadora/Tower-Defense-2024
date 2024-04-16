@@ -25,7 +25,8 @@ func _physics_process(_delta):
 		emit_signal("path_completed")
 		queue_free()
 		return
-
+	if $"../SpriteComponent".animation == 'death':
+		return
 	var target_position = tm.map_to_local(current_path.front())
 	var delta = get_parent().global_position
 	get_parent().global_position = global_position.move_toward(target_position, creature_speed)

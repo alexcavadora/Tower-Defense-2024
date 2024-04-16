@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bfldm8i5btjrn"]
+[gd_scene load_steps=24 format=3 uid="uid://bfldm8i5btjrn"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_n7u3f"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="1_p46ne"]
-[ext_resource type="Texture2D" uid="uid://bbkqqw0nm553t" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
+[ext_resource type="Texture2D" uid="uid://dddu0cq3ry110" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_g2rev"]
-[ext_resource type="Texture2D" uid="uid://b8j4crivwe7s2" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
+[ext_resource type="Texture2D" uid="uid://b2wl3bjw5pj0c" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
+[ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="6_14x3g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lbwc"]
 atlas = ExtResource("4_fbqp8")
@@ -125,12 +126,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_emmne"]
-radius = 11.0
-height = 24.0
+radius = 4.0
+height = 14.0
 
 [node name="zombie" type="CharacterBody2D" groups=["enemy"]]
 z_index = 4
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_n7u3f")
 
 [node name="MovementComponent" type="Node2D" parent="."]
@@ -145,3 +148,6 @@ script = ExtResource("3_g2rev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_emmne")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("6_14x3g")
