@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/player/AttackComponent.gd" id="1_2jqqb"]
 
-[node name="PlayerAttackComponent" type="Node" node_paths=PackedStringArray("sword_component")]
+[node name="PlayerAttackComponent" type="Node"]
 script = ExtResource("1_2jqqb")
-sword_component = NodePath("")

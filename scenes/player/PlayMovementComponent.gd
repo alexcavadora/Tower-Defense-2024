@@ -12,8 +12,6 @@ func _physics_process(delta):
 	#print("Direction Y", directionY)
 	#print("Direction X", directionX)
 
-		
-	
 	
 	if directionX:
 		change.emit("Run")

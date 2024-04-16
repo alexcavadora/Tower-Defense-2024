@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 class_name SwordComponent
 @onready var MousePos
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 

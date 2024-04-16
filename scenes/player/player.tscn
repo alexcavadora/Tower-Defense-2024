@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3fk3rqs0sbmi" path="res://scenes/Components/player_anim_component.tscn" id="6_n4rq0"]
 [ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
 [ext_resource type="PackedScene" uid="uid://b5dq6y1sd5ks1" path="res://scenes/Components/player_attack_component.tscn" id="7_fvcda"]
-[ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="7_mvqsx"]
+[ext_resource type="PackedScene" uid="uid://dfhnfj3t7vwvp" path="res://healthbar.tscn" id="8_qeomy"]
 [ext_resource type="PackedScene" uid="uid://4jmreas6fvs5" path="res://scenes/Components/sword_component.tscn" id="9_y7lnu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c8hfb"]
@@ -50,14 +50,9 @@ Sword = NodePath("../SwordComponent")
 
 [node name="PlayerAttackComponent" parent="." node_paths=PackedStringArray("sword_component") instance=ExtResource("7_fvcda")]
 sword_component = NodePath("../SwordComponent")
+dmg = 10
 
-[node name="Healthbar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
-offset_left = -11.0
-offset_top = -19.0
-offset_right = 59.0
-offset_bottom = 8.0
-scale = Vector2(0.315, 0.315)
-script = ExtResource("7_mvqsx")
+[node name="Healthbar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_qeomy")]
 health_component = NodePath("../HealthComponent")
 
 [node name="SwordComponent" parent="." instance=ExtResource("9_y7lnu")]
@@ -66,3 +61,6 @@ health_component = NodePath("../HealthComponent")
 
 [connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
 [connection signal="body_entered" from="HitboxComponent" to="HitboxComponent" method="_on_body_entered"]
+[connection signal="body_entered" from="SwordComponent/Area2D" to="PlayerAttackComponent" method="_on_area_2d_body_entered"]
+
+[editable path="SwordComponent"]

@@ -1,9 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcexf1ek0r1y2"]
+[gd_scene load_steps=25 format=3 uid="uid://dcexf1ek0r1y2"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_unao0"]
-[ext_resource type="Texture2D" uid="uid://c7qap55ga4id8" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
+[ext_resource type="Texture2D" uid="uid://d15myclxbyktg" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_1t1bh"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_eirpt"]
+[ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="5_n2gbg"]
+[ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="6_qgby2"]
+[ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="7_n6pbj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kouh6"]
 atlas = ExtResource("2_fwpgn")
@@ -135,14 +138,17 @@ height = 48.0
 [node name="IXPUCTEKI" type="CharacterBody2D" groups=["enemy"]]
 z_index = 7
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_unao0")
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
 z_as_relative = false
 position = Vector2(0, -29)
 sprite_frames = SubResource("SpriteFrames_jixrr")
-animation = &"North"
+animation = &"South"
 autoplay = "South"
+frame_progress = 0.695172
 script = ExtResource("3_1t1bh")
 
 [node name="MovementComponent" type="Node2D" parent="."]
@@ -151,5 +157,21 @@ script = ExtResource("4_eirpt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_pk02w")
+
+[node name="DamageComponent" type="Node2D" parent="."]
+script = ExtResource("5_n2gbg")
+damage = 25
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("6_qgby2")
+MAX_HEALTH = 50
+
+[node name="HealthbarComponent" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+offset_left = -28.0
+offset_top = -75.0
+offset_right = 23.0
+offset_bottom = -48.0
+script = ExtResource("7_n6pbj")
+health_component = NodePath("../HealthComponent")
 
 [connection signal="direction_changed" from="MovementComponent" to="SpriteComponent" method="_on_movement_component_direction_changed"]

@@ -3,6 +3,7 @@ class_name  PlayerAttackComponent
 @export var sword_component : SwordComponent
 @onready var first = sword_component.find_child("Area2D")
 signal attack(animation)
+@export var dmg = 0
 
 
 func _unhandled_input(event):
@@ -18,8 +19,8 @@ func _unhandled_input(event):
 		#attack.emit("Idle")
 
 
-
-
-
 func _on_area_2d_body_entered(body):
-	print(body.name)
+	#print(body.name)
+	if body.find_child("HealthComponent"):
+		var target = body.find_child("HealthComponent")
+		target.damage(dmg)
