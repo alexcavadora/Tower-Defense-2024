@@ -10,6 +10,7 @@ var x = cannon_turret
 var y = cannon_turret.instantiate()
 @export var finishing_tile = Vector2i(0,0)
 @export var starting_tile : Array[Vector2i] = [Vector2i()]
+@export var player : CharacterBody2D
 var tile_size
 var tilemap_size
 var arrow_layer : int = 2
@@ -53,7 +54,8 @@ func _process(_delta):
 	
 	# when not selecting a tower, you have no need to be shown future changes in the road
 	# this was added here to update when changing to nothing while not moving the mouse
-	if sel_turret == "empty": 
+	if sel_turret == "empty":
+		GlobalVariables.VisibleSword = true 
 		update(2) 
 		prev = pos #do nothing until something changes
 		return
@@ -67,12 +69,17 @@ func _process(_delta):
 	# selecting and instancing the ghost of tower objectwith required characteristics 
 	# at mouse position based on UI element selected by click or keyboard
 	if sel_turret == "cannon":
+		GlobalVariables.VisibleSword = false
 		y = cannon_turret.instantiate()
-
 	elif sel_turret == "missile_launcher":
+		GlobalVariables.VisibleSword = false
 		y = missile_turret.instantiate()
 	elif sel_turret == "MG":
+		GlobalVariables.VisibleSword = false
 		y = mg_turret.instantiate()
+		
+		
+		
 	y.global_position = map_to_local(pos)
 	y.coords = pos
 	y.get_child(0).modulate.a8 = 125
@@ -172,6 +179,8 @@ func _unhandled_input(_event):
 		elif sel_turret == "MG":
 			x = mg_turret.instantiate()
 		elif sel_turret == "empty":
+			pass
+			
 			return
 			
 		x.global_position = map_to_local(pos)

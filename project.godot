@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneManager="*res://SceneManager.gd"
+GlobalVariables="*res://GlobalVariables.gd"
 
 [display]
 
