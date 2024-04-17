@@ -24,14 +24,18 @@ func _delta():
 		move_and_slide()
 
 func _on_path_completed():
-	print('reached_goal: %f', $HealthComponent.MAX_HEALTH)
+	#print('reached_goal: %f', $HealthComponent.MAX_HEALTH)
 	sprite_component.play("death")
+	$CollisionShape2D.disabled = true
+	$HealthbarComponent.hide()
 	emit_signal("died", $HealthComponent.MAX_HEALTH)
 	emit_signal("reached_goal", $HealthComponent.MAX_HEALTH)
 
 func _killed():
-	print('killed %f', $HealthComponent.MAX_HEALTH)
+	#print('killed %f', $HealthComponent.MAX_HEALTH)
 	sprite_component.play("death")
+	$CollisionShape2D.disabled = true
+	$HealthbarComponent.hide()
 	emit_signal("died", $HealthComponent.MAX_HEALTH)
 
 func _on_animation_finished():

@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cecx3muygripv"]
+[gd_scene load_steps=20 format=3 uid="uid://cecx3muygripv"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_0u4hh"]
-[ext_resource type="Texture2D" uid="uid://bscawauwcu24r" path="res://assets/sprites/enemies/Orc-Grunt.png" id="2_3ugpa"]
+[ext_resource type="Texture2D" uid="uid://c2ddddgysjut6" path="res://assets/sprites/enemies/Orc-Grunt.png" id="2_3ugpa"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_55j8g"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_4ek5o"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="5_04pes"]
@@ -88,6 +88,13 @@ animations = [{
 radius = 7.0
 height = 20.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs3xj"]
+bg_color = Color(0.92549, 0.188235, 0.141176, 0.454902)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="orc" type="CharacterBody2D" groups=["enemy"]]
 z_index = 4
 y_sort_enabled = true
@@ -112,17 +119,21 @@ position = Vector2(-2, -39)
 script = ExtResource("5_04pes")
 damage = 10
 
-[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target")]
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target", "healthbar")]
 position = Vector2(-2, -39)
 script = ExtResource("6_s7ftv")
 MAX_HEALTH = 30
 Target = NodePath("..")
+healthbar = NodePath("../HealthbarComponent")
 
 [node name="HealthbarComponent" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
 offset_left = -12.0
-offset_top = -25.0
+offset_top = -17.0
 offset_right = 32.0
-offset_bottom = 2.0
+offset_bottom = -6.0
 scale = Vector2(0.5, 0.5)
+theme_override_styles/fill = SubResource("StyleBoxFlat_hs3xj")
+show_percentage = false
 script = ExtResource("7_c6nmw")
 health_component = NodePath("../HealthComponent")

@@ -35,11 +35,14 @@ script = null
 Target = NodePath("..")
 SPEED = 125.0
 
-[node name="HealthComponent" parent="." instance=ExtResource("5_ac1en")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("Target", "healthbar") instance=ExtResource("5_ac1en")]
 MAX_HEALTH = 100
+Target = NodePath("..")
+healthbar = NodePath("../Healthbar")
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4lu8")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("Target", "health_component") instance=ExtResource("6_w4lu8")]
 visible = true
+Target = NodePath("..")
 health_component = NodePath("../HealthComponent")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="HitboxComponent"]
@@ -55,6 +58,7 @@ sword_component = NodePath("../SwordComponent")
 dmg = 10
 
 [node name="Healthbar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_qeomy")]
+visible = false
 health_component = NodePath("../HealthComponent")
 
 [node name="SwordComponent" parent="." instance=ExtResource("9_y7lnu")]
