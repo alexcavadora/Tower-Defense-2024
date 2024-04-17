@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_n7u3f"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="1_p46ne"]
-[ext_resource type="Texture2D" uid="uid://v7o4i1kxlsi" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
+[ext_resource type="Texture2D" uid="uid://p0cl128qyq6j" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_g2rev"]
-[ext_resource type="Texture2D" uid="uid://deb8qw30n1wx0" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
+[ext_resource type="Texture2D" uid="uid://dffjd6eyagpeo" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="6_8tmss"]
 [ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="7_epgo2"]
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="8_wj2em"]
@@ -155,9 +155,10 @@ shape = SubResource("CapsuleShape2D_emmne")
 script = ExtResource("6_8tmss")
 damage = 10
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target")]
 script = ExtResource("7_epgo2")
 MAX_HEALTH = 20
+Target = NodePath("..")
 
 [node name="HealthbarComponent" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
 offset_left = -18.0

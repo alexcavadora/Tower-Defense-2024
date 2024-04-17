@@ -58,6 +58,7 @@ dmg = 10
 health_component = NodePath("../HealthComponent")
 
 [node name="SwordComponent" parent="." instance=ExtResource("9_y7lnu")]
+visible = false
 position = Vector2(9, -2.825)
 
 [node name="Attack" parent="SwordComponent/Area2D" index="0"]

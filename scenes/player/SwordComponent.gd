@@ -9,7 +9,6 @@ func _process(delta):
 		MousePos = get_local_mouse_position()
 		rotation += MousePos.angle()
 		
-		
 	elif GlobalVariables.VisibleSword == false:
 		#print("Hide")
 		visible = false

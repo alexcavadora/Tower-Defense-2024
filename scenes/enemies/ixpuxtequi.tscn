@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://dcexf1ek0r1y2"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_unao0"]
-[ext_resource type="Texture2D" uid="uid://d15myclxbyktg" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
+[ext_resource type="Texture2D" uid="uid://krjo5pcouv7" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_1t1bh"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_eirpt"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="5_n2gbg"]
@@ -162,9 +162,10 @@ shape = SubResource("CapsuleShape2D_pk02w")
 script = ExtResource("5_n2gbg")
 damage = 25
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target")]
 script = ExtResource("6_qgby2")
 MAX_HEALTH = 50
+Target = NodePath("..")
 
 [node name="HealthbarComponent" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
 offset_left = -28.0
