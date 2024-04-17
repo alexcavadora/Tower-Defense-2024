@@ -14,7 +14,3 @@ func _physics_process(delta):
 
 func _on_sprite_2d_animation_finished():
 	queue_free();
-
-
-func _on_timer_timeout():
-	queue_free()
