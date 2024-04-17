@@ -28,8 +28,9 @@ shape = SubResource("CapsuleShape2D_sdpf8")
 
 [node name="DamageComponent" parent="." instance=ExtResource("4_100us")]
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target")]
 script = ExtResource("5_ddqcd")
+Target = NodePath("..")
 
 [node name="HealthbarComponent" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
 offset_left = -33.0
