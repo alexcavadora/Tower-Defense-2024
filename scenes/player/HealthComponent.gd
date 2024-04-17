@@ -1,14 +1,20 @@
 extends Node2D
 class_name HealthComponent
 @export var MAX_HEALTH := 10
-@export var Target : CharacterBody2D
 var health : float
+var alive = true
 
 func _ready():
 	health = MAX_HEALTH
 
-func damage(amount_dam):
-	health -= amount_dam
+func damage_int(attack: int):
+	health -= attack
+	if health <= 0 and alive:
+		alive = false
+		get_parent()._killed()
+
+func damage(attack: Attack):
+	health -= attack.attack_damage
 	if health <= 0:
-		Target._killed()
+		get_parent()._killed()
 
