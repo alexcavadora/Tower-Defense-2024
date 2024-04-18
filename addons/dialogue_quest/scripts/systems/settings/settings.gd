@@ -4,7 +4,7 @@ extends Node
 class_name DQMainSettings
 
 signal data_directory_changed(new_directory: String)
-
+a
 const DEFAULT_PROJECT_LOCAL_DIR := &"res://dialogue_quest/"
 const SETTINGS_FILE_DIR := &"res://"
 const SETTINGS_FILE_NAME := &".dialogue_quest_settings.conf"

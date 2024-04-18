@@ -1,10 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://bfldm8i5btjrn"]
+[gd_scene load_steps=27 format=3 uid="uid://bfldm8i5btjrn"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_n7u3f"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="1_p46ne"]
-[ext_resource type="Texture2D" uid="uid://p0cl128qyq6j" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
+[ext_resource type="Texture2D" uid="uid://bbkqqw0nm553t" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_g2rev"]
-[ext_resource type="Texture2D" uid="uid://dffjd6eyagpeo" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
+[ext_resource type="Texture2D" uid="uid://b8j4crivwe7s2" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="6_8tmss"]
 [ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="7_epgo2"]
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="8_wj2em"]
@@ -131,6 +131,13 @@ animations = [{
 radius = 11.0
 height = 24.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rg18"]
+bg_color = Color(0.92549, 0.188235, 0.141176, 0.454902)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="zombie" type="CharacterBody2D" groups=["enemy"]]
 z_index = 4
 y_sort_enabled = true
@@ -155,16 +162,20 @@ shape = SubResource("CapsuleShape2D_emmne")
 script = ExtResource("6_8tmss")
 damage = 10
 
-[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target")]
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target", "healthbar")]
 script = ExtResource("7_epgo2")
 MAX_HEALTH = 20
 Target = NodePath("..")
+healthbar = NodePath("../HealthbarComponent")
 
 [node name="HealthbarComponent" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
 offset_left = -18.0
-offset_top = -26.0
+offset_top = -18.0
 offset_right = 52.0
-offset_bottom = 1.0
+offset_bottom = -7.0
 scale = Vector2(0.5, 0.5)
+theme_override_styles/fill = SubResource("StyleBoxFlat_0rg18")
+show_percentage = false
 script = ExtResource("8_wj2em")
 health_component = NodePath("../HealthComponent")

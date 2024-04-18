@@ -1,0 +1,134 @@
+[gd_scene load_steps=19 format=3 uid="uid://ggjl8fkx20ek"]
+
+[ext_resource type="Script" path="res://scenes/turret/medic.gd" id="1_ljsig"]
+[ext_resource type="Texture2D" uid="uid://bk6pgiabwsxne" path="res://assets/sprites/Tiles/punyworld-overworld-tileset.png" id="2_rpca8"]
+[ext_resource type="Texture2D" uid="uid://b8j4crivwe7s2" path="res://assets/sprites/Effects/Explode_effect.png" id="3_ldlx8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpq1p"]
+atlas = ExtResource("2_rpca8")
+region = Rect2(64, 528, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpodn"]
+atlas = ExtResource("2_rpca8")
+region = Rect2(64, 416, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2m8ei"]
+atlas = ExtResource("2_rpca8")
+region = Rect2(224, 528, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sajgh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpq1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpodn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2m8ei")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikch3"]
+size = Vector2(14, 13)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jukok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae0k1"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_763rw"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv1ge"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sia4s"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g38m"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bilgj"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uoeo"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2j25"]
+atlas = ExtResource("3_ldlx8")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3dk2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae0k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_763rw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv1ge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sia4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g38m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bilgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uoeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2j25")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Medic" type="StaticBody2D"]
+z_index = -6
+y_sort_enabled = true
+script = ExtResource("1_ljsig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
+y_sort_enabled = true
+position = Vector2(0, -1)
+scale = Vector2(0.75, 0.76625)
+sprite_frames = SubResource("SpriteFrames_sajgh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ikch3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jukok")
+disabled = true
+
+[node name="Upgraded" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_3dk2r")
+speed_scale = 3.035
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_collision_shape_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_collision_shape_2d_body_exited"]
+[connection signal="animation_finished" from="Upgraded" to="." method="_on_upgraded_animation_finished"]

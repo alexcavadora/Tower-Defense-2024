@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://doosiuu4p0wsg"]
+[gd_scene load_steps=12 format=3 uid="uid://doosiuu4p0wsg"]
 
-[ext_resource type="Texture2D" uid="uid://dx7rqelrnes4h" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
+[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
 [ext_resource type="Script" path="res://scenes/UserInterface/UI.gd" id="1_qq2ha"]
-[ext_resource type="Texture2D" uid="uid://bk4krl3o21oxs" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
-[ext_resource type="Texture2D" uid="uid://byykrclma3en6" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
-[ext_resource type="Texture2D" uid="uid://cpg3a28wxerku" path="res://icon.svg" id="5_rjqkr"]
+[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
+[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
+[ext_resource type="Texture2D" uid="uid://q5hcf1kqmwtt" path="res://icon.svg" id="5_rjqkr"]
+[ext_resource type="Texture2D" uid="uid://2egyhpvjho7f" path="res://assets/sprites/towers/TD_basic_towers/Tower.png" id="5_umdws"]
+[ext_resource type="Texture2D" uid="uid://dvvbjwoj1lyg3" path="res://assets/sprites/towers/Tower_red.png" id="6_3k7cy"]
+[ext_resource type="Texture2D" uid="uid://clm35tutt7bmn" path="res://scenes/maps/Zenith.png" id="7_eord1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h68sl"]
 bg_color = Color(1, 0.329412, 0.329412, 1)
@@ -19,6 +22,10 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qesp"]
+atlas = ExtResource("6_3k7cy")
+region = Rect2(32, 2.08165e-12, 32, 32)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -104,7 +111,7 @@ text = "
 
 
 1"
-icon = ExtResource("1_edy5a")
+icon = ExtResource("5_umdws")
 alignment = 0
 icon_alignment = 1
 expand_icon = true
@@ -143,6 +150,81 @@ text = "
 
 
 4"
+icon = ExtResource("1_edy5a")
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret5" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+focus_mode = 0
+text = "
+
+
+5"
+icon = SubResource("AtlasTexture_5qesp")
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret6" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+focus_mode = 0
+text = "
+
+
+6"
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret7" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+focus_mode = 0
+text = "
+
+
+7"
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret8" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+focus_mode = 0
+text = "
+
+
+8"
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret9" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+focus_mode = 0
+text = "
+
+
+9"
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Turret10" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+focus_mode = 0
+text = "
+
+
+0"
+icon = ExtResource("7_eord1")
 alignment = 0
 icon_alignment = 1
 expand_icon = true
@@ -177,3 +259,9 @@ vertical_alignment = 1
 [connection signal="pressed" from="HBoxContainer/Turret2" to="." method="_on_turret_2_pressed"]
 [connection signal="pressed" from="HBoxContainer/Turret3" to="." method="_on_turret_3_pressed"]
 [connection signal="pressed" from="HBoxContainer/Turret4" to="." method="_on_turret_4_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret5" to="." method="_on_turret_5_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret6" to="." method="_on_turret_6_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret7" to="." method="_on_turret_7_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret8" to="." method="_on_turret_8_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret9" to="." method="_on_turret_9_pressed"]
+[connection signal="pressed" from="HBoxContainer/Turret10" to="." method="_on_turret_10_pressed"]

@@ -6,7 +6,7 @@ signal attack(animation)
 @export var dmg = 0
 
 
-func _unhandled_input(event):
+func _physics_process(delta):
 	if GlobalVariables.VisibleSword == true:
 		if Input.is_action_just_pressed("click"):
 			sword_component.play("Attack")

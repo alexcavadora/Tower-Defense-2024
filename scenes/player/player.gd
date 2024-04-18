@@ -10,3 +10,5 @@ func _unhandled_input(event):
 		Sprite.flip_h = true
 		Sword.position.x = -9
 		
+func _killed():
+	pass

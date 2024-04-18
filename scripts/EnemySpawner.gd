@@ -39,7 +39,7 @@ func spawn_unit(enemy_name, time, amount):
 		x.startIndex = spawner_tile_index
 		get_parent().get_parent().add_child.call_deferred(x)
 		emit_signal('enemy_spawned', x.find_child("HealthComponent").MAX_HEALTH)
-		print('spawned: %f', x.find_child("HealthComponent").MAX_HEALTH )
+		#print('spawned: %f', x.find_child("HealthComponent").MAX_HEALTH )
 		await get_tree().create_timer(time).timeout
 
 func _unhandled_input(_event):
