@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://cecx3muygripv"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_0u4hh"]
-[ext_resource type="Texture2D" uid="uid://c2ddddgysjut6" path="res://assets/sprites/enemies/Orc-Grunt.png" id="2_3ugpa"]
+[ext_resource type="Texture2D" uid="uid://bwgvfu8bsp7vd" path="res://assets/sprites/enemies/Orc-Grunt.png" id="2_3ugpa"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_55j8g"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_4ek5o"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="5_04pes"]
@@ -85,8 +85,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6y84r"]
-radius = 7.0
-height = 20.0
+radius = 4.0
+height = 14.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs3xj"]
 bg_color = Color(0.92549, 0.188235, 0.141176, 0.454902)

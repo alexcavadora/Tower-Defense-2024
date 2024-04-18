@@ -1,17 +1,17 @@
 [gd_scene load_steps=34 format=3 uid="uid://bcigpu3rd27ku"]
 
 [ext_resource type="Script" path="res://scenes/turret/Cannon.gd" id="1_h6lo4"]
-[ext_resource type="PackedScene" uid="uid://cxo3cprk34uih" path="res://scenes/turret/bullet.tscn" id="2_2vo85"]
-[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="2_m8w4x"]
-[ext_resource type="Texture2D" uid="uid://cqypsehh7vvxh" path="res://assets/sprites/towers/TD_basic_towers/Cannon2.png" id="3_iqfnd"]
-[ext_resource type="Texture2D" uid="uid://cjgxfpclffwra" path="res://assets/sprites/towers/TD_basic_towers/Cannon3.png" id="4_1ed4o"]
-[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="5_go47p"]
-[ext_resource type="Texture2D" uid="uid://cknl7th5axndv" path="res://assets/sprites/towers/TD_basic_towers/MG2.png" id="6_m6a13"]
-[ext_resource type="Texture2D" uid="uid://drxtcgu252aae" path="res://assets/sprites/towers/TD_basic_towers/MG3.png" id="7_d1q51"]
-[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="8_13ui4"]
-[ext_resource type="Texture2D" uid="uid://dyhx83l5usbtn" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="9_6y8uu"]
-[ext_resource type="Texture2D" uid="uid://dlvr34asvgxlp" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="10_bcqdn"]
-[ext_resource type="Texture2D" uid="uid://b8j4crivwe7s2" path="res://assets/sprites/Effects/Explode_effect.png" id="11_hety2"]
+[ext_resource type="Texture2D" uid="uid://byykrclma3en6" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="2_m8w4x"]
+[ext_resource type="PackedScene" uid="uid://d0u5en2noad8" path="res://scenes/turret/explosive_round.tscn" id="2_oioyl"]
+[ext_resource type="Texture2D" uid="uid://cca7wgq1egg4h" path="res://assets/sprites/towers/TD_basic_towers/Cannon2.png" id="3_iqfnd"]
+[ext_resource type="Texture2D" uid="uid://gxxpebhm7561" path="res://assets/sprites/towers/TD_basic_towers/Cannon3.png" id="4_1ed4o"]
+[ext_resource type="Texture2D" uid="uid://dx7rqelrnes4h" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="5_go47p"]
+[ext_resource type="Texture2D" uid="uid://bqjl1p6j7uli0" path="res://assets/sprites/towers/TD_basic_towers/MG2.png" id="6_m6a13"]
+[ext_resource type="Texture2D" uid="uid://8mvdcfm351ae" path="res://assets/sprites/towers/TD_basic_towers/MG3.png" id="7_d1q51"]
+[ext_resource type="Texture2D" uid="uid://bk4krl3o21oxs" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="8_13ui4"]
+[ext_resource type="Texture2D" uid="uid://ddcki3i2tjd3" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher2.png" id="9_6y8uu"]
+[ext_resource type="Texture2D" uid="uid://dsy3t54jmgm8d" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher3.png" id="10_bcqdn"]
+[ext_resource type="Texture2D" uid="uid://b2wl3bjw5pj0c" path="res://assets/sprites/Effects/Explode_effect.png" id="11_hety2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnu5m"]
 atlas = ExtResource("2_m8w4x")
@@ -164,11 +164,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Cannon2" type="StaticBody2D"]
+[node name="Missile_Launcher" type="StaticBody2D"]
 z_index = -6
 y_sort_enabled = true
 script = ExtResource("1_h6lo4")
-bullet_scn = ExtResource("2_2vo85")
+n = "missile_launcher"
+rotation_speed = 0.1
+bullet_scn = ExtResource("2_oioyl")
+bullet_speed = 100.0
+bps = 2.0
+bullet_dmg = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 3
@@ -178,11 +183,12 @@ sprite_frames = SubResource("SpriteFrames_1c0mx")
 animation = &"missile"
 
 [node name="Area2D" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 z_index = 2
 shape = SubResource("CircleShape2D_slmai")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
+debug_color = Color(0, 0.6, 0.701961, 0.0705882)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
@@ -197,6 +203,21 @@ speed_scale = 3.035
 
 [node name="Muzzle" type="Node2D" parent="."]
 position = Vector2(0, -10)
+
+[node name="Control" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

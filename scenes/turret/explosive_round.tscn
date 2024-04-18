@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0u5en2noad8"]
+
+[ext_resource type="Script" path="res://scenes/turret/explosive_round.gd" id="1_lu1nv"]
+[ext_resource type="Texture2D" uid="uid://lgs8lpijb5st" path="res://assets/sprites/towers/TD_basic_towers/Missile.png" id="2_lnebt"]
+[ext_resource type="Texture2D" uid="uid://qe7wxqgb2j3r" path="res://assets/sprites/Effects/Bullet_impact.png" id="3_ll4jc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1k20"]
+atlas = ExtResource("2_lnebt")
+region = Rect2(0, 0, 56, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oqoi"]
+atlas = ExtResource("3_ll4jc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqi1s"]
+atlas = ExtResource("3_ll4jc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4oip"]
+atlas = ExtResource("3_ll4jc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nilr3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1k20")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oqoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqi1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4oip")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t73wq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_va5rg"]
+radius = 2.0
+
+[node name="Explosive Round" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+script = ExtResource("1_lu1nv")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.11758e-22, -1.26218e-29)
+rotation = 1.5708
+scale = Vector2(0.06, 0.06)
+sprite_frames = SubResource("SpriteFrames_nilr3")
+autoplay = "default"
+speed_scale = 4.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_t73wq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_va5rg")
+debug_color = Color(0.992157, 0, 0.266667, 0.34902)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

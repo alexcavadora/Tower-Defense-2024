@@ -114,6 +114,8 @@ size_flags_horizontal = 3
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
 scroll_following = true
+visible_characters = 0
+visible_ratio = 0.0
 text_direction = 1
 
 [node name="TextureRect" type="TextureRect" parent="Margin/Rows/RowMiddle"]
@@ -121,10 +123,11 @@ custom_minimum_size = Vector2(60, 2.08165e-12)
 layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Margin/Rows/RowMiddle/TextureRect"]
+visible = false
 position = Vector2(30, 177)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vpx0s")
-frame_progress = 0.298907
+frame_progress = 0.731558
 speed_scale = 2.4
 
 [node name="PortraitBackground" type="PanelContainer" parent="Margin/Rows/RowMiddle"]

@@ -8,6 +8,7 @@ var missile_turret = preload("res://scenes/turret/Missile_launcher.tscn")
 var mg_turret = preload("res://scenes/turret/MG.tscn")
 var barricade = preload("res://scenes/turret/barricade.tscn")
 var medic = preload("res://scenes/turret/medic.tscn")
+var generator = preload("res://scenes/turret/generator.tscn")
 var x = cannon_turret
 var y = cannon_turret.instantiate()
 @export var finishing_tile = Vector2i(0,0)
@@ -22,9 +23,10 @@ var sel_turret: String = "cannon"
 var pos
 var prev = Vector2i(0,0)
 var locked_path = [Vector2i(0,0),Vector2i(0,0)]
-
 var placed_barricades = []
 var placed_turrets = []
+
+
 
 func _ready():
 	tile_size = get_tileset().tile_size
@@ -43,7 +45,7 @@ func _ready():
 
 func _process(_delta):
 	pos = local_to_map(get_global_mouse_position())
-	if Input.is_action_pressed("click"):
+	if Input.is_action_just_pressed("click"):
 		x = null
 		if y != null:
 			y.queue_free()
@@ -64,9 +66,14 @@ func _process(_delta):
 			x = barricade.instantiate()
 		elif sel_turret == 'medic':
 			x = medic.instantiate()
+		elif sel_turret == 'generator':
+			x = generator.instantiate()
 		elif sel_turret == "empty":
 			return
-
+		if $"../Camera2D/UI".credits >= x.cost['build']:
+			$"../Camera2D/UI".credits -= x.cost['build']
+		else:
+			return
 		x.global_position = map_to_local(pos)
 		x.coords = pos
 		get_parent().add_child.call_deferred(x)
@@ -94,7 +101,7 @@ func _process(_delta):
 		#	if create_optimal_path(i,finishing_tile) == false:
 		#			set_cell(terrain_layer, pos, -1, Vector2i(-1,-1))
 		#			astar.set_point_solid(pos, false)
-	elif Input.is_action_pressed("right_click") and pos in placed_barricades:#astar.is_point_solid(pos) == true:
+	elif Input.is_action_just_pressed("right_click") and pos in placed_barricades:#astar.is_point_solid(pos) == true:
 		for i in starting_tile:
 			if i == pos or i == finishing_tile:
 				return
@@ -159,6 +166,9 @@ func _process(_delta):
 		
 	elif sel_turret == "medic":
 		y = medic.instantiate()
+		
+	elif sel_turret == 'generator':
+		y = generator.instantiate()
 		
 	y.global_position = map_to_local(pos)
 	y.coords = pos
@@ -252,6 +262,7 @@ func find_origin_direction(cell):
 
 func _on_control_turret_selected(turr):
 	sel_turret = turr
+	
 	prev = Vector2i(-1, -1)
 
 func _on_spawner_node_wave_changed(_x):

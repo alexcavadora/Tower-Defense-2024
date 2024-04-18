@@ -11,5 +11,6 @@ func damage(amount_dam):
 	healthbar.show()
 	health -= amount_dam
 	if health <= 0:
+		health = 0
 		Target._killed()
 

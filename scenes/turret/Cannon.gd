@@ -4,7 +4,12 @@ var ghost = false
 var enemies = []
 var target
 var lvl = 0
-
+@export var n = ''
+@export var cost = {
+	'build': 	 50,
+	'upgrade 1': 150,
+	'upgrade 2': 350
+}
 @export var rotation_speed = 0.05
 @export var bullet_scn : PackedScene
 @export var bullet_speed = 600.0 
@@ -13,18 +18,10 @@ var lvl = 0
 @onready var fire_rate = 1.0/bps
 
 var cooldown = 0
-
 func _process(delta):
-	if GlobalVariables.VisibleSword:
-		return
-	if Input.is_action_pressed("right_click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords:
+	if Input.is_action_just_pressed("right_click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords:
+		$"../Camera2D/UI".credits += cost['build']
 		queue_free()
-	if Input.is_action_just_pressed("click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords and lvl <2:
-		lvl += 1
-		$AnimatedSprite2D.frame = lvl
-		$Upgraded.show()
-		$Upgraded.frame = 0
-		$Upgraded.play()
 	if ghost:
 		return
 	for i in enemies:
@@ -49,12 +46,13 @@ func _on_area_2d_body_exited(body):
 func shoot(delta):
 	if (cooldown > fire_rate):
 		var bullet = bullet_scn.instantiate()
-		bullet.rotation = rotation
+		bullet.rotation = rotation - PI/2
 		#print($Muzzle.global_position)
 		bullet.get_child(0).play()
 		bullet.global_position = $Muzzle.global_position
 		bullet.linear_velocity = (target.global_position - bullet.global_position ).normalized() * bullet_speed
 		bullet.damage = bullet_dmg
+		
 		get_parent().add_child.call_deferred(bullet)
 		cooldown = 0
 	else:
@@ -63,3 +61,23 @@ func shoot(delta):
 func _on_upgraded_animation_finished():
 	$Upgraded.hide()
 	$Upgraded.pause()
+
+func _ready():
+	$Control.connect("pressed", _on_control_pressed)
+	$"../Camera2D/UI".connect('turret_selected', on_turret_selected)
+
+func on_turret_selected(turret):
+	if turret == n:
+		$Control.disabled = false
+	else:
+		$Control.disabled = true
+
+func _on_control_pressed():
+	if lvl < 2:
+		lvl += 1
+		$AnimatedSprite2D.frame = lvl
+		$Upgraded.show()
+		$Upgraded.frame = 0
+		$Upgraded.play()
+	else:
+		$Control.disabled = true

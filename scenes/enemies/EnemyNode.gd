@@ -36,6 +36,7 @@ func _killed():
 	sprite_component.play("death")
 	$CollisionShape2D.disabled = true
 	$HealthbarComponent.hide()
+	$"../Camera2D/UI".credits += $HealthComponent.MAX_HEALTH /10
 	emit_signal("died", $HealthComponent.MAX_HEALTH)
 
 func _on_animation_finished():

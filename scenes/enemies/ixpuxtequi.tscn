@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://dcexf1ek0r1y2"]
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_unao0"]
-[ext_resource type="Texture2D" uid="uid://c7qap55ga4id8" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
+[ext_resource type="Texture2D" uid="uid://beh5eb4jjdghg" path="res://assets/sprites/enemies/ixpuxtequi.png" id="2_fwpgn"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_1t1bh"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="4_eirpt"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="5_n2gbg"]
@@ -132,8 +132,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pk02w"]
-radius = 14.0
-height = 48.0
+radius = 8.0
+height = 40.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2ymb"]
 bg_color = Color(0.92549, 0.188235, 0.141176, 0.454902)
