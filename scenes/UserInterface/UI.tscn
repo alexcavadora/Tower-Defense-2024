@@ -1,15 +1,15 @@
 [gd_scene load_steps=18 format=3 uid="uid://doosiuu4p0wsg"]
 
-[ext_resource type="Texture2D" uid="uid://dx7rqelrnes4h" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
+[ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
 [ext_resource type="Theme" uid="uid://b43o8w87vgskk" path="res://addons/dialogue_quest/resources/themes/default/default_theme.tres" id="1_jfe27"]
 [ext_resource type="Script" path="res://scenes/UserInterface/UI.gd" id="1_qq2ha"]
-[ext_resource type="Texture2D" uid="uid://bk4krl3o21oxs" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
-[ext_resource type="Texture2D" uid="uid://byykrclma3en6" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
-[ext_resource type="Texture2D" uid="uid://cpg3a28wxerku" path="res://icon.svg" id="5_rjqkr"]
-[ext_resource type="Texture2D" uid="uid://dagean6qw8n0p" path="res://assets/sprites/towers/TD_basic_towers/Tower.png" id="5_umdws"]
-[ext_resource type="Texture2D" uid="uid://bqbksjjfdkyxg" path="res://assets/sprites/towers/Tower_red.png" id="6_3k7cy"]
-[ext_resource type="Texture2D" uid="uid://dr0tc0abw035s" path="res://scenes/maps/Zenith.png" id="7_eord1"]
-[ext_resource type="Texture2D" uid="uid://cvm7mf7circoq" path="res://assets/sprites/UI/Arrow_.png" id="8_ddr4e"]
+[ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
+[ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
+[ext_resource type="Texture2D" uid="uid://q5hcf1kqmwtt" path="res://icon.svg" id="5_rjqkr"]
+[ext_resource type="Texture2D" uid="uid://2egyhpvjho7f" path="res://assets/sprites/towers/TD_basic_towers/Tower.png" id="5_umdws"]
+[ext_resource type="Texture2D" uid="uid://dvvbjwoj1lyg3" path="res://assets/sprites/towers/Tower_red.png" id="6_3k7cy"]
+[ext_resource type="Texture2D" uid="uid://clm35tutt7bmn" path="res://scenes/maps/Zenith.png" id="7_eord1"]
+[ext_resource type="Texture2D" uid="uid://jw4ayi6lgs74" path="res://assets/sprites/UI/Arrow_.png" id="8_ddr4e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h68sl"]
 bg_color = Color(1, 0.329412, 0.329412, 1)
