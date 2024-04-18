@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dfhnfj3t7vwvp" path="res://healthbar.tscn" id="8_qeomy"]
 [ext_resource type="PackedScene" uid="uid://4jmreas6fvs5" path="res://scenes/Components/sword_component.tscn" id="9_y7lnu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c8hfb"]
-radius = 6.0208
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_25oji"]
+radius = 2.0
+height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y4dhr"]
 radius = 7.0
@@ -22,13 +23,15 @@ Sprite = NodePath("SpriteAnimation")
 Sword = NodePath("SwordComponent")
 
 [node name="Col_Player" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
-shape = SubResource("CircleShape2D_c8hfb")
+position = Vector2(0, 6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_25oji")
 
 [node name="SpriteAnimation" parent="." instance=ExtResource("2_v0nay")]
-scale = Vector2(0.2, 0.2)
-animation = &"Idle"
-frame_progress = 0.0
+position = Vector2(0, -9)
+animation = &"IdleS"
+autoplay = "IdleS"
+speed_scale = 1.3
 script = null
 
 [node name="PlayMovementComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("4_a15o5")]
