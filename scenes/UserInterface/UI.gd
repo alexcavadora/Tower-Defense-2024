@@ -4,13 +4,16 @@ signal turret_selected(String)
 @onready var health_bar = $"20/HBoxContainer/VBoxContainer2/HPBar"
 @onready var credits = 100
 @onready var popup_scene = preload("res://scenes/UserInterface/price_popup.tscn")
+
 var x 
 # Called when the node enters the scene tree for the first time.
+func _process(delta):
+	$"20/HBoxContainer/VBoxContainer2/Credits_text".text = '%d G' % credits
 func _ready():
 	wave_progress_bar.min_value = 0.0
 	wave_progress_bar.max_value = 0.0
 	wave_progress_bar.value = 0.0
-	$"20/HBoxContainer/VBoxContainer2/Credits_text".text = '%d G' % credits
+	
 	
 
 func _on_turret_1_pressed():
@@ -67,6 +70,9 @@ func _on_turret_6_pressed():
 	if x!= null:
 		x.queue_free()
 	x = popup_scene.instantiate()
+	var turret6 = "generator"
+	emit_signal("turret_selected", turret6)
+	GlobalVariables.VisibleSword = false
 	$HBoxContainer/Turret6.grab_focus()
 	$HBoxContainer/Turret6.add_child(x)
 
@@ -108,7 +114,7 @@ func _on_wave_changed(wave: int):
 	wave_progress_bar.max_value = 0.0
 
 	
-func _unhandled_key_input(_event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("1"):
 		_on_turret_1_pressed()
 		

@@ -8,6 +8,7 @@ var missile_turret = preload("res://scenes/turret/Missile_launcher.tscn")
 var mg_turret = preload("res://scenes/turret/MG.tscn")
 var barricade = preload("res://scenes/turret/barricade.tscn")
 var medic = preload("res://scenes/turret/medic.tscn")
+var generator = preload("res://scenes/turret/generator.tscn")
 var x = cannon_turret
 var y = cannon_turret.instantiate()
 @export var finishing_tile = Vector2i(0,0)
@@ -22,9 +23,10 @@ var sel_turret: String = "cannon"
 var pos
 var prev = Vector2i(0,0)
 var locked_path = [Vector2i(0,0),Vector2i(0,0)]
-
 var placed_barricades = []
 var placed_turrets = []
+
+
 
 func _ready():
 	tile_size = get_tileset().tile_size
@@ -64,9 +66,14 @@ func _process(_delta):
 			x = barricade.instantiate()
 		elif sel_turret == 'medic':
 			x = medic.instantiate()
+		elif sel_turret == 'generator':
+			x = generator.instantiate()
 		elif sel_turret == "empty":
 			return
-
+		if $"../Camera2D/UI".credits >= x.cost['build']:
+			$"../Camera2D/UI".credits -= x.cost['build']
+		else:
+			return
 		x.global_position = map_to_local(pos)
 		x.coords = pos
 		get_parent().add_child.call_deferred(x)
@@ -160,6 +167,9 @@ func _process(_delta):
 	elif sel_turret == "medic":
 		y = medic.instantiate()
 		
+	elif sel_turret == 'generator':
+		y = generator.instantiate()
+		
 	y.global_position = map_to_local(pos)
 	y.coords = pos
 	y.get_child(0).modulate.a8 = 125
@@ -252,6 +262,7 @@ func find_origin_direction(cell):
 
 func _on_control_turret_selected(turr):
 	sel_turret = turr
+	
 	prev = Vector2i(-1, -1)
 
 func _on_spawner_node_wave_changed(_x):

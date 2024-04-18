@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_n7u3f"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="1_p46ne"]
-[ext_resource type="Texture2D" uid="uid://bbkqqw0nm553t" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
+[ext_resource type="Texture2D" uid="uid://dddu0cq3ry110" path="res://assets/sprites/enemies/Character-and-Zombie.png" id="2_5vuqe"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="3_g2rev"]
-[ext_resource type="Texture2D" uid="uid://b8j4crivwe7s2" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
+[ext_resource type="Texture2D" uid="uid://b2wl3bjw5pj0c" path="res://assets/sprites/Effects/Explode_effect.png" id="4_fbqp8"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="6_8tmss"]
 [ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="7_epgo2"]
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="8_wj2em"]

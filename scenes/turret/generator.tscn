@@ -1,73 +1,70 @@
-[gd_scene load_steps=19 format=3 uid="uid://ggjl8fkx20ek"]
+[gd_scene load_steps=18 format=3 uid="uid://bgk5e34l630oi"]
 
-[ext_resource type="Script" path="res://scenes/turret/medic.gd" id="1_ljsig"]
-[ext_resource type="Texture2D" uid="uid://sq7loqsupcsq" path="res://assets/sprites/Tiles/punyworld-overworld-tileset.png" id="2_rpca8"]
-[ext_resource type="Texture2D" uid="uid://b2wl3bjw5pj0c" path="res://assets/sprites/Effects/Explode_effect.png" id="3_ldlx8"]
+[ext_resource type="Script" path="res://scenes/turret/generator.gd" id="1_in20k"]
+[ext_resource type="Texture2D" uid="uid://sq7loqsupcsq" path="res://assets/sprites/Tiles/punyworld-overworld-tileset.png" id="2_uaqby"]
+[ext_resource type="Texture2D" uid="uid://b2wl3bjw5pj0c" path="res://assets/sprites/Effects/Explode_effect.png" id="3_mlvsn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2r6ej"]
-atlas = ExtResource("2_rpca8")
-region = Rect2(64, 416, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_trx5v"]
+atlas = ExtResource("2_uaqby")
+region = Rect2(80, 416, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wi248"]
-atlas = ExtResource("2_rpca8")
-region = Rect2(64, 528, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r62jf"]
+atlas = ExtResource("2_uaqby")
+region = Rect2(80, 528, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_thb1g"]
-atlas = ExtResource("2_rpca8")
-region = Rect2(224, 528, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqpiy"]
+atlas = ExtResource("2_uaqby")
+region = Rect2(240, 528, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_f8cyf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsout"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2r6ej")
+"texture": SubResource("AtlasTexture_trx5v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wi248")
+"texture": SubResource("AtlasTexture_r62jf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_thb1g")
+"texture": SubResource("AtlasTexture_bqpiy")
 }],
 "loop": false,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikch3"]
-size = Vector2(14, 13)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_jukok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ae0k1"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_763rw"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yv1ge"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sia4s"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4g38m"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bilgj"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2uoeo"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2j25"]
-atlas = ExtResource("3_ldlx8")
+atlas = ExtResource("3_mlvsn")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3dk2r"]
@@ -102,25 +99,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Medic" type="StaticBody2D"]
+[node name="Generator" type="StaticBody2D"]
 z_index = -6
 y_sort_enabled = true
-script = ExtResource("1_ljsig")
-n = "medic"
+script = ExtResource("1_in20k")
+n = "generator"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 3
 y_sort_enabled = true
 position = Vector2(0, -1.42109e-14)
 scale = Vector2(0.75, 0.76625)
-sprite_frames = SubResource("SpriteFrames_f8cyf")
+sprite_frames = SubResource("SpriteFrames_gsout")
 speed_scale = 0.0
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_ikch3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jukok")
@@ -148,6 +139,4 @@ size_flags_vertical = 4
 focus_mode = 0
 flat = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_collision_shape_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_collision_shape_2d_body_exited"]
 [connection signal="animation_finished" from="Upgraded" to="." method="_on_upgraded_animation_finished"]
