@@ -24,14 +24,22 @@ func changeanim(name):
 		#Sword.play(name)
 		#
 	##print(name)
-	
+func pauseanim():
+	Anim.frame = 0
+	Anim.pause()
 
+func playanim():
+	Anim.frame = 0
+	Anim.play()
+	
 func _on_play_movement_component_change(animation):
-	if animation != prevA:
-		prevA = animation
-		changeanim(animation)
-	else:
-		pass
+	if animation == 'pause':
+		pauseanim()
+		return
+	elif animation == 'play':
+		playanim()
+		return
+	changeanim(animation)
 
 
 

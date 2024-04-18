@@ -14,22 +14,31 @@ func _physics_process(delta):
 
 	
 	if directionX:
-		change.emit("Run")
 		Target.velocity.x = directionX * SPEED
 	else:
-		#change.emit("idle")
 		Target.velocity.x = move_toward(Target.velocity.x, 0, SPEED)
 		
 	if directionY:
-		change.emit("Run")
 		Target.velocity.y = directionY * SPEED
 	else:
-		#change.emit("idle")
 		Target.velocity.y = move_toward(Target.velocity.y, 0, SPEED)
 	
 	if directionX == 0 and directionY == 0:
-		change.emit("Idle")
-		
+		change.emit("pause")
+	if abs(Target.velocity.x) > abs(Target.velocity.y):
+		change.emit("East")
+			#if Target.velocity.x > 0:
+			#	change.emit("East")
+			#else:
+			#	change.emit("East")
+	else:
+		if Target.velocity.y > 0:
+			change.emit("South")
+		elif  Target.velocity.y < 0:
+			change.emit("North")
+		else:
+			change.emit("pause")
+	
 		
 		
 	
