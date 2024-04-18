@@ -127,7 +127,7 @@ visible = false
 position = Vector2(30, 177)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vpx0s")
-frame_progress = 0.731558
+frame_progress = 0.233938
 speed_scale = 2.4
 
 [node name="PortraitBackground" type="PanelContainer" parent="Margin/Rows/RowMiddle"]
