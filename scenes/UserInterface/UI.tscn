@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://doosiuu4p0wsg"]
+[gd_scene load_steps=17 format=3 uid="uid://doosiuu4p0wsg"]
 
 [ext_resource type="Texture2D" uid="uid://cmfug22suswp5" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
+[ext_resource type="Theme" uid="uid://b43o8w87vgskk" path="res://addons/dialogue_quest/resources/themes/default/default_theme.tres" id="1_jfe27"]
 [ext_resource type="Script" path="res://scenes/UserInterface/UI.gd" id="1_qq2ha"]
 [ext_resource type="Texture2D" uid="uid://dutjcyrips1qv" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
 [ext_resource type="Texture2D" uid="uid://68pue22hwatp" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
@@ -23,6 +24,66 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57xuu"]
+bg_color = Color(0.215686, 0.533333, 0.662745, 0.360784)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxgy6"]
+bg_color = Color(0.527782, 0.431245, 0, 0.447059)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmwv4"]
+bg_color = Color(0.527782, 0.431245, 0, 0.447059)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3a4d"]
+bg_color = Color(0.527782, 0.431245, 0, 0.447059)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5qesp"]
 atlas = ExtResource("6_3k7cy")
 region = Rect2(32, 2.08165e-12, 32, 32)
@@ -34,6 +95,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_jfe27")
 script = ExtResource("1_qq2ha")
 
 [node name="20" type="MarginContainer" parent="."]
@@ -48,19 +110,30 @@ theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="20"]
 layout_mode = 2
+theme_override_constants/separation = 21
 
 [node name="VBoxContainer" type="VBoxContainer" parent="20/HBoxContainer"]
-custom_minimum_size = Vector2(95, 2.08165e-12)
+custom_minimum_size = Vector2(95, 66)
 layout_mode = 2
 
 [node name="HP" type="Label" parent="20/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 28)
 layout_mode = 2
+theme_override_constants/outline_size = 8
 text = "HP:"
 horizontal_alignment = 2
 
 [node name="Progressbar" type="Label" parent="20/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
 layout_mode = 2
-text = "Wave progress: "
+theme_override_constants/outline_size = 8
+text = "% de oleada:"
+horizontal_alignment = 2
+
+[node name="Créditos" type="Label" parent="20/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+text = "Créditos: "
 horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="20/HBoxContainer"]
@@ -69,23 +142,33 @@ layout_mode = 2
 [node name="HPBar" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(200, 22)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
 theme_override_styles/fill = SubResource("StyleBoxFlat_h68sl")
 max_value = 40.0
 step = 1.0
 value = 40.0
 rounded = true
-show_percentage = false
 
 [node name="WaveProgess" type="ProgressBar" parent="20/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(200, 22)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
 theme_override_styles/fill = SubResource("StyleBoxFlat_5242k")
 max_value = 2.08165e-12
 step = 1.0
 rounded = true
 allow_greater = true
 allow_lesser = true
-show_percentage = false
+
+[node name="Credits_text" type="Label" parent="20/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "100G"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -104,11 +187,19 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Turret1" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme = ExtResource("1_jfe27")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 1"
 icon = ExtResource("5_umdws")
@@ -117,11 +208,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret2" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 2"
 icon = ExtResource("2_ipril")
@@ -130,11 +228,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret3" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 3"
 icon = ExtResource("3_8dnw1")
@@ -143,11 +248,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret4" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 4"
 icon = ExtResource("1_edy5a")
@@ -156,11 +268,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret5" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 5"
 icon = SubResource("AtlasTexture_5qesp")
@@ -169,11 +288,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret6" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 6"
 alignment = 0
@@ -181,11 +307,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret7" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 7"
 alignment = 0
@@ -193,11 +326,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret8" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 8"
 alignment = 0
@@ -205,11 +345,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret9" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 9"
 alignment = 0
@@ -217,11 +364,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Turret10" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
-focus_mode = 0
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_57xuu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgy6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmwv4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o3a4d")
 text = "
-
 
 0"
 icon = ExtResource("7_eord1")

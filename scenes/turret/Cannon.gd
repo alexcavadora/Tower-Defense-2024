@@ -15,9 +15,7 @@ var lvl = 0
 var cooldown = 0
 
 func _process(delta):
-	if GlobalVariables.VisibleSword:
-		return
-	if Input.is_action_pressed("right_click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords:
+	if Input.is_action_just_pressed("right_click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords:
 		queue_free()
 	if Input.is_action_just_pressed("click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords and lvl <2:
 		lvl += 1
@@ -49,12 +47,13 @@ func _on_area_2d_body_exited(body):
 func shoot(delta):
 	if (cooldown > fire_rate):
 		var bullet = bullet_scn.instantiate()
-		bullet.rotation = rotation
+		bullet.rotation = rotation - PI/2
 		#print($Muzzle.global_position)
 		bullet.get_child(0).play()
 		bullet.global_position = $Muzzle.global_position
 		bullet.linear_velocity = (target.global_position - bullet.global_position ).normalized() * bullet_speed
 		bullet.damage = bullet_dmg
+		
 		get_parent().add_child.call_deferred(bullet)
 		cooldown = 0
 	else:

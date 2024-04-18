@@ -43,7 +43,7 @@ func _ready():
 
 func _process(_delta):
 	pos = local_to_map(get_global_mouse_position())
-	if Input.is_action_pressed("click"):
+	if Input.is_action_just_pressed("click"):
 		x = null
 		if y != null:
 			y.queue_free()
@@ -94,7 +94,7 @@ func _process(_delta):
 		#	if create_optimal_path(i,finishing_tile) == false:
 		#			set_cell(terrain_layer, pos, -1, Vector2i(-1,-1))
 		#			astar.set_point_solid(pos, false)
-	elif Input.is_action_pressed("right_click") and pos in placed_barricades:#astar.is_point_solid(pos) == true:
+	elif Input.is_action_just_pressed("right_click") and pos in placed_barricades:#astar.is_point_solid(pos) == true:
 		for i in starting_tile:
 			if i == pos or i == finishing_tile:
 				return
