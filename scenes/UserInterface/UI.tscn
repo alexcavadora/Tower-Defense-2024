@@ -1,14 +1,14 @@
 [gd_scene load_steps=17 format=3 uid="uid://doosiuu4p0wsg"]
 
-[ext_resource type="Texture2D" uid="uid://dx7rqelrnes4h" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
+[ext_resource type="Texture2D" uid="uid://bheaf6ibnvsq2" path="res://assets/sprites/towers/TD_basic_towers/MG.png" id="1_edy5a"]
 [ext_resource type="Theme" uid="uid://b43o8w87vgskk" path="res://addons/dialogue_quest/resources/themes/default/default_theme.tres" id="1_jfe27"]
 [ext_resource type="Script" path="res://scenes/UserInterface/UI.gd" id="1_qq2ha"]
-[ext_resource type="Texture2D" uid="uid://bk4krl3o21oxs" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
-[ext_resource type="Texture2D" uid="uid://byykrclma3en6" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
-[ext_resource type="Texture2D" uid="uid://cpg3a28wxerku" path="res://icon.svg" id="5_rjqkr"]
-[ext_resource type="Texture2D" uid="uid://dagean6qw8n0p" path="res://assets/sprites/towers/TD_basic_towers/Tower.png" id="5_umdws"]
-[ext_resource type="Texture2D" uid="uid://bqbksjjfdkyxg" path="res://assets/sprites/towers/Tower_red.png" id="6_3k7cy"]
-[ext_resource type="Texture2D" uid="uid://dr0tc0abw035s" path="res://scenes/maps/Zenith.png" id="7_eord1"]
+[ext_resource type="Texture2D" uid="uid://b10cxenlujo8c" path="res://assets/sprites/towers/TD_basic_towers/Missile_Launcher.png" id="2_ipril"]
+[ext_resource type="Texture2D" uid="uid://n1gppgf1kwkc" path="res://assets/sprites/towers/TD_basic_towers/Cannon.png" id="3_8dnw1"]
+[ext_resource type="Texture2D" uid="uid://dp3ry6wg6gee7" path="res://icon.svg" id="5_rjqkr"]
+[ext_resource type="Texture2D" uid="uid://cdl3248ma202v" path="res://assets/sprites/towers/TD_basic_towers/Tower.png" id="5_umdws"]
+[ext_resource type="Texture2D" uid="uid://cn10lhu1ysya3" path="res://assets/sprites/towers/Tower_red.png" id="6_3k7cy"]
+[ext_resource type="Texture2D" uid="uid://vohw7or2632m" path="res://scenes/maps/Zenith.png" id="7_eord1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h68sl"]
 bg_color = Color(1, 0.329412, 0.329412, 1)
