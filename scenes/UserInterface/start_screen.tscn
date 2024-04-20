@@ -1,7 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy06fpapockt1"]
+[gd_scene load_steps=14 format=3 uid="uid://btf0axp8d7qtf"]
 
 [ext_resource type="Script" path="res://scenes/UserInterface/start_screen.gd" id="1_v6k1a"]
-[ext_resource type="Texture2D" uid="uid://cthpwsxp606y3" path="res://assets/boot_image/maxresdefault.png" id="3_r1vcg"]
+[ext_resource type="Texture2D" uid="uid://dvbvvxxdhhydy" path="res://assets/backgrounds/TitleScreen/Littledude.png" id="2_wiidm"]
+[ext_resource type="Texture2D" uid="uid://74gjugykvib7" path="res://assets/backgrounds/TitleScreen/Littledudeback.png" id="3_85okk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fmn7"]
+atlas = ExtResource("2_wiidm")
+region = Rect2(0, 0, 94, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p70a5"]
+atlas = ExtResource("2_wiidm")
+region = Rect2(94, 0, 94, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6cdr"]
+atlas = ExtResource("2_wiidm")
+region = Rect2(188, 0, 94, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht4ae"]
+atlas = ExtResource("2_wiidm")
+region = Rect2(282, 0, 94, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpy7h"]
+atlas = ExtResource("2_wiidm")
+region = Rect2(376, 0, 94, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_342bl"]
+atlas = ExtResource("2_wiidm")
+region = Rect2(470, 0, 94, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k51yh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fmn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p70a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6cdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht4ae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpy7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_342bl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_sur0c"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	play(\"default\")
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r03hu"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,9 +104,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v6k1a")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
+position = Vector2(468, 530)
+scale = Vector2(7.03, 7.03)
+sprite_frames = SubResource("SpriteFrames_k51yh")
+frame_progress = 0.365095
+script = SubResource("GDScript_sur0c")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_r1vcg")
+scale = Vector2(4.0875, 4.04779)
+texture = ExtResource("3_85okk")
 centered = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -77,6 +145,7 @@ text = "ENTER"
 
 [node name="VersionNum" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = 3.0
 offset_right = 63.0
