@@ -3,7 +3,9 @@ var coords: Vector2i  = Vector2i(0,0)
 var ghost = false
 var t = 'barricade'
 var cost = {
-	'build': 	 10
+	'build': 	 10,
+	'upgrade 1': '--',
+	'upgrade 2': '--'
 	}
 func _ready():
 	$Control.connect("pressed", _on_control_pressed)

@@ -1,21 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt7ewgtsd841v"]
+[gd_scene load_steps=3 format=3 uid="uid://dt7ewgtsd841v"]
 
-[ext_resource type="Texture2D" uid="uid://q5hcf1kqmwtt" path="res://icon.svg" id="1_iiq35"]
+[ext_resource type="Script" path="res://scenes/UserInterface/price_popup.gd" id="1_omyl5"]
+[ext_resource type="Texture2D" uid="uid://bshc5jfsy3pc1" path="res://assets/sprites/UI/WhatsApp Image 2024-04-20 at 08.31.03.jpeg" id="2_nuw8k"]
 
 [node name="PricePopup" type="VBoxContainer"]
 anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -35.0
+anchor_left = 0.492
+anchor_right = 0.492
+offset_left = -19.64
 offset_top = -125.0
-offset_right = 35.0
+offset_right = 20.36
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
 alignment = 1
+script = ExtResource("1_omyl5")
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_iiq35")
+texture = ExtResource("2_nuw8k")
 expand_mode = 5
 
 [node name="Label" type="Label" parent="."]

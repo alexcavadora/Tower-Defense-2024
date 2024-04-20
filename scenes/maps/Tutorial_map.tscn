@@ -1,0 +1,273 @@
+[gd_scene load_steps=21 format=3 uid="uid://tqo13senvbhd"]
+
+[ext_resource type="PackedScene" uid="uid://doosiuu4p0wsg" path="res://scenes/UserInterface/UI.tscn" id="1_igrgl"]
+[ext_resource type="Script" path="res://scripts/WaveManager.gd" id="2_t2vuu"]
+[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="3_att7s"]
+[ext_resource type="Script" path="res://scripts/enemy_sequence.gd" id="4_anp77"]
+[ext_resource type="Script" path="res://scripts/waves.gd" id="5_u2yc6"]
+[ext_resource type="PackedScene" uid="uid://c0ynyy2q783d7" path="res://scenes/player/player.tscn" id="6_ip13y"]
+[ext_resource type="Texture2D" uid="uid://cb3elq7rn0857" path="res://assets/backgrounds/Dia0/FondoTuto.png" id="7_2e5b3"]
+[ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="8_mv2de"]
+[ext_resource type="PackedScene" uid="uid://h2tj48du85qj" path="res://scenes/turret/barricade.tscn" id="9_6qhnw"]
+[ext_resource type="PackedScene" uid="uid://k1lt2xwcdc21" path="res://scenes/UserInterface/Dialogue_testing.tscn" id="10_mjllo"]
+
+[sub_resource type="Resource" id="Resource_2neat"]
+script = ExtResource("4_anp77")
+name = "aluxe1"
+amount = 1
+time = 2.0
+
+[sub_resource type="Resource" id="Resource_454uy"]
+script = ExtResource("4_anp77")
+name = "aluxe2"
+amount = 1
+time = 2.0
+
+[sub_resource type="Resource" id="Resource_eaxbb"]
+script = ExtResource("4_anp77")
+name = "aluxe3"
+amount = 1
+time = 2.0
+
+[sub_resource type="Resource" id="Resource_jssud"]
+script = ExtResource("5_u2yc6")
+enemy_sequences = Array[ExtResource("4_anp77")]([SubResource("Resource_2neat"), SubResource("Resource_454uy"), SubResource("Resource_eaxbb")])
+
+[sub_resource type="Resource" id="Resource_yxf8d"]
+script = ExtResource("4_anp77")
+name = "aluxe1"
+amount = 5
+time = 1.5
+
+[sub_resource type="Resource" id="Resource_l1uku"]
+script = ExtResource("5_u2yc6")
+enemy_sequences = Array[ExtResource("4_anp77")]([SubResource("Resource_yxf8d")])
+
+[sub_resource type="Resource" id="Resource_eo8lr"]
+script = ExtResource("4_anp77")
+name = "aluxe2"
+amount = 6
+time = 1.25
+
+[sub_resource type="Resource" id="Resource_e1g0d"]
+script = ExtResource("5_u2yc6")
+enemy_sequences = Array[ExtResource("4_anp77")]([SubResource("Resource_eo8lr")])
+
+[sub_resource type="Resource" id="Resource_riq5v"]
+script = ExtResource("4_anp77")
+name = "aluxe3"
+amount = 7
+time = 1.0
+
+[sub_resource type="Resource" id="Resource_t7kr7"]
+script = ExtResource("5_u2yc6")
+enemy_sequences = Array[ExtResource("4_anp77")]([SubResource("Resource_riq5v")])
+
+[node name="TestingMap" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 15
+anchor_mode = 0
+zoom = Vector2(4, 4)
+
+[node name="UI" parent="Camera2D" instance=ExtResource("1_igrgl")]
+top_level = true
+visibility_layer = 2
+z_as_relative = false
+scale = Vector2(0.25, 0.25)
+credits = 9480
+metadata/_edit_use_anchors_ = true
+
+[node name="Wave_Manager" type="Node" parent="."]
+script = ExtResource("2_t2vuu")
+
+[node name="spawnerNode" type="Node" parent="Wave_Manager"]
+script = ExtResource("3_att7s")
+enemy_data = Array[ExtResource("5_u2yc6")]([SubResource("Resource_jssud"), SubResource("Resource_l1uku"), SubResource("Resource_e1g0d"), SubResource("Resource_t7kr7")])
+
+[node name="Player" parent="." instance=ExtResource("6_ip13y")]
+position = Vector2(313, 89)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -11
+position = Vector2(240, 136)
+texture = ExtResource("7_2e5b3")
+
+[node name="Ground" parent="." instance=ExtResource("8_mv2de")]
+z_index = -10
+layer_0/y_sort_origin = 1
+layer_0/tile_data = PackedInt32Array()
+layer_1/name = "dirt_path"
+layer_1/tile_data = PackedInt32Array(327682, 524290, 10, 327681, 524290, 10, 327680, 458754, 10, 458760, 524290, 10, 458759, 524290, 10, 589835, 393218, 8, 524299, 393218, 8, 458763, 589826, 7, 458762, 524290, 10, 458761, 524290, 10, 458758, 524290, 10, 589837, 393218, 8, 524301, 393218, 8, 655373, 393218, 8, 655371, 393218, 8, 262157, 393218, 8, 327693, 393218, 8, 393229, 393218, 8, 196627, 524290, 10, 196626, 524290, 10, 196625, 524290, 10, 196624, 524290, 10, 196623, 524290, 10, 196622, 524290, 10, 196621, 458754, 7, 458756, 524290, 10, 720925, 393218, 9, 327683, 589826, 7, 393219, 393218, 8, 458755, 458754, 9, 458757, 524290, 10, 720909, 393218, 8, 720907, 393218, 8, 786445, 589826, 9, 786444, 524290, 10, 786443, 458754, 9, 655389, 393218, 8, 589853, 393218, 8, 524317, 393218, 8, 458781, 393218, 8, 458765, 393218, 8, 393245, 393218, 8, 327709, 393218, 8, 262173, 393218, 8, 196637, 589826, 7, 196636, 524290, 10, 196635, 524290, 10, 196634, 524290, 10, 196633, 524290, 10, 196632, 524290, 10, 196631, 524290, 10, 196630, 524290, 10, 196629, 524290, 10, 196628, 524290, 10)
+layer_2/y_sort_origin = 3
+layer_3/name = "terrain"
+layer_3/y_sort_enabled = true
+layer_3/y_sort_origin = 4
+layer_3/z_index = 3
+layer_3/tile_data = PackedInt32Array(917504, 65536, 3, 917505, 65536, 3, 917506, 65536, 3, 917507, 65536, 3, 917508, 65536, 3, 917509, 65536, 3, 917510, 65536, 3, 917511, 65536, 3, 917512, 65536, 3, 917513, 65536, 3, 917514, 65536, 3, 917515, 65536, 3, 917516, 65536, 3, 917517, 65536, 3, 917518, 65536, 3, 917519, 65536, 3, 917520, 65536, 3, 917521, 65536, 3, 917522, 65536, 3, 917523, 65536, 3, 917524, 65536, 3, 917525, 65536, 3, 917526, 65536, 3, 917527, 65536, 3, 917528, 65536, 3, 917529, 65536, 3, 917530, 65536, 3, 917531, 65536, 3, 917532, 65536, 3, 917533, 65536, 3, 131072, 65536, 3, 131073, 65536, 3, 131074, 65536, 3, 131075, 65536, 3, 131076, 65536, 3, 131077, 65536, 3, 131078, 65536, 3, 131079, 65536, 3, 131080, 65536, 3, 131081, 65536, 3, 131082, 65536, 3, 131083, 65536, 3, 131084, 65536, 3, 131085, 65536, 3, 131086, 65536, 3, 131087, 65536, 3, 131088, 65536, 3, 131089, 65536, 3, 131090, 65536, 3, 131091, 65536, 3, 131092, 65536, 3, 131093, 65536, 3, 131094, 65536, 3, 131095, 65536, 3, 131100, 65536, 3, 131101, 65536, 3, 131099, 65536, 3, 131098, 65536, 3, 131097, 65536, 3, 131096, 65536, 3, 524292, 0, 3, 589828, 0, 3, 655364, 0, 3, 720900, 0, 3, 786436, 0, 3, 851972, 0, 3, 524294, 0, 3, 589830, 0, 3, 655366, 0, 3, 720902, 0, 3, 786438, 0, 3, 196612, 0, 3, 262148, 0, 3, 327684, 0, 3, 393220, 0, 3, 262150, 0, 3, 327686, 0, 3, 393222, 0, 3, 196616, 0, 3, 262152, 0, 3, 327688, 0, 3, 393224, 0, 3, 262154, 0, 3, 327690, 0, 3, 393226, 0, 3, 524298, 0, 3, 589834, 0, 3, 655370, 0, 3, 720906, 0, 3, 786442, 0, 3, 196620, 0, 3, 262156, 0, 3, 327692, 0, 3, 393228, 0, 3, 458764, 0, 3, 524300, 0, 3, 589836, 0, 3, 655372, 0, 3, 720908, 0, 3, 262158, 0, 3, 327694, 0, 3, 393230, 0, 3, 458766, 0, 3, 524302, 0, 3, 589838, 0, 3, 655374, 0, 3, 720910, 0, 3, 786446, 0, 3, 851982, 0, 3)
+finishing_tile = Vector2i(29, 11)
+starting_tile = Array[Vector2i]([Vector2i(0, 5)])
+
+[node name="Barricade" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 56)
+
+[node name="_StaticBody2D_5" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 72)
+
+[node name="_StaticBody2D_7" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 88)
+
+[node name="_StaticBody2D_9" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 104)
+
+[node name="_StaticBody2D_13" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 136)
+
+[node name="_StaticBody2D_15" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 152)
+
+[node name="_StaticBody2D_17" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 168)
+
+[node name="_StaticBody2D_19" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(72, 184)
+
+[node name="_StaticBody2D_24" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 200)
+
+[node name="_StaticBody2D_26" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 184)
+
+[node name="_StaticBody2D_28" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 168)
+
+[node name="_StaticBody2D_30" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 152)
+
+[node name="_StaticBody2D_32" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 136)
+
+[node name="_StaticBody2D_36" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 104)
+
+[node name="_StaticBody2D_38" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 88)
+
+[node name="_StaticBody2D_40" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(104, 72)
+
+[node name="_StaticBody2D_46" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 56)
+
+[node name="_StaticBody2D_48" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 72)
+
+[node name="_StaticBody2D_50" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 88)
+
+[node name="_StaticBody2D_52" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 104)
+
+[node name="_StaticBody2D_56" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 136)
+
+[node name="_StaticBody2D_58" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 152)
+
+[node name="_StaticBody2D_60" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 168)
+
+[node name="_StaticBody2D_62" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(136, 184)
+
+[node name="_StaticBody2D_83" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 200)
+
+[node name="_StaticBody2D_85" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 184)
+
+[node name="_StaticBody2D_87" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 168)
+
+[node name="_StaticBody2D_89" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 152)
+
+[node name="_StaticBody2D_91" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 136)
+
+[node name="_StaticBody2D_95" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 104)
+
+[node name="_StaticBody2D_97" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 88)
+
+[node name="_StaticBody2D_99" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(168, 72)
+
+[node name="_StaticBody2D_106" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 56)
+
+[node name="_StaticBody2D_108" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 72)
+
+[node name="_StaticBody2D_110" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 88)
+
+[node name="_StaticBody2D_113" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 120)
+
+[node name="_StaticBody2D_115" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 104)
+
+[node name="_StaticBody2D_117" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 136)
+
+[node name="_StaticBody2D_120" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 168)
+
+[node name="_StaticBody2D_122" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 152)
+
+[node name="_StaticBody2D_124" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(200, 184)
+
+[node name="_StaticBody2D_128" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 200)
+
+[node name="_StaticBody2D_130" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 184)
+
+[node name="_StaticBody2D_132" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 168)
+
+[node name="_StaticBody2D_134" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 152)
+
+[node name="_StaticBody2D_136" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 136)
+
+[node name="_StaticBody2D_138" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 120)
+
+[node name="_StaticBody2D_140" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 104)
+
+[node name="_StaticBody2D_142" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 88)
+
+[node name="_StaticBody2D_144" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(232, 72)
+
+[node name="_StaticBody2D_250" parent="." instance=ExtResource("9_6qhnw")]
+position = Vector2(8, 200)
+
+[node name="Dialogue_test" parent="." instance=ExtResource("10_mjllo")]
+
+[connection signal="turret_selected" from="Camera2D/UI" to="Ground" method="_on_control_turret_selected"]
+[connection signal="waves_ended" from="Wave_Manager" to="Camera2D/UI" method="_on_wave_changed"]
+[connection signal="enemy_spawned" from="Wave_Manager/spawnerNode" to="Camera2D/UI" method="_on_spawner_node_enemy_spawned"]
+[connection signal="wave_changed" from="Wave_Manager/spawnerNode" to="Ground" method="_on_spawner_node_wave_changed"]
+[connection signal="wave_ended" from="Wave_Manager/spawnerNode" to="Ground" method="_on_spawner_node_wave_ended"]
+
+[editable path="Ground"]

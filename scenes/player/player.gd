@@ -9,6 +9,5 @@ func _unhandled_input(event):
 	elif Input.is_action_just_pressed("ui_left"):
 		Sprite.flip_h = true
 		Sword.position.x = -9
-		
 func _killed():
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://drodcd4ptjfd6"]
+[gd_scene load_steps=28 format=3 uid="uid://drodcd4ptjfd6"]
 
 [ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="1_8aak2"]
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="2_435xr"]
@@ -10,49 +10,55 @@
 
 [sub_resource type="Resource" id="Resource_2neat"]
 script = ExtResource("3_rweys")
-name = "ixpuxtequi"
+name = "aluxe1"
+amount = 1
+time = 2.0
+
+[sub_resource type="Resource" id="Resource_454uy"]
+script = ExtResource("3_rweys")
+name = "aluxe2"
+amount = 1
+time = 2.0
+
+[sub_resource type="Resource" id="Resource_eaxbb"]
+script = ExtResource("3_rweys")
+name = "aluxe3"
 amount = 1
 time = 2.0
 
 [sub_resource type="Resource" id="Resource_jssud"]
 script = ExtResource("4_rexvl")
-enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_2neat")])
+enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_2neat"), SubResource("Resource_454uy"), SubResource("Resource_eaxbb")])
+
+[sub_resource type="Resource" id="Resource_yxf8d"]
+script = ExtResource("3_rweys")
+name = "aluxe1"
+amount = 5
+time = 1.5
 
 [sub_resource type="Resource" id="Resource_l1uku"]
 script = ExtResource("4_rexvl")
-enemy_sequences = Array[ExtResource("3_rweys")]([])
+enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_yxf8d")])
 
 [sub_resource type="Resource" id="Resource_eo8lr"]
 script = ExtResource("3_rweys")
-name = "orc"
+name = "aluxe2"
 amount = 6
-time = 0.5
+time = 1.25
 
 [sub_resource type="Resource" id="Resource_e1g0d"]
 script = ExtResource("4_rexvl")
 enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_eo8lr")])
 
-[sub_resource type="Resource" id="Resource_12xfn"]
+[sub_resource type="Resource" id="Resource_riq5v"]
 script = ExtResource("3_rweys")
-name = "slime"
-amount = 2
-time = 0.1
-
-[sub_resource type="Resource" id="Resource_35p6m"]
-script = ExtResource("3_rweys")
-name = "zombie"
-amount = 2
-time = 2.0
-
-[sub_resource type="Resource" id="Resource_2v0m3"]
-script = ExtResource("3_rweys")
-name = "slime"
-amount = 3
-time = 0.2
+name = "aluxe3"
+amount = 7
+time = 1.0
 
 [sub_resource type="Resource" id="Resource_t7kr7"]
 script = ExtResource("4_rexvl")
-enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_12xfn"), SubResource("Resource_35p6m"), SubResource("Resource_2v0m3")])
+enemy_sequences = Array[ExtResource("3_rweys")]([SubResource("Resource_riq5v")])
 
 [sub_resource type="Resource" id="Resource_18fxa"]
 script = ExtResource("3_rweys")
@@ -134,6 +140,8 @@ top_level = true
 visibility_layer = 2
 z_as_relative = false
 scale = Vector2(0.25, 0.25)
+credits = 10000
+metadata/_edit_use_anchors_ = true
 
 [node name="Wave_Manager" type="Node" parent="."]
 script = ExtResource("3_d8hpb")

@@ -1,32 +1,24 @@
-[gd_scene load_steps=19 format=3 uid="uid://ggjl8fkx20ek"]
+[gd_scene load_steps=17 format=3 uid="uid://ggjl8fkx20ek"]
 
 [ext_resource type="Script" path="res://scenes/turret/medic.gd" id="1_ljsig"]
-[ext_resource type="Texture2D" uid="uid://sq7loqsupcsq" path="res://assets/sprites/Tiles/punyworld-overworld-tileset.png" id="2_rpca8"]
-[ext_resource type="Texture2D" uid="uid://b2wl3bjw5pj0c" path="res://assets/sprites/Effects/Explode_effect.png" id="3_ldlx8"]
+[ext_resource type="Texture2D" uid="uid://d0f010l5axphs" path="res://assets/sprites/towers/tienda de recuperación.png" id="2_p30lu"]
+[ext_resource type="Texture2D" uid="uid://b8j4crivwe7s2" path="res://assets/sprites/Effects/Explode_effect.png" id="3_ldlx8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2r6ej"]
-atlas = ExtResource("2_rpca8")
-region = Rect2(64, 416, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wi248"]
-atlas = ExtResource("2_rpca8")
-region = Rect2(64, 528, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_thb1g"]
-atlas = ExtResource("2_rpca8")
-region = Rect2(224, 528, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3rfw"]
+atlas = ExtResource("2_p30lu")
+region = Rect2(0, 0, 16, 21)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f8cyf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2r6ej")
+"texture": SubResource("AtlasTexture_e3rfw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wi248")
+"texture": SubResource("AtlasTexture_e3rfw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_thb1g")
+"texture": SubResource("AtlasTexture_e3rfw")
 }],
 "loop": false,
 "name": &"default",
@@ -107,12 +99,16 @@ z_index = -6
 y_sort_enabled = true
 script = ExtResource("1_ljsig")
 n = "medic"
+cost = {
+"build": 100,
+"upgrade 1": 100,
+"upgrade 2": 100
+}
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 3
 y_sort_enabled = true
-position = Vector2(0, -1.42109e-14)
-scale = Vector2(0.75, 0.76625)
+position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_f8cyf")
 speed_scale = 0.0
 
