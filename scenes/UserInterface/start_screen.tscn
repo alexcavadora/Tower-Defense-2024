@@ -1,12 +1,12 @@
 [gd_scene load_steps=105 format=3 uid="uid://btf0axp8d7qtf"]
 
 [ext_resource type="Script" path="res://scenes/UserInterface/start_screen.gd" id="1_v6k1a"]
-[ext_resource type="Texture2D" uid="uid://dvbvvxxdhhydy" path="res://assets/backgrounds/TitleScreen/Littledude.png" id="2_wiidm"]
-[ext_resource type="Texture2D" uid="uid://74gjugykvib7" path="res://assets/backgrounds/TitleScreen/Littledudeback.png" id="3_85okk"]
-[ext_resource type="Texture2D" uid="uid://8udh3y5qiw5y" path="res://assets/icons/exit00-sheet.png" id="4_4cxiw"]
-[ext_resource type="Texture2D" uid="uid://b1e56hn4u5kyr" path="res://assets/icons/settings00-sheet.png" id="5_atvxj"]
-[ext_resource type="Texture2D" uid="uid://2uqmfypu635j" path="res://assets/icons/libroicono000-sheet.png" id="6_0wba8"]
-[ext_resource type="Texture2D" uid="uid://bcn3ply08e4ne" path="res://assets/icons/Boton.png" id="7_jl41t"]
+[ext_resource type="Texture2D" uid="uid://leir2b28tdnw" path="res://assets/backgrounds/TitleScreen/Littledude.png" id="2_wiidm"]
+[ext_resource type="Texture2D" uid="uid://bynbr5rj7suwl" path="res://assets/backgrounds/TitleScreen/Littledudeback.png" id="3_85okk"]
+[ext_resource type="Texture2D" uid="uid://bscyn8ylsdm1c" path="res://assets/icons/exit00-sheet.png" id="4_4cxiw"]
+[ext_resource type="Texture2D" uid="uid://ox126ncoc71y" path="res://assets/icons/settings00-sheet.png" id="5_atvxj"]
+[ext_resource type="Texture2D" uid="uid://wpm3dudmit32" path="res://assets/icons/libroicono000-sheet.png" id="6_0wba8"]
+[ext_resource type="Texture2D" uid="uid://dbf1tp6iw71aj" path="res://assets/icons/Boton.png" id="7_jl41t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fmn7"]
 atlas = ExtResource("2_wiidm")

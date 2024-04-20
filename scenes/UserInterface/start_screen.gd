@@ -29,9 +29,9 @@ func _ready() -> void:
 	
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_accept"):
-		SceneManager.swap_scenes("res://scenes/maps/Testing_map.tscn",get_tree().root,self,"wipe_to_right")
+		SceneManager.swap_scenes("res://scenes/maps/Tutorial_map.tscn",get_tree().root,self,"wipe_to_right")
 		
 
 
 func _on_texture_button_pressed() -> void:
-	SceneManager.swap_scenes("res://scenes/maps/Testing_map.tscn",get_tree().root,self,"wipe_to_right")
+	SceneManager.swap_scenes("res://scenes/maps/Tutorial_map.tscn",get_tree().root,self,"wipe_to_right")
