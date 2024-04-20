@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://xejhc51dwiyy"]
+
+[ext_resource type="Script" path="res://scenes/turret/bullet.gd" id="1_ogaoa"]
+[ext_resource type="Texture2D" uid="uid://o5blp3vvr8k0" path="res://assets/sprites/towers/bullet.png" id="2_iwbmr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwdym"]
+atlas = ExtResource("2_iwbmr")
+region = Rect2(0, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gq2e"]
+atlas = ExtResource("2_iwbmr")
+region = Rect2(10, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84nhf"]
+atlas = ExtResource("2_iwbmr")
+region = Rect2(20, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57r66"]
+atlas = ExtResource("2_iwbmr")
+region = Rect2(30, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrfay"]
+atlas = ExtResource("2_iwbmr")
+region = Rect2(40, 0, 10, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jrdqa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwdym")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gq2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84nhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57r66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrfay")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3ilm"]
+radius = 8.0
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+mass = 0.01
+gravity_scale = 0.0
+script = ExtResource("1_ogaoa")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_jrdqa")
+animation = &"hit"
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+speed_scale = 2.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_b3ilm")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

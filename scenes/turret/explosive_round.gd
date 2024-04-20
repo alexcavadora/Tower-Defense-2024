@@ -15,6 +15,7 @@ func _physics_process(delta):
 			explode()
 			#print("Collided with: ",collision.get_collider().name )
 			$Sprite2D.play('hit')
+			$CollisionShape2D.disabled = true
 			linear_velocity = Vector2.ZERO
 			disable_mode = CollisionObject2D.DISABLE_MODE_MAKE_STATIC
 		else:
@@ -24,7 +25,7 @@ func _physics_process(delta):
 func explode():
 	for i in enemies_in_range:
 		i.find_child("HealthComponent").damage(damage)
-	
+		
 func _on_sprite_2d_animation_finished():
 	queue_free();
 

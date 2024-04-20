@@ -9,6 +9,8 @@ var mg_turret = preload("res://scenes/turret/MG.tscn")
 var barricade = preload("res://scenes/turret/barricade.tscn")
 var medic = preload("res://scenes/turret/medic.tscn")
 var generator = preload("res://scenes/turret/generator.tscn")
+var net = preload("res://scenes/turret/bolas.tscn")
+
 var x = cannon_turret
 var y = cannon_turret.instantiate()
 @export var finishing_tile = Vector2i(0,0)
@@ -68,6 +70,8 @@ func _process(_delta):
 			x = medic.instantiate()
 		elif sel_turret == 'generator':
 			x = generator.instantiate()
+		elif sel_turret == 'net':
+			x = net.instantiate()
 		elif sel_turret == "empty":
 			return
 		if $"../Camera2D/UI".credits >= x.cost['build']:
@@ -169,6 +173,9 @@ func _process(_delta):
 		
 	elif sel_turret == 'generator':
 		y = generator.instantiate()
+	
+	elif sel_turret == 'net':
+		y = net.instantiate()
 		
 	y.global_position = map_to_local(pos)
 	y.coords = pos

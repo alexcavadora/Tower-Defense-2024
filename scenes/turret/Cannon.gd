@@ -4,11 +4,13 @@ var ghost = false
 var enemies = []
 var target
 var lvl = 0
+
+@export var shooting_frame = 3
 @export var n = ''
-@export var cost = {
+@export var cost ={
 	'build': 	 50,
 	'upgrade 1': 150,
-	'upgrade 2': 350
+	'upgrade 2': 300
 }
 @export var rotation_speed = 0.05
 @export var bullet_scn : PackedScene
@@ -18,7 +20,7 @@ var lvl = 0
 @onready var fire_rate = 1.0/bps
 
 var cooldown = 0
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("right_click") and !ghost and $"../Ground".local_to_map(get_global_mouse_position()) == coords:
 		$"../Camera2D/UI".credits += cost['build']
 		queue_free()
@@ -28,10 +30,14 @@ func _process(delta):
 		if i.find_child('SpriteComponent').animation == 'death':
 			enemies.erase(i) 
 	if enemies != [] and target != null:
-		shoot(delta)
-		rotation = lerp_angle(rotation, position.angle_to_point(target.global_position) + PI/2, rotation_speed)
+		if !$AnimatedSprite2D.is_playing():
+			$AnimatedSprite2D.play('%d' % lvl, 2 + 2*lvl)
+		rotation = lerp_angle(rotation, position.angle_to_point(target.global_position), rotation_speed)
 	else:
-		rotation = lerp_angle(rotation,  0, rotation_speed)
+		$AnimatedSprite2D.play("idle")
+		$AnimatedSprite2D.frame = lvl
+		$AnimatedSprite2D.pause()
+		rotation = lerp_angle(rotation,  -PI/2, rotation_speed)
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group('enemy'):
@@ -43,28 +49,25 @@ func _on_area_2d_body_exited(body):
 		target = enemies[0]
 		enemies.erase(body)
 
-func shoot(delta):
-	if (cooldown > fire_rate):
-		var bullet = bullet_scn.instantiate()
-		bullet.rotation = rotation - PI/2
-		#print($Muzzle.global_position)
-		bullet.get_child(0).play()
-		bullet.global_position = $Muzzle.global_position
-		bullet.linear_velocity = (target.global_position - bullet.global_position ).normalized() * bullet_speed
-		bullet.damage = bullet_dmg
-		
-		get_parent().add_child.call_deferred(bullet)
-		cooldown = 0
-	else:
-		cooldown += delta
+func shoot():
+	var bullet = bullet_scn.instantiate()
+	bullet.rotation = rotation
+	#print($Muzzle.global_position)
+	bullet.get_child(0).play()
+	bullet.global_position = $Muzzle.global_position
+	bullet.linear_velocity = (target.global_position - bullet.global_position ).normalized() * bullet_speed
+	bullet.damage = bullet_dmg
+	get_parent().add_child.call_deferred(bullet)
 
 func _on_upgraded_animation_finished():
 	$Upgraded.hide()
 	$Upgraded.pause()
 
 func _ready():
+	$AnimatedSprite2D.stop()
 	$Control.connect("pressed", _on_control_pressed)
 	$"../Camera2D/UI".connect('turret_selected', on_turret_selected)
+	$AnimatedSprite2D.connect('frame_changed', _on_animated_sprite_2d_frame_changed)
 
 func on_turret_selected(turret):
 	if turret == n:
@@ -81,3 +84,12 @@ func _on_control_pressed():
 		$Upgraded.play()
 	else:
 		$Control.disabled = true
+
+
+#func _on_animated_sprite_2d_animation_finished():
+	#shoot()
+
+
+func _on_animated_sprite_2d_frame_changed():
+	if $AnimatedSprite2D.get_frame() == shooting_frame:
+		shoot()

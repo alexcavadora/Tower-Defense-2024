@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://h2tj48du85qj"]
 
-[ext_resource type="Texture2D" uid="uid://dagean6qw8n0p" path="res://assets/sprites/towers/TD_basic_towers/Tower.png" id="1_bsl4c"]
 [ext_resource type="Script" path="res://scenes/turret/barricade.gd" id="1_s6cg8"]
+[ext_resource type="Texture2D" uid="uid://7ftbuj6sij46" path="res://assets/sprites/towers/barricade.png" id="2_vp6so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4mjb"]
 size = Vector2(14, 14)
@@ -13,8 +13,8 @@ y_sort_enabled = true
 script = ExtResource("1_s6cg8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("1_bsl4c")
+position = Vector2(0, -2)
+texture = ExtResource("2_vp6so")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_x4mjb")

@@ -1,0 +1,153 @@
+[gd_scene load_steps=22 format=3 uid="uid://7lkm0ek8d3tk"]
+
+[ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_mbbyg"]
+[ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="2_ax4mf"]
+[ext_resource type="Texture2D" uid="uid://culdtwgsgb1yg" path="res://assets/sprites/enemies/Ahuizol - Caminata.png" id="4_1m1jt"]
+[ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="5_khucv"]
+[ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="6_ey3gh"]
+[ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="7_1kvuy"]
+[ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="8_shfqt"]
+[ext_resource type="AudioStream" uid="uid://b2s1v8auek0jo" path="res://assets/sound effects/creatures/Ahuizol 1 (vida).mp3" id="8_xhfag"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_320fy"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(0, 36, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qnx5"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(70, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs1rx"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(105, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yyof"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(140, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgw6w"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(175, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx638"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(210, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7t5q"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(0, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyqau"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(0, 72, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v55cw"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(35, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8jc6"]
+atlas = ExtResource("4_1m1jt")
+region = Rect2(35, 72, 35, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gc02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_320fy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qnx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs1rx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yyof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgw6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx638")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7t5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyqau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v55cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8jc6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6as1r"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rg18"]
+bg_color = Color(0.92549, 0.188235, 0.141176, 0.454902)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Ahuizol" type="CharacterBody2D" groups=["enemy"]]
+z_index = 4
+y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_mbbyg")
+
+[node name="MovementComponent" type="Node2D" parent="."]
+script = ExtResource("2_ax4mf")
+
+[node name="SpriteComponent" type="AnimatedSprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(4, -9)
+sprite_frames = SubResource("SpriteFrames_1gc02")
+autoplay = "default"
+script = ExtResource("5_khucv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_6as1r")
+
+[node name="DamageComponent" type="Node2D" parent="."]
+script = ExtResource("6_ey3gh")
+damage = 10
+
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("Target", "healthbar")]
+script = ExtResource("7_1kvuy")
+MAX_HEALTH = 250
+Target = NodePath("..")
+healthbar = NodePath("../HealthbarComponent")
+
+[node name="HealthbarComponent" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 52.0
+offset_bottom = -7.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/fill = SubResource("StyleBoxFlat_0rg18")
+show_percentage = false
+script = ExtResource("8_shfqt")
+health_component = NodePath("../HealthComponent")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_xhfag")
+autoplay = true

@@ -8,8 +8,8 @@ var lvl = 0
 @export var n = ''
 @export var cost = {
 	'build': 	 50,
-	'upgrade 1': 150,
-	'upgrade 2': 350
+	'upgrade 1': 100,
+	'upgrade 2': 300
 }
 func _process(delta):
 	if GlobalVariables.VisibleSword:
