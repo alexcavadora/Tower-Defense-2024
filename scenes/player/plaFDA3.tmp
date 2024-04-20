@@ -1,0 +1,127 @@
+[gd_scene load_steps=19 format=3 uid="uid://c0ynyy2q783d7"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_akys2"]
+[ext_resource type="PackedScene" uid="uid://7dnwcrq4icn3" path="res://scenes/Components/player_animation.tscn" id="2_v0nay"]
+[ext_resource type="PackedScene" uid="uid://cyrq0t23xknjk" path="res://scenes/Components/play_movement_component.tscn" id="4_a15o5"]
+[ext_resource type="PackedScene" uid="uid://c6iimwkb07glb" path="res://scenes/Components/health_component.tscn" id="5_ac1en"]
+[ext_resource type="PackedScene" uid="uid://c3fk3rqs0sbmi" path="res://scenes/Components/player_anim_component.tscn" id="6_n4rq0"]
+[ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
+[ext_resource type="Script" path="res://scenes/player/AttackComponent.gd" id="7_hnf7e"]
+[ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="7_mvqsx"]
+[ext_resource type="Texture2D" uid="uid://0xpi7ibwtf4x" path="res://assets/sprites/Sword/Zenith-sheet.png" id="9_28emq"]
+[ext_resource type="Texture2D" uid="uid://f4qtxferh2mi" path="res://assets/sprites/Sword/Zenith.png" id="9_mkhmc"]
+[ext_resource type="Script" path="res://scenes/player/SwordComponent.gd" id="10_pico6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evqus"]
+size = Vector2(12, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y4dhr"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sjko"]
+atlas = ExtResource("9_28emq")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljhxm"]
+atlas = ExtResource("9_28emq")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2seu"]
+atlas = ExtResource("9_28emq")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25unu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sjko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljhxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2seu")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_mkhmc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqsmg"]
+size = Vector2(20, 40)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_akys2")
+
+[node name="Col_Player" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_evqus")
+
+[node name="SpriteAnimation" parent="." instance=ExtResource("2_v0nay")]
+scale = Vector2(0.2, 0.2)
+animation = &"Idle"
+frame_progress = 0.0
+script = null
+
+[node name="PlayMovementComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("4_a15o5")]
+Target = NodePath("..")
+SPEED = 125.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_ac1en")]
+MAX_HEALTH = 100
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_w4lu8")]
+visible = true
+health_component = NodePath("../HealthComponent")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_y4dhr")
+debug_color = Color(0.972549, 0, 0, 0.419608)
+
+[node name="PlayerAnimComponent" parent="." node_paths=PackedStringArray("Anim", "Sword") instance=ExtResource("6_n4rq0")]
+Anim = NodePath("../SpriteAnimation")
+Sword = NodePath("../SwordComponent")
+
+[node name="PlayerAttackComponent" type="Node" parent="." node_paths=PackedStringArray("sword_component")]
+script = ExtResource("7_hnf7e")
+sword_component = NodePath("../SwordComponent")
+
+[node name="Healthbar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+offset_left = -3.0
+offset_top = -22.0
+offset_right = 15.995
+offset_bottom = 5.0
+scale = Vector2(0.315, 0.315)
+script = ExtResource("7_mvqsx")
+health_component = NodePath("../HealthComponent")
+
+[node name="SwordComponent" type="AnimatedSprite2D" parent="."]
+position = Vector2(8.35, -2.825)
+sprite_frames = SubResource("SpriteFrames_25unu")
+animation = &"Idle"
+speed_scale = 2.5
+script = ExtResource("10_pico6")
+
+[node name="Area2D" type="Area2D" parent="SwordComponent"]
+position = Vector2(10.05, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Attack" type="CollisionShape2D" parent="SwordComponent/Area2D"]
+position = Vector2(0, 4.76837e-07)
+shape = SubResource("RectangleShape2D_sqsmg")
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
+[connection signal="body_entered" from="HitboxComponent" to="HitboxComponent" method="_on_body_entered"]
+[connection signal="attack" from="PlayerAttackComponent" to="PlayerAnimComponent" method="_on_player_attack_component_attack"]
+[connection signal="body_entered" from="SwordComponent/Area2D" to="PlayerAttackComponent" method="_on_area_2d_body_entered"]

@@ -2,7 +2,8 @@ class_name Wave_Manager
 extends Node
 @onready var n_children = get_child_count()
 @onready var waves_ready = n_children
-
+signal waves_ended(int)
+var wave=1
 func _ready():
 	var n_children = get_child_count()
 	for i in get_children():
@@ -16,4 +17,7 @@ func _on_wave_ended():
 			i.status = 'idle'
 
 func _on_wave_started(x):
+	if waves_ready == n_children:
+		emit_signal('waves_ended', wave)
+		wave += 1
 	waves_ready -= 1

@@ -6,10 +6,14 @@ var map_rect = Rect2i()
 var cannon_turret = preload("res://scenes/turret/Cannon.tscn")
 var missile_turret = preload("res://scenes/turret/Missile_launcher.tscn")
 var mg_turret = preload("res://scenes/turret/MG.tscn")
+var barricade = preload("res://scenes/turret/barricade.tscn")
+var medic = preload("res://scenes/turret/medic.tscn")
+var generator = preload("res://scenes/turret/generator.tscn")
 var x = cannon_turret
 var y = cannon_turret.instantiate()
 @export var finishing_tile = Vector2i(0,0)
 @export var starting_tile : Array[Vector2i] = [Vector2i()]
+@export var player : CharacterBody2D
 var tile_size
 var tilemap_size
 var arrow_layer : int = 2
@@ -19,6 +23,10 @@ var sel_turret: String = "cannon"
 var pos
 var prev = Vector2i(0,0)
 var locked_path = [Vector2i(0,0),Vector2i(0,0)]
+var placed_barricades = []
+var placed_turrets = []
+
+
 
 func _ready():
 	tile_size = get_tileset().tile_size
@@ -36,10 +44,74 @@ func _ready():
 	update()
 
 func _process(_delta):
-	
+	pos = local_to_map(get_global_mouse_position())
+	if Input.is_action_just_pressed("click"):
+		x = null
+		if y != null:
+			y.queue_free()
+		if pos not in placed_barricades and sel_turret != "barricade":
+			return
+		if astar.is_point_solid(pos) and sel_turret == "barricade":
+			return
+		if pos in placed_turrets:
+			return
+			
+		if sel_turret == "cannon":
+			x = cannon_turret.instantiate()
+		elif sel_turret == "missile_launcher":
+			x = missile_turret.instantiate()
+		elif sel_turret == "MG":
+			x = mg_turret.instantiate()
+		elif sel_turret == "barricade":
+			x = barricade.instantiate()
+		elif sel_turret == 'medic':
+			x = medic.instantiate()
+		elif sel_turret == 'generator':
+			x = generator.instantiate()
+		elif sel_turret == "empty":
+			return
+		if $"../Camera2D/UI".credits >= x.cost['build']:
+			$"../Camera2D/UI".credits -= x.cost['build']
+		else:
+			return
+		x.global_position = map_to_local(pos)
+		x.coords = pos
+		get_parent().add_child.call_deferred(x)
+		astar.set_point_solid(pos, true)
+
+		if sel_turret == 'barricade':
+			placed_barricades.append(pos)
+		else:
+			placed_turrets.append(pos)
+		update()
+		for i in starting_tile:
+			if astar.get_id_path(i, finishing_tile).is_empty() or pos == i:
+				set_cell(terrain_layer, pos, -1,Vector2i(-1,-1))
+				astar.set_point_solid(pos, false)
+				x.queue_free()
+				if sel_turret == 'barricade':
+					placed_barricades.erase(pos)
+				else:
+					placed_turrets.append(pos)
+				update()
+				break
+		return
+		# for some reason does not allow to change the original path in any way
+		# for i in starting_tile:
+		#	if create_optimal_path(i,finishing_tile) == false:
+		#			set_cell(terrain_layer, pos, -1, Vector2i(-1,-1))
+		#			astar.set_point_solid(pos, false)
+	elif Input.is_action_just_pressed("right_click") and pos in placed_barricades:#astar.is_point_solid(pos) == true:
+		for i in starting_tile:
+			if i == pos or i == finishing_tile:
+				return
+		astar.set_point_solid(pos, false)
+		placed_barricades.erase(pos)
+		placed_turrets.erase(pos)
+		update()
+		return
 	#getting the coordenates of the mouse in local coords
-	pos = local_to_map(get_global_mouse_position()) 
-	
+
 	#if the mouse is still slecting the same tile, or is outside of the game area
 	#for example, windowed mode, it will avoid any unnecesary calculations
 	if prev == pos || astar.is_in_bounds(pos.x,pos.y) == false:
@@ -53,13 +125,23 @@ func _process(_delta):
 	
 	# when not selecting a tower, you have no need to be shown future changes in the road
 	# this was added here to update when changing to nothing while not moving the mouse
-	if sel_turret == "empty": 
+	if sel_turret == "empty":
+		GlobalVariables.VisibleSword = true 
 		update(2) 
 		prev = pos #do nothing until something changes
 		return
 	
 	#if the mouse is now on top of a tower or obstacle
-	if astar.is_point_solid(pos):
+	if pos not in placed_barricades and sel_turret != "barricade" :
+		update(2) 
+		prev = pos
+		return
+	
+	if pos in placed_barricades and pos in placed_turrets:
+		update(2) 
+		return
+		
+	if astar.is_point_solid(pos) and sel_turret == "barricade":
 		update(2) 
 		prev = pos
 		return
@@ -67,17 +149,37 @@ func _process(_delta):
 	# selecting and instancing the ghost of tower objectwith required characteristics 
 	# at mouse position based on UI element selected by click or keyboard
 	if sel_turret == "cannon":
+		GlobalVariables.VisibleSword = false
 		y = cannon_turret.instantiate()
+		
 	elif sel_turret == "missile_launcher":
+		GlobalVariables.VisibleSword = false
 		y = missile_turret.instantiate()
+		
 	elif sel_turret == "MG":
+		GlobalVariables.VisibleSword = false
 		y = mg_turret.instantiate()
+		
+	elif sel_turret == "barricade":
+		GlobalVariables.VisibleSword = false
+		y = barricade.instantiate()
+		
+	elif sel_turret == "medic":
+		y = medic.instantiate()
+		
+	elif sel_turret == 'generator':
+		y = generator.instantiate()
+		
 	y.global_position = map_to_local(pos)
 	y.coords = pos
 	y.get_child(0).modulate.a8 = 125
 	y.ghost = true
+	y.find_child('CollisionShape2D').disabled = true
+	
 	get_parent().add_child.call_deferred(y)
 	
+	if sel_turret != "barricade":
+		return
 	# letting the map know this coord is now solid, but just to show the player what would happen
 	# before notifying enemies
 	astar.set_point_solid(pos, true)
@@ -158,48 +260,9 @@ func find_origin_direction(cell):
 			return 'up'
 	return 'down'
 
-func _unhandled_input(_event):
-	if Input.is_action_pressed("click") and astar.is_point_solid(pos) == false:
-		if y!= null:
-			y.queue_free()
-		if sel_turret == "cannon":
-			x = cannon_turret.instantiate()
-		elif sel_turret == "missile_launcher":
-			x = missile_turret.instantiate()
-		elif sel_turret == "MG":
-			x = mg_turret.instantiate()
-		elif sel_turret == "empty":
-			return
-			
-		x.global_position = map_to_local(pos)
-		x.coords = pos
-		#x.position = map_to_local(pos)
-		get_parent().add_child.call_deferred(x)
-		astar.set_point_solid(pos, true)
-		update()
-		for i in starting_tile:
-			if astar.get_id_path(i, finishing_tile).is_empty() or pos == i:
-				set_cell(terrain_layer, pos, -1,Vector2i(-1,-1))
-				astar.set_point_solid(pos, false)
-				x.queue_free()
-				update()
-				break
-		# for some reason does not allow to change the original path in any way
-		# for i in starting_tile:
-		#	if create_optimal_path(i,finishing_tile) == false:
-		#			set_cell(terrain_layer, pos, -1, Vector2i(-1,-1))
-		#			astar.set_point_solid(pos, false)
-		
-	if Input.is_action_pressed("right_click") and astar.is_point_solid(pos) == true:
-		for i in starting_tile:
-			if i == pos or i == finishing_tile:
-				return
-		astar.set_point_solid(pos, false)
-		prev = pos
-		update()
-
 func _on_control_turret_selected(turr):
 	sel_turret = turr
+	
 	prev = Vector2i(-1, -1)
 
 func _on_spawner_node_wave_changed(_x):

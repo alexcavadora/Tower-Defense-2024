@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://4jmreas6fvs5"]
+
+[ext_resource type="Texture2D" uid="uid://0xpi7ibwtf4x" path="res://assets/sprites/Sword/Zenith-sheet.png" id="1_3sg6k"]
+[ext_resource type="Texture2D" uid="uid://f4qtxferh2mi" path="res://assets/sprites/Sword/Zenith.png" id="2_ou5vm"]
+[ext_resource type="Script" path="res://scenes/player/SwordComponent.gd" id="3_xan7w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sjko"]
+atlas = ExtResource("1_3sg6k")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljhxm"]
+atlas = ExtResource("1_3sg6k")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2seu"]
+atlas = ExtResource("1_3sg6k")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25unu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sjko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljhxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2seu")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ou5vm")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqsmg"]
+size = Vector2(20, 40)
+
+[node name="SwordComponent" type="AnimatedSprite2D"]
+position = Vector2(8.35, -2.825)
+sprite_frames = SubResource("SpriteFrames_25unu")
+animation = &"Idle"
+speed_scale = 2.5
+script = ExtResource("3_xan7w")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(10.05, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Attack" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4.76837e-07)
+shape = SubResource("RectangleShape2D_sqsmg")
