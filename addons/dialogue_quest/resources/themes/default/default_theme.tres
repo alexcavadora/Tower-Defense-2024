@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://bt40pkyuf1dnx" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/default_panel.tres" id="1_e03ju"]
 [ext_resource type="StyleBox" uid="uid://dvtav16gx0cbc" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/default_panel_foreground.tres" id="2_pb7ya"]
-[ext_resource type="FontFile" uid="uid://c3xlt787spwnm" path="res://assets/fonts/PixelFJVerdana12pt.ttf" id="3_f8kgc"]
+[ext_resource type="FontFile" uid="uid://oyjoa1qmhx20" path="res://assets/fonts/PixelFJVerdana12pt.ttf" id="3_f8kgc"]
 
 [resource]
 default_font = ExtResource("3_f8kgc")

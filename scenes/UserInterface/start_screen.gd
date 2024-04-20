@@ -12,16 +12,17 @@ class_name StartScreen extends Control
 @onready var version_num: Label = %VersionNum
 
 func _ready() -> void:
-	version_num.text = "v%s" % SceneManager.VERSION
-	print("Project version: %s" % SceneManager.VERSION)
+	pass
+	#version_num.text = "v%s" % SceneManager.VERSION
+	#print("Project version: %s" % SceneManager.VERSION)
 #	SceneManager.swap_scenes("res://Gameplay/player.tscn",get_tree().root,null,"no_transition")
 #	SceneManager.call_deferred("swap_scenes","res://Gameplay/player.tscn",get_tree().root,null,"no_transition")
 
-func _on_button_button_up() -> void:
+#func _on_button_button_up() -> void:
 	
 	# call from v1.0 - won't work in this version
 #	SceneManager.load_new_scene("res://Gameplay/Levels/level1.tscn","wipe_to_right")
-	SceneManager.swap_scenes("res://scenes/maps/Testing_map.tscn",get_tree().root,self,"wipe_to_right")
+	
 	
 	# no unload example
 #	SceneManager.swap_scenes("res://Gameplay/player.tscn",get_tree().root,null,"no_transition")
@@ -30,3 +31,7 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_accept"):
 		SceneManager.swap_scenes("res://scenes/maps/Testing_map.tscn",get_tree().root,self,"wipe_to_right")
 		
+
+
+func _on_texture_button_pressed() -> void:
+	SceneManager.swap_scenes("res://scenes/maps/Testing_map.tscn",get_tree().root,self,"wipe_to_right")
