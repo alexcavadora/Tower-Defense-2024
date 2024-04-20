@@ -106,10 +106,10 @@ script = ExtResource("1_v6k1a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 10
-position = Vector2(468, 530)
+position = Vector2(500, 530)
 scale = Vector2(7.03, 7.03)
 sprite_frames = SubResource("SpriteFrames_k51yh")
-frame_progress = 0.365095
+frame_progress = 0.563411
 script = SubResource("GDScript_sur0c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -137,7 +137,6 @@ theme_override_constants/margin_bottom = 14
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_r03hu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ng4jn")
