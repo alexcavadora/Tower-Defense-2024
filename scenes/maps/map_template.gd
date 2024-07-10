@@ -269,7 +269,7 @@ func find_origin_direction(cell):
 
 func _on_control_turret_selected(turr):
 	sel_turret = turr
-	
+
 	prev = Vector2i(-1, -1)
 
 func _on_spawner_node_wave_changed(_x):

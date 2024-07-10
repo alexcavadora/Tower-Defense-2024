@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://tqo13senvbhd"]
+[gd_scene load_steps=22 format=3 uid="uid://tqo13senvbhd"]
 
 [ext_resource type="PackedScene" uid="uid://doosiuu4p0wsg" path="res://scenes/UserInterface/UI.tscn" id="1_igrgl"]
 [ext_resource type="Script" path="res://scripts/WaveManager.gd" id="2_t2vuu"]
 [ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="3_att7s"]
+[ext_resource type="PackedScene" uid="uid://btf0axp8d7qtf" path="res://scenes/UserInterface/start_screen.tscn" id="3_tdd4d"]
 [ext_resource type="Script" path="res://scripts/enemy_sequence.gd" id="4_anp77"]
 [ext_resource type="Script" path="res://scripts/waves.gd" id="5_u2yc6"]
 [ext_resource type="PackedScene" uid="uid://c0ynyy2q783d7" path="res://scenes/player/player.tscn" id="6_ip13y"]
 [ext_resource type="Texture2D" uid="uid://cb3elq7rn0857" path="res://assets/backgrounds/Dia0/FondoTuto.png" id="7_2e5b3"]
-[ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="8_mv2de"]
+[ext_resource type="PackedScene" uid="uid://6s3ml746d0ec" path="res://scenes/maps/tilemap.tscn" id="8_mv2de"]
 [ext_resource type="PackedScene" uid="uid://h2tj48du85qj" path="res://scenes/turret/barricade.tscn" id="9_6qhnw"]
 [ext_resource type="PackedScene" uid="uid://drc7n04nb5bb1" path="res://scenes/UserInterface/Dialogue_testing.tscn" id="10_mjllo"]
 
@@ -77,6 +78,34 @@ visibility_layer = 2
 z_as_relative = false
 scale = Vector2(0.25, 0.25)
 credits = 9480
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialogue_test" parent="Camera2D" instance=ExtResource("10_mjllo")]
+z_index = 10
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+next = ExtResource("3_tdd4d")
+text = {
+1: {
+"name": "Jorge (Diario)",
+"text": "Mientras todos dormían, el capitán me despertó a plena madrugada y me llevo a la granja de la aldea, la cual está llena de cultivos y altamente vigilada por un grupo de, algo que parecen ser hombrecitos pequeños, pero con rasgos extraños, no completamente humanos. "
+},
+2: {
+"name": "Jorge (Diario)",
+"text": "Enfrente de la línea principal de defensa, se encuentra uno de ellos tirado aparentemente inconsciente. "
+},
+3: {
+"name": "Jorge (Diario)",
+"text": "El capitán cuenta de manera bastante desagradable como todos íbamos a ocupar esos cultivos para acompañar el desayuno en la mañana, una de las criaturas le ofreció una mazorca, pero el capitán odia el maíz, y no quería aceptar la “caridad” del enano. "
+},
+4: {
+"name": "Jorge (Diario)",
+"text": "Montamos campamento para la noche y todos mis camaradas sienten que hay algo raro con el lugar. "
+}
+}
 metadata/_edit_use_anchors_ = true
 
 [node name="Wave_Manager" type="Node" parent="."]

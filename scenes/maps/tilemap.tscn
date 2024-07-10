@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brydcfmq8ffvv"]
+[gd_scene load_steps=9 format=3 uid="uid://6s3ml746d0ec"]
 
 [ext_resource type="Texture2D" uid="uid://bk6pgiabwsxne" path="res://assets/sprites/Tiles/punyworld-overworld-tileset.png" id="1_oe801"]
 [ext_resource type="Texture2D" uid="uid://bqaq3cchfmolf" path="res://assets/sprites/arrow/arrow.png" id="2_rnmit"]

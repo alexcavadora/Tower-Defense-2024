@@ -33,7 +33,6 @@ var line = 1
 func _ready():
 	dialogue_instance = dialogue_scene.instantiate()
 	dialogue_instance.connect("proceed", on_proceed)
-	
 	dialogue_instance.set_name_text(text[line]['name'])
 	dialogue_instance.set_text(text[line]['text'])
 	get_parent().add_child.call_deferred(dialogue_instance)
