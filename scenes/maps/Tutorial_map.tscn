@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/enemy_sequence.gd" id="4_anp77"]
 [ext_resource type="Script" path="res://scripts/waves.gd" id="5_u2yc6"]
 [ext_resource type="PackedScene" uid="uid://c0ynyy2q783d7" path="res://scenes/player/player.tscn" id="6_ip13y"]
-[ext_resource type="Texture2D" uid="uid://cb3elq7rn0857" path="res://assets/backgrounds/Dia0/FondoTuto.png" id="7_2e5b3"]
+[ext_resource type="Texture2D" uid="uid://brnjkgxh08rnc" path="res://assets/backgrounds/Dia0/FondoTuto.png" id="7_2e5b3"]
 [ext_resource type="PackedScene" uid="uid://brydcfmq8ffvv" path="res://scenes/maps/map_template.tscn" id="8_mv2de"]
 [ext_resource type="PackedScene" uid="uid://h2tj48du85qj" path="res://scenes/turret/barricade.tscn" id="9_6qhnw"]
 [ext_resource type="PackedScene" uid="uid://drc7n04nb5bb1" path="res://scenes/UserInterface/Dialogue_testing.tscn" id="10_mjllo"]

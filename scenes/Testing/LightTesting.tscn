@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://53tdxhgcfaik"]
+
+[ext_resource type="Script" path="res://scenes/Testing/LightTesting.gd" id="1_e0006"]
+[ext_resource type="Texture2D" uid="uid://cmt2ok5ontxix" path="res://assets/sprites/characters/PortraitProta.png" id="1_kuyrl"]
+[ext_resource type="Texture2D" uid="uid://26oibs1ot4eo" path="res://assets/sprites/characters/PortraitProta_n2.png" id="3_2mgqh"]
+[ext_resource type="Texture2D" uid="uid://06u3nx8ucb82" path="res://scenes/Testing/nRmVV.png" id="3_yqf8w"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_u8ewk"]
+diffuse_texture = ExtResource("1_kuyrl")
+normal_texture = ExtResource("3_2mgqh")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nukj0"]
+polygon = PackedVector2Array(25, -28.6, 32, -17.6, 32, 1, 31.4, 1, 24, 20.4, 24, 22.6, 26.1, 32, -26, 32, -26, 28.6, -21.4, 16, -19.7, 16, -16, 13, -16, 7, -20.8, 7, -24, 3.8, -24, 1.4, -20, -4.6, -20, -23, -18.1, -23, -14.2, -30, -11.5, -30, -7.6, -32, 11, -32, 11, -29.2, 15.5, -27, 24.3, -32, 25, -32)
+
+[sub_resource type="Animation" id="Animation_2w3yp"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-102, 62), Vector2(-132, -36), Vector2(5, -71), Vector2(91, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_bfcb5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-102, 62)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eaeen"]
+_data = {
+"RESET": SubResource("Animation_bfcb5"),
+"new_animation": SubResource("Animation_2w3yp")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_e0006")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_u8ewk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(75, 2)
+texture = ExtResource("1_kuyrl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(6, 6)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-102, 62)
+color = Color(0.0235294, 0.839216, 0.752941, 1)
+energy = 1.3
+shadow_enabled = true
+texture = ExtResource("3_yqf8w")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-80, 3)
+occluder = SubResource("OccluderPolygon2D_nukj0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eaeen")
+}
