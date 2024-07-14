@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://53tdxhgcfaik"]
+[gd_scene load_steps=13 format=3 uid="uid://53tdxhgcfaik"]
 
 [ext_resource type="Script" path="res://scenes/Testing/LightTesting.gd" id="1_e0006"]
 [ext_resource type="Texture2D" uid="uid://om3ctvv2fstl" path="res://assets/sprites/characters/PortraitProta.png" id="1_kuyrl"]
 [ext_resource type="Texture2D" uid="uid://dmpmbomnu1l11" path="res://assets/sprites/characters/PortraitProta_n2.png" id="3_2mgqh"]
-[ext_resource type="Texture2D" uid="uid://ctyjd6cx7wpgs" path="res://scenes/Testing/nRmVV.png" id="3_yqf8w"]
+[ext_resource type="Texture2D" uid="uid://cntwd0yvnin1o" path="res://scenes/Testing/Light.png" id="4_p2lo8"]
 [ext_resource type="Texture2D" uid="uid://bgskogxf3veed" path="res://addons/dialogue_quest/art/placeholders/portraits/shahar_portrait.png" id="5_erb2f"]
 [ext_resource type="Texture2D" uid="uid://degccy37ubntw" path="res://assets/backgrounds/FondoTuto.png" id="6_8rew4"]
 
@@ -14,11 +14,6 @@ normal_texture = ExtResource("3_2mgqh")
 [sub_resource type="CanvasTexture" id="CanvasTexture_1r466"]
 diffuse_texture = ExtResource("1_kuyrl")
 normal_texture = ExtResource("3_2mgqh")
-
-[sub_resource type="GDScript" id="GDScript_jpgb5"]
-script/source = "extends Sprite2D
-
-"
 
 [sub_resource type="Animation" id="Animation_bfcb5"]
 length = 0.001
@@ -79,18 +74,18 @@ texture = SubResource("CanvasTexture_1r466")
 zoom = Vector2(6, 6)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.196078, 0.392157, 1, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-102, 62)
-color = Color(0.0235294, 0.839216, 0.752941, 1)
+color = Color(0.921569, 0.517647, 0, 1)
 energy = 1.3
 shadow_enabled = true
 shadow_color = Color(0, 0, 0.796078, 0)
-texture = ExtResource("3_yqf8w")
+texture = ExtResource("4_p2lo8")
 
 [node name="Sprite2D" type="Sprite2D" parent="PointLight2D"]
 texture = ExtResource("5_erb2f")
-script = SubResource("GDScript_jpgb5")
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
