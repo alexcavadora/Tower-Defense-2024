@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://53tdxhgcfaik"]
 
 [ext_resource type="Script" path="res://scenes/Testing/LightTesting.gd" id="1_e0006"]
-[ext_resource type="Texture2D" uid="uid://cmt2ok5ontxix" path="res://assets/sprites/characters/PortraitProta.png" id="1_kuyrl"]
-[ext_resource type="Texture2D" uid="uid://26oibs1ot4eo" path="res://assets/sprites/characters/PortraitProta_n2.png" id="3_2mgqh"]
-[ext_resource type="Texture2D" uid="uid://06u3nx8ucb82" path="res://scenes/Testing/nRmVV.png" id="3_yqf8w"]
-[ext_resource type="Texture2D" uid="uid://cb14k3eyb4oy2" path="res://addons/dialogue_quest/art/placeholders/portraits/shahar_portrait.png" id="5_erb2f"]
-[ext_resource type="Texture2D" uid="uid://c0saw31isxvsq" path="res://assets/backgrounds/FondoTuto.png" id="6_8rew4"]
+[ext_resource type="Texture2D" uid="uid://om3ctvv2fstl" path="res://assets/sprites/characters/PortraitProta.png" id="1_kuyrl"]
+[ext_resource type="Texture2D" uid="uid://dmpmbomnu1l11" path="res://assets/sprites/characters/PortraitProta_n2.png" id="3_2mgqh"]
+[ext_resource type="Texture2D" uid="uid://ctyjd6cx7wpgs" path="res://scenes/Testing/nRmVV.png" id="3_yqf8w"]
+[ext_resource type="Texture2D" uid="uid://bgskogxf3veed" path="res://addons/dialogue_quest/art/placeholders/portraits/shahar_portrait.png" id="5_erb2f"]
+[ext_resource type="Texture2D" uid="uid://degccy37ubntw" path="res://assets/backgrounds/FondoTuto.png" id="6_8rew4"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_u8ewk"]
 diffuse_texture = ExtResource("1_kuyrl")
@@ -59,7 +59,7 @@ _data = {
 }
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_du5jd"]
-polygon = PackedVector2Array(16, -6, 16, 0, 16, 6, 14, 13, 8, 22, 4, 22, -1, 22, -2, 20, -6, 10, -6, 0, 0, -2, 4, -8, 7, -11, 12, -11)
+polygon = PackedVector2Array(16, -6, 16, 0, 16, 6, 13, 14, 7, 22, 4, 22, 1, 22, -2, 20, -6, 10, -6, 0, 0, -2, 4, -8, 7, -11, 12, -11)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_e0006")
@@ -91,6 +91,7 @@ texture = ExtResource("3_yqf8w")
 [node name="Sprite2D" type="Sprite2D" parent="PointLight2D"]
 texture = ExtResource("5_erb2f")
 script = SubResource("GDScript_jpgb5")
+metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -100,6 +101,7 @@ libraries = {
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 z_index = -1
 texture = ExtResource("6_8rew4")
+metadata/_edit_lock_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(-77, 8)
