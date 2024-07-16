@@ -67,6 +67,7 @@ health_component = NodePath("../HealthComponent")
 
 [node name="SwordComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_ik55h")]
 visible = false
+animation = &"Idle"
 radius = 20
 player = NodePath("..")
 

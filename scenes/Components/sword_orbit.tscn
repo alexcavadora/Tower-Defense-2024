@@ -4,10 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://d1xer22dcfy4h" path="res://assets/sprites/Sword/Halberd.png" id="2_b1ru7"]
 [ext_resource type="Script" path="res://scenes/Components/sword_orbit.gd" id="3_j3r5a"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vrnh8"]
-atlas = ExtResource("1_y2a2y")
-region = Rect2(0, 0, 34, 40)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihy8l"]
 atlas = ExtResource("1_y2a2y")
 region = Rect2(34, 0, 34, 40)
@@ -15,6 +11,10 @@ region = Rect2(34, 0, 34, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qlmv"]
 atlas = ExtResource("1_y2a2y")
 region = Rect2(68, 0, 34, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrnh8"]
+atlas = ExtResource("1_y2a2y")
+region = Rect2(0, 0, 34, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jp8xo"]
 atlas = ExtResource("2_b1ru7")
@@ -24,13 +24,13 @@ region = Rect2(0, 0, 28, 13)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vrnh8")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ihy8l")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7qlmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrnh8")
 }],
 "loop": false,
 "name": &"Attack",
@@ -50,7 +50,7 @@ size = Vector2(20, 40)
 
 [node name="SwordComponent" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_25unu")
-animation = &"Idle"
+animation = &"Attack"
 speed_scale = 2.5
 script = ExtResource("3_j3r5a")
 
