@@ -5,11 +5,12 @@ class_name SwordOrbComponent
 @export var radius = 25
 @export var player : Node2D
 
-
 func _process(delta):
 	if GlobalVariables.VisibleSword == true:
-		#print("Show")
 		visible = true
+		MousePos = get_local_mouse_position()
+		rotation += MousePos.angle()*(delta*6)
+		#print("Show")
 		var mouse_pos = get_global_mouse_position()
 		var player_pos = player.global_transform.origin 
 		var distance = player_pos.distance_to(mouse_pos) 
@@ -17,8 +18,7 @@ func _process(delta):
 		if distance > radius:
 			mouse_pos = player_pos + (mouse_dir * radius)
 		self.global_transform.origin = mouse_pos
-		MousePos = get_local_mouse_position()
-		rotation += MousePos.angle()
+
 		#GlobalMP = get_global_mouse_position()
 		#position += (GlobalMP - position)*(delta*3)
 		#position.x = clamp(position.x, -20, 20)

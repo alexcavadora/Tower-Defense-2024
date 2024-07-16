@@ -57,6 +57,9 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_5ccxe")]
 
+[node name="SwordComponent" parent="Player" index="9"]
+radius = 15
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
