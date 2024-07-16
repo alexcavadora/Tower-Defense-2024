@@ -1,6 +1,6 @@
 extends Node
 class_name  PlayerAttackComponent
-@export var sword_component : SwordComponent
+@export var sword_component : SwordOrbComponent
 @onready var first = sword_component.find_child("Area2D")
 signal attack(animation)
 @export var dmg = 0

@@ -1,0 +1,195 @@
+[gd_scene load_steps=20 format=3 uid="uid://cowggteicl38i"]
+
+[ext_resource type="Script" path="res://scenes/Testing/LightTesting.gd" id="1_3k6td"]
+[ext_resource type="Texture2D" uid="uid://cntwd0yvnin1o" path="res://scenes/Testing/Light.png" id="4_b4lqe"]
+[ext_resource type="Texture2D" uid="uid://cytcgwxg5arb8" path="res://assets/backgrounds/Dia1/Daylight1.png" id="4_rgeyw"]
+[ext_resource type="Texture2D" uid="uid://bgskogxf3veed" path="res://addons/dialogue_quest/art/placeholders/portraits/shahar_portrait.png" id="5_1ef3x"]
+[ext_resource type="PackedScene" uid="uid://c0ynyy2q783d7" path="res://scenes/player/player.tscn" id="7_3iabn"]
+[ext_resource type="Texture2D" uid="uid://cm8w3vx2yv1iy" path="res://assets/backgrounds/Dia1/Extras/Arboles.png" id="7_agiwy"]
+[ext_resource type="PackedScene" uid="uid://bbwyqhnp24hp6" path="res://scenes/Testing/antorcha.tscn" id="8_5h8i7"]
+[ext_resource type="Texture2D" uid="uid://cv1actv5hd8xj" path="res://assets/backgrounds/Dia1/Extras/Arboles_n.png" id="8_csjmk"]
+
+[sub_resource type="Animation" id="Animation_bfcb5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-102, 62)]
+}
+
+[sub_resource type="Animation" id="Animation_2w3yp"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-102, 62), Vector2(-132, -36), Vector2(5, -71), Vector2(91, 13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eaeen"]
+_data = {
+"RESET": SubResource("Animation_bfcb5"),
+"new_animation": SubResource("Animation_2w3yp")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6l7nf"]
+diffuse_texture = ExtResource("7_agiwy")
+normal_texture = ExtResource("8_csjmk")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0p2rn"]
+polygon = PackedVector2Array(97, 35, 97, 36, 96, 36, 96, 38, 97, 38, 97, 36, 98, 36, 98, 38, 102, 38, 102, 37, 101, 37, 101, 36, 103, 36, 103, 38, 104, 38, 104, 37, 105, 37, 105, 38, 106, 38, 106, 37, 107, 37, 107, 36, 109, 36, 109, 37, 110, 37, 110, 36, 111, 36, 111, 37, 112, 37, 112, 36, 111, 36, 111, 32, 110, 32, 110, 22, 109, 22, 109, 16, 110, 16, 110, 11, 110, 10, 109, 10, 109, 11, 108, 11, 108, 13, 107, 13, 107, 15, 106, 15, 106, 18, 105, 18, 105, 19, 104, 19, 104, 16, 103, 16, 103, 12, 102, 12, 102, 9, 101, 9, 101, 8, 100, 8, 100, 9, 99, 9, 99, 11, 99, 12, 99, 35)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nkhrr"]
+polygon = PackedVector2Array(-62, 21, -61, 21, -61, 22, -60, 22, -60, 24, -59, 24, -59, 22, -58, 22, -58, 24, -56, 24, -56, 23, -54, 23, -54, 24, -53, 24, -53, 23, -52, 23, -52, 24, -51, 24, -51, 22, -52, 22, -52, 19, -53, 19, -53, 15, -54, 15, -54, 11, -53, 11, -53, -3, -54, -3, -54, -7, -55, -7, -55, -9, -56, -9, -56, -10, -57, -10, -57, -12, -58, -12, -58, -13, -59, -13, -59, -14, -62, -14, -62, -13, -63, -13, -63, -10, -63, -1, -62, -1, -62, 11, -63, 11, -63, 17, -62, 17)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tb2qp"]
+polygon = PackedVector2Array(30, 22, 30, 24, 31, 24, 31, 23, 32, 23, 32, 24, 33, 24, 33, 23, 35, 23, 35, 24, 37, 24, 37, 22, 38, 22, 38, 24, 39, 24, 39, 22, 40, 22, 40, 21, 41, 21, 41, 17, 42, 17, 42, 11, 41, 11, 41, 0, 42, 0, 42, -13, 41, -13, 41, -14, 38, -14, 38, -13, 37, -13, 37, -12, 36, -12, 36, -10, 35, -10, 35, -9, 34, -9, 34, -7, 33, -7, 33, -6, 33, -3, 32, -3, 32, 11, 33, 11, 33, 15, 32, 15, 32, 19, 31, 19, 31, 22)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u0snw"]
+polygon = PackedVector2Array(77, 22, 77, 23, 78, 23, 78, 22, 79, 22, 79, 23, 80, 23, 80, 22, 82, 22, 82, 23, 83, 23, 83, 24, 84, 24, 84, 23, 85, 23, 85, 24, 86, 24, 86, 22, 88, 22, 88, 23, 87, 23, 87, 24, 90, 24, 91, 24, 91, 22, 92, 22, 92, 24, 93, 24, 93, 22, 92, 22, 92, 21, 90, 21, 90, -5, 89, -5, 89, -6, 88, -6, 88, -5, 87, -5, 87, -2, 86, -2, 86, 2, 85, 2, 85, 5, 84, 5, 84, 4, 83, 4, 83, 1, 82, 1, 82, -1, 81, -1, 81, -3, 80, -3, 80, -4, 79, -4, 79, -3, 79, 2, 80, 2, 80, 8, 79, 8, 79, 18, 78, 18, 78, 22)
+
+[sub_resource type="Animation" id="Animation_qutyp"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.196078, 0.392157, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Antorcha/PointLight2D:shadow_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_njbh1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.196078, 0.392157, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Antorcha/PointLight2D:shadow_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4f2a4"]
+_data = {
+"RESET": SubResource("Animation_njbh1"),
+"new_animation": SubResource("Animation_qutyp")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_3k6td")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.196078, 0.392157, 1, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-102, 62)
+color = Color(0.921569, 0.517647, 0, 1)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0.796078, 0)
+texture = ExtResource("4_b4lqe")
+
+[node name="Sprite2D" type="Sprite2D" parent="PointLight2D"]
+texture = ExtResource("5_1ef3x")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eaeen")
+}
+
+[node name="Fondo" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_rgeyw")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("7_3iabn")]
+position = Vector2(7, 60)
+
+[node name="Antorcha" parent="Player" instance=ExtResource("8_5h8i7")]
+position = Vector2(9, -1)
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" parent="Player/Antorcha" index="0"]
+shadow_enabled = false
+height = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_6l7nf")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+z_as_relative = false
+occluder = SubResource("OccluderPolygon2D_0p2rn")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(115, 15)
+occluder = SubResource("OccluderPolygon2D_nkhrr")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+position = Vector2(115, 15)
+occluder = SubResource("OccluderPolygon2D_tb2qp")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+position = Vector2(115, 15)
+occluder = SubResource("OccluderPolygon2D_u0snw")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4f2a4")
+}
+
+[editable path="Player/Antorcha"]

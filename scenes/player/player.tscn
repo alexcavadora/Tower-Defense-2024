@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4sjorjev7hy" path="res://scenes/Components/hitbox_component.tscn" id="6_w4lu8"]
 [ext_resource type="PackedScene" uid="uid://b5dq6y1sd5ks1" path="res://scenes/Components/player_attack_component.tscn" id="7_fvcda"]
 [ext_resource type="PackedScene" uid="uid://dfhnfj3t7vwvp" path="res://healthbar.tscn" id="8_qeomy"]
-[ext_resource type="PackedScene" uid="uid://4jmreas6fvs5" path="res://scenes/Components/sword_component.tscn" id="9_y7lnu"]
+[ext_resource type="PackedScene" uid="uid://bu22b3esuv0aj" path="res://scenes/Components/sword_orbit.tscn" id="9_ik55h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_25oji"]
 radius = 2.0
@@ -52,9 +52,8 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CircleShape2D_y4dhr")
 debug_color = Color(0.972549, 0, 0, 0.419608)
 
-[node name="PlayerAnimComponent" parent="." node_paths=PackedStringArray("Anim", "Sword") instance=ExtResource("6_n4rq0")]
+[node name="PlayerAnimComponent" parent="." node_paths=PackedStringArray("Anim") instance=ExtResource("6_n4rq0")]
 Anim = NodePath("../SpriteAnimation")
-Sword = NodePath("../SwordComponent")
 
 [node name="PlayerAttackComponent" parent="." node_paths=PackedStringArray("sword_component") instance=ExtResource("7_fvcda")]
 sword_component = NodePath("../SwordComponent")
@@ -64,16 +63,15 @@ dmg = 10
 visible = false
 health_component = NodePath("../HealthComponent")
 
-[node name="SwordComponent" parent="." instance=ExtResource("9_y7lnu")]
-visible = false
-position = Vector2(9, -2.825)
-
-[node name="Attack" parent="SwordComponent/Area2D" index="0"]
-disabled = true
-
 [node name="Node2D2" type="Node2D" parent="."]
 
+[node name="SwordComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_ik55h")]
+visible = false
+radius = 20
+player = NodePath("..")
+
 [connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
+[connection signal="change" from="PlayMovementComponent" to="SwordComponent" method="_on_play_movement_component_change"]
 [connection signal="body_entered" from="HitboxComponent" to="HitboxComponent" method="_on_body_entered"]
 [connection signal="body_entered" from="SwordComponent/Area2D" to="PlayerAttackComponent" method="_on_area_2d_body_entered"]
 

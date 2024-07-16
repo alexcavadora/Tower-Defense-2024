@@ -1,4 +1,4 @@
-class_name EnemyNode
+lass_name EnemyNode
 extends CharacterBody2D
 
 var current_path: Array[Vector2i]
