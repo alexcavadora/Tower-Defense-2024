@@ -1,7 +1,6 @@
 extends Node2D
 class_name PlayerAnimComponent
 @export var Anim : AnimatedSprite2D
-@export var Sword : AnimatedSprite2D
 @onready var prevA
 @onready var prevS
 
@@ -41,14 +40,3 @@ func _on_play_movement_component_change(animation):
 		return
 	changeanim(animation)
 
-
-
-func _on_player_attack_component_attack(animation):
-	pass
-	##print(animation)
-	##if animation != prevS:
-		##prevS = animation
-	#print("Tryingtochange...")
-	#changesword(animation)
-	##else:
-		##pass

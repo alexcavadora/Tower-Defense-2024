@@ -50,7 +50,7 @@ size = Vector2(20, 40)
 
 [node name="SwordComponent" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_25unu")
-animation = &"Attack"
+animation = &"Idle"
 speed_scale = 2.5
 script = ExtResource("3_j3r5a")
 
@@ -62,3 +62,4 @@ collision_mask = 2
 [node name="Attack" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 4.76837e-07)
 shape = SubResource("RectangleShape2D_sqsmg")
+disabled = true

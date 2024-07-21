@@ -3,13 +3,14 @@ class_name SwordOrbComponent
 @onready var MousePos
 @onready var GlobalMP
 @export var radius = 25
+@export var speed_factor = 6
 @export var player : Node2D
 
 func _process(delta):
 	if GlobalVariables.VisibleSword == true:
 		visible = true
 		MousePos = get_local_mouse_position()
-		rotation += MousePos.angle()*(delta*6)
+		rotation += MousePos.angle()*(delta*speed_factor)
 		#print("Show")
 		var mouse_pos = get_global_mouse_position()
 		var player_pos = player.global_transform.origin 

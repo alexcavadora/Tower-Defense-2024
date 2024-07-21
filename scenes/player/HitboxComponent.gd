@@ -2,8 +2,9 @@ extends Area2D
 class_name HitboxComponent
 @export var Target : CharacterBody2D
 @export var health_component : HealthComponent
+@export var shake : ShakeComponent
 @onready var damage_component : DamageComponent
-var Position
+
 
 func damage(amount):
 	if health_component:
@@ -13,5 +14,7 @@ func damage(amount):
 func _on_body_entered(body):
 	if body.find_child("DamageComponent"):
 		damage_component = body.find_child("DamageComponent")
+		shake.tween_shake()
 		damage(damage_component.damage)
+		
 	

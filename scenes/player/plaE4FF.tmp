@@ -19,7 +19,7 @@ height = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_y4dhr"]
 radius = 8.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Sprite", "Sword") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Sprite", "Sword")]
 script = ExtResource("1_akys2")
 Sprite = NodePath("SpriteAnimation")
 Sword = NodePath("SwordComponent")
@@ -48,7 +48,7 @@ healthbar = NodePath("../Healthbar")
 [node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("10_6c6aj")
 node = NodePath("../SpriteAnimation")
-shake_amount = 10.0
+shake_amount = 5.0
 shake_duration = 0.5
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("Target", "health_component", "shake") instance=ExtResource("6_w4lu8")]
@@ -91,11 +91,6 @@ scale_duration = 0.2
 [node name="ScaleCharacter" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("11_0i1ct")
 sprite = NodePath("../SpriteAnimation")
-
-[node name="ScaleEnemy" type="Node" parent="."]
-script = ExtResource("11_0i1ct")
-scale_amount = Vector2(0.65, 0.65)
-scale_duration = 0.2
 
 [connection signal="change" from="PlayMovementComponent" to="PlayerAnimComponent" method="_on_play_movement_component_change"]
 [connection signal="change" from="PlayMovementComponent" to="SwordComponent" method="_on_play_movement_component_change"]

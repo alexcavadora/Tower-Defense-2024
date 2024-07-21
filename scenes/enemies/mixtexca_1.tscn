@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_syr28"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="2_vaqsv"]
-[ext_resource type="Texture2D" uid="uid://bpprduyjl2ghv" path="res://assets/sprites/enemies/VarFem1Mixteca.png" id="3_gy4iw"]
+[ext_resource type="Texture2D" uid="uid://c3bmdq3trrjl6" path="res://assets/sprites/enemies/VarFem1Mixteca.png" id="3_gy4iw"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="4_608va"]
-[ext_resource type="Texture2D" uid="uid://db5af8e7jw7pb" path="res://assets/sprites/enemies/VarFem5Mixteca.png" id="4_jclgv"]
+[ext_resource type="Texture2D" uid="uid://upi78ek2lg41" path="res://assets/sprites/enemies/VarFem5Mixteca.png" id="4_jclgv"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="5_xx0yx"]
 [ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="6_al1w0"]
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="7_08tlt"]

@@ -1,4 +1,4 @@
-lass_name EnemyNode
+class_name EnemyNode
 extends CharacterBody2D
 
 var current_path: Array[Vector2i]
@@ -22,6 +22,8 @@ func _ready():
 func _delta():
 	if sprite_component.animation.name != 'death':
 		move_and_slide()
+
+
 
 func _on_path_completed():
 	#print('reached_goal: %f', $HealthComponent.MAX_HEALTH)

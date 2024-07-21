@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scenes/enemies/EnemyNode.gd" id="1_mbbyg"]
 [ext_resource type="Script" path="res://scenes/enemies/MovementComponent.gd" id="2_ax4mf"]
-[ext_resource type="Texture2D" uid="uid://culdtwgsgb1yg" path="res://assets/sprites/enemies/Ahuizol - Caminata.png" id="4_1m1jt"]
+[ext_resource type="Texture2D" uid="uid://c7tfogk7o4h2h" path="res://assets/sprites/enemies/Ahuizol - Caminata.png" id="4_1m1jt"]
 [ext_resource type="Script" path="res://scenes/enemies/SpriteComponent.gd" id="5_khucv"]
 [ext_resource type="Script" path="res://scenes/enemies/DamageComponent.gd" id="6_ey3gh"]
 [ext_resource type="Script" path="res://scenes/player/HealthComponent.gd" id="7_1kvuy"]
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="8_shfqt"]
-[ext_resource type="AudioStream" uid="uid://b2s1v8auek0jo" path="res://assets/sound effects/creatures/Ahuizol 1 (vida).mp3" id="8_xhfag"]
+[ext_resource type="AudioStream" uid="uid://3o3fxh3103sm" path="res://assets/sound effects/creatures/Ahuizol 1 (vida).mp3" id="8_xhfag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_320fy"]
 atlas = ExtResource("4_1m1jt")
