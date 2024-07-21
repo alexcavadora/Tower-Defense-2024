@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/player/Healthbar.gd" id="1_px7yq"]
 
-[node name="Healthbar" type="ProgressBar" node_paths=PackedStringArray("health_component")]
+[node name="Healthbar" type="ProgressBar"]
 offset_left = -11.0
 offset_top = -19.0
 offset_right = 59.0
 offset_bottom = 8.0
 scale = Vector2(0.315, 0.315)
 script = ExtResource("1_px7yq")
-health_component = NodePath("")

@@ -7,6 +7,7 @@ var cost = {
 	'upgrade 1': '--',
 	'upgrade 2': '--'
 	}
+	
 func _ready():
 	$Control.connect("pressed", _on_control_pressed)
 	$"../Camera2D/UI".connect('turret_selected', on_turret_selected)

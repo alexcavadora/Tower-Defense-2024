@@ -24,7 +24,6 @@ func _physics_process(delta):
 
 func explode():
 	for i in enemies_in_range:
-		print(i.find_child("MovementComponent").creature_speed)
 		i.find_child("MovementComponent").creature_speed =  0.2
 	
 func _on_sprite_2d_animation_finished():
