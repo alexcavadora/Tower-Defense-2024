@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var Sprite : AnimatedSprite2D
 @export var Sword : AnimatedSprite2D
+@onready var collision_shape_2d = $CollisionShape2D
 
 
 func _unhandled_input(event):
@@ -13,3 +14,15 @@ func _unhandled_input(event):
 		#Sword.position.x = -9
 func _killed():
 	pass
+
+
+func _on_unstucker_body_entered(body):
+	#print(body.name)
+	if body.name == "Ground":
+		collision_shape_2d.set_deferred("disabled", true)
+
+
+func _on_unstucker_body_exited(body):
+	#print(body.name)
+	if body.name == "Ground":
+		collision_shape_2d.set_deferred("disabled", false)

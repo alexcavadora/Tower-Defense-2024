@@ -1,12 +1,13 @@
 extends Node
 class_name  PlayerAttackComponent
-@export var sword_component : SwordOrbComponent
+@export var sword_comp : SwordOrbComponent
 @export var scale_sword : ScaleComponent
-@onready var first = sword_component.find_child("Area2D")
+@export var knock : KnockBackComponent
+@onready var sword_component = sword_comp.find_child("SwordSprite")
+@onready var first = sword_comp.find_child("Area2D")
 signal attack(animation)
 @export var dmg = 0
 @onready var scale_enemy = $"../ScaleEnemy"
-
 
 
 
@@ -30,10 +31,11 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	#print(body.name)
 	if body.find_child("HealthComponent"):
+		knock.knock_back(self.get_parent(),body)
 		var target = body.find_child("HealthComponent")
 		var shakeup = body.find_child("SpriteComponent")
 		scale_enemy.sprite = shakeup
 		scale_enemy.tween_scale()
 		target.damage(dmg)
-		
-		
+
+

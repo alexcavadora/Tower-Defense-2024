@@ -158,9 +158,11 @@ enemy_data = Array[ExtResource("6_jd7xr")]([SubResource("Resource_rlub2"), SubRe
 [node name="Player" parent="." instance=ExtResource("7_vfww5")]
 position = Vector2(168, 100)
 
-[node name="RigidBody2D" parent="Player" index="14"]
-inertia = 1000.0
-freeze_mode = 1
+[node name="HitboxComponent" parent="Player" index="5" node_paths=PackedStringArray("knock")]
+knock = NodePath("../KnockBackComponent")
+
+[node name="KnockBackComponent" parent="Player" index="14"]
+knock_back_power = 40
 
 [connection signal="turret_selected" from="Camera2D/UI" to="Ground" method="_on_control_turret_selected"]
 [connection signal="waves_ended" from="Wave_Manager" to="Camera2D/UI" method="_on_wave_changed"]
