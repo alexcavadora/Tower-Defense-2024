@@ -28,7 +28,7 @@ func _delta():
 func _on_path_completed():
 	#print('reached_goal: %f', $HealthComponent.MAX_HEALTH)
 	sprite_component.play("death")
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled",true)
 	$HealthbarComponent.hide()
 	emit_signal("died", $HealthComponent.MAX_HEALTH)
 	emit_signal("reached_goal", $HealthComponent.MAX_HEALTH)
@@ -36,7 +36,7 @@ func _on_path_completed():
 func _killed():
 	#print('killed %f', $HealthComponent.MAX_HEALTH)
 	sprite_component.play("death")
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled",true)
 	$HealthbarComponent.hide()
 	$"../Camera2D/UI".credits += $HealthComponent.MAX_HEALTH /10
 	emit_signal("died", $HealthComponent.MAX_HEALTH)
